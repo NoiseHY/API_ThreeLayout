@@ -1,0 +1,39 @@
+using BLL.Bussiness;
+using BLL.Inerfaces;
+using DAL.Helper;
+using DAL.Interfaces;
+using DAL.Repository;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddTransient<ExcuteProcedure, ConnectToDatabase>();
+builder.Services.AddTransient<IcustomerRepository, customerRepository>();
+builder.Services.AddTransient<IcustomerBusiness, customerBusiness>();
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseRouting();
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.UseAuthentication();
+
+app.MapControllers();
+
+app.Run();

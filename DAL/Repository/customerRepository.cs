@@ -1,6 +1,7 @@
 ﻿using DAL.Helper;
 using DAL.Interfaces;
 using DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DAL.Repository
@@ -12,6 +13,8 @@ namespace DAL.Repository
         {
             _excuteProcedure = databaseHelper;
         }
+
+        [Authorize]
         public List<customer> GetAll()
         {
             string msgError = "";
@@ -92,7 +95,7 @@ namespace DAL.Repository
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
 
             }
         }

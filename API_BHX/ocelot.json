@@ -1,0 +1,67 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl ": "http://localhost:37883"
+  },
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/customers",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/KhachHang/all",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 41624
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/customers/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/KhachHang/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 41624
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/customers",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/KhachHang/add",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 41624
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/customers/{id}",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamPathTemplate": "/api/KhachHang/update/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 41624
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/customers/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamPathTemplate": "/api/KhachHang/delete/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 41624
+        }
+      ]
+    }
+  ]
+}

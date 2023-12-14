@@ -74,3 +74,12 @@ F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\obj\Debug\net6.0\re
 F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\obj\Debug\net6.0\API_BHX.pdb
 F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\obj\Debug\net6.0\API_BHX.genruntimeconfig.cache
 F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\obj\Debug\net6.0\ref\API_BHX.dll
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\ocelot.json
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\FluentValidation.dll
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\IPAddressRange.dll
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\Microsoft.AspNetCore.MiddlewareAnalysis.dll
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\Microsoft.Extensions.DiagnosticAdapter.dll
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\Ocelot.dll

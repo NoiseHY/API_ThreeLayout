@@ -1,16 +1,56 @@
-using BLL.Bussiness;
+﻿using BLL.Bussiness;
 using BLL.Inerfaces;
 using DAL.Helper;
 using DAL.Interfaces;
 using DAL.Repository;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Đọc cấu hình từ appsettings.json
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .Build();
+
+// Đăng ký AppSettings trong container DI
+var appSettingsSection = configuration.GetSection("AppSettings");
+builder.Services.Configure<AppSettings>(appSettingsSection);
+
+// Lấy chuỗi khóa từ cấu hình
+var appSettings = appSettingsSection.Get<AppSettings>();
+var key = Encoding.ASCII.GetBytes(appSettings.Key);
+
+// Đăng ký dịch vụ xác thực JWT
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateLifetime = true
+    };
+});
+
+// Đăng ký các dịch vụ khác trong container DI
 builder.Services.AddTransient<ExcuteProcedure, ConnectToDatabase>();
 builder.Services.AddTransient<IcustomerRepository, customerRepository>();
 builder.Services.AddTransient<IcustomerBusiness, customerBusiness>();
+builder.Services.AddTransient<ILoginRepository, loginRepository>();
+builder.Services.AddTransient<ILoginBusiness, loginBusiness>();
+builder.Services.AddAuthorization();
 
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -19,7 +59,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Cấu hình HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -28,11 +68,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 
-app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseAuthentication();
+app.UseHttpsRedirection();
 
 app.MapControllers();
 

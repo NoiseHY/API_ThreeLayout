@@ -1,4 +1,4 @@
-﻿using API_BHX_Gateway;
+﻿
 using BLL.Bussiness;
 using BLL.Inerfaces;
 using DAL.Helper;
@@ -20,13 +20,11 @@ namespace API_BHX.Controllers
     [ApiController]
     public class loginController : ControllerBase
     {
-        private readonly ILoginRepository _loginRepository;
         private readonly AppSettings _appSettings;
         private readonly ILoginBusiness _loginBusiness;
 
-        public loginController(ILoginRepository loginRepository, IOptions<AppSettings> appSettings, ILoginBusiness loginBusiness)
+        public loginController(IOptions<AppSettings> appSettings, ILoginBusiness loginBusiness)
         {
-            _loginRepository = loginRepository;
             _appSettings = appSettings.Value;
             _loginBusiness = loginBusiness;
         }
@@ -40,7 +38,7 @@ namespace API_BHX.Controllers
             {
                 // Nếu đăng nhập thành công, tạo và trả về JWT
                 var token = GenerateJwtToken(accountInfo);
-                return Ok(new { Token = token });
+                return Ok(new { MaTK = accountInfo.MaTk, TenTK = accountInfo.TenTk, Token = token });
             }
             else
             {
@@ -62,7 +60,7 @@ namespace API_BHX.Controllers
                     new Claim(ClaimTypes.Role, account.MaPq.ToString())
                     // Thêm các thông tin khác nếu cần
                 }),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 

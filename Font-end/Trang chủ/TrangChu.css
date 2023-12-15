@@ -1,0 +1,622 @@
+* {
+  margin     : 0;
+  padding    : 0;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing : border-box;
+}
+
+body {
+  min-width : 1200px;
+  background: #e9edf0;
+  overflow-y: scroll;
+  margin    : 0;
+  padding   : 0;
+}
+
+header {
+  background-color: white;
+  padding         : 20px 0;
+  text-align      : center;
+  border          : 1px solid #ccc;
+  border-radius   : 10px;
+  position        : fixed;
+  width           : 100%;
+  top             : 0;
+  z-index         : 999;
+}
+
+.menuHead {
+  display        : flex;
+  justify-content: space-between;
+  align-items    : center;
+  max-width      : 1200px;
+  margin         : 0 auto;
+}
+
+.logo a {
+  font-size      : 24px;
+  color          : #03a63c;
+  text-decoration: none;
+  margin-right   : auto;
+  cursor: pointer;
+}
+
+.search-text {
+  display    : flex;
+  align-items: center;
+}
+
+.search-text input {
+  padding      : 8px;
+  border       : none;
+  border-radius: 20px;
+  margin-right : 10px;
+  width        : 300px;
+  border       : 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.icon-search {
+  max-width: 20px;
+  height   : 20px;
+  cursor: pointer;
+}
+
+.menuHead ul {
+  list-style : none;
+  display    : flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menuHead li {
+  margin: 0 10px;
+}
+
+.menuHead li a {
+  color          : #ffffff;
+  text-decoration: none;
+}
+
+.menuHead ul li img {
+  max-width   : 20px;
+  height      : auto;
+  margin-right: 5px;
+  transition  : all 0.3s ease;
+}
+
+.menuHead ul li img:hover {
+  transform: scale(1.5);
+}
+
+main {
+  padding-top: 50px;
+  min-width  : 1200px;
+  width      : 1200px;
+  margin     : 40px auto;
+}
+
+.slideshow-container {
+  position: relative;
+  width   : 100%;
+}
+
+.slide {
+  display: none;
+}
+
+.slide img {
+  width : 100%;
+  height: 200px;
+}
+
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.prev,
+.next {
+  position        : absolute;
+  top             : 50%;
+  transform       : translateY(-50%);
+  padding         : 16px;
+  font-size       : 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color           : white;
+  cursor          : pointer;
+}
+
+.Danhmuc {
+  width         : 100%;
+  padding-bottom: 100px;
+  padding-top   : 50px;
+}
+
+.txtDanhmuc {
+  display       : flex;
+  align-items   : center;
+  margin-bottom: 10px;
+}
+
+.txtDanhmuc p {
+  color      : black;
+  font-size  : 16px;
+  font-weight: bold;
+  margin-left: 9px;
+}
+
+.txtDanhmuc img {
+  width : 30px;
+  height: 30px;
+}
+
+.div-line{
+  border: 1px solid #cccbc8;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+
+.sectionProduct {
+  width      : 100%;
+  height     : 100px;
+  display    : flex;
+  align-items: center;
+
+}
+
+.sectionProduct .product-tpye {
+  height      : 100px;
+  width       : 100px;
+  margin      : 0 20px 0 0;
+  position    : relative;
+  align-items : center;
+  padding-left: 5px;
+  cursor      : pointer;
+}
+
+
+
+.sectionProduct p {
+  padding-top: 5px;
+  text-align : center;
+  font-size: 16px;
+}
+
+.sectionProduct picture {
+  width        : 100px;
+  height       : 100px;
+  display      : flex;
+  overflow     : hidden;
+  text-align   : center;
+  padding-top  : 0;
+  border-radius: 10px;
+}
+
+picture img {
+  width: 100%;
+}
+
+.sectionProduct picture:hover {
+  transform : scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Sanpham {
+  width         : 100%;
+  padding-bottom: 30px;
+}
+
+.txtSanpham {
+  display       : flex;
+  align-items   : center;
+  padding-bottom: 10px;
+}
+
+.txtSanpham img {
+  width : 30px;
+  height: 30px;
+}
+
+.txtSanpham p {
+  font-size  : 16px;
+  color      : black;
+  font-weight: bold;
+  margin-left: 9px;
+}
+
+.containerSanpham {
+  width      : auto;
+  height     : auto;
+  display    : grid;
+  place-items: center;
+
+}
+
+.sectionSanpham {
+  width    : auto;
+  display  : flex;
+  flex-wrap: wrap;
+  cursor   : pointer;
+}
+
+
+
+
+.Sanpham-tpye {
+  align-items: center;
+  width      : 200px;
+  height     : 200px;
+  margin     : 20px;
+  transition : transform 0.3s ease;
+  margin-bottom: 100px;
+}
+
+.Sanpham-tpye img {
+  height: 150px;
+  width: 150px;
+}
+
+
+.Sanpham-tpye p {
+  color             : black;
+  font-size         : 16px;
+  padding-top       : 5px;
+  overflow          : hidden;
+  display           : -webkit-box;
+  -webkit-line-clamp: 2;
+  /* Số dòng giới hạn */
+  -webkit-box-orient: vertical;
+  line-height       : 1.5;
+  /* Điều chỉnh line-height nếu cần thiết */
+  max-height        : 4em;
+  /* Số dòng giới hạn * line-height */
+
+}
+
+.Sanpham-tpye:hover {
+  transform: scale(1.1);
+}
+
+.Sanpham-cost {
+  display    : flex;
+  padding-top: 5px;
+}
+
+
+.Sanpham-cost p {
+  flex     : 1;
+  color    : #ee4d2d;
+  font-size: 16px;
+}
+
+.Sanpham-cost-star {
+  display    : flex;
+  align-items: center;
+  color      : rgb(248, 120, 5);
+  font-size  : 16px;
+  margin-top : 3px;
+}
+
+.Sanpham-cost-star img {
+  width      : 20px;
+  height     : 20px;
+  margin-left: 5px;
+
+}
+
+.Sanpham-cost-sales {
+  flex: 1;
+}
+
+.Sanpham-cost-phantram {
+  position: relative;
+}
+
+.Sanpham-cost-phantram a {
+  font-size: 16px;
+  color    : rgb(248, 120, 5);
+
+}
+
+.Sanpham-cost-phantram p {
+  background-color: red;
+  border-radius   : 5px;
+  color           : yellow;
+  padding         : 3px 3px;
+  margin-top      : 40px;
+}
+
+.Sanpham-cost-phantram img {
+  width : 20px;
+  height: 20px;
+
+}
+
+
+
+/* Định dạng ban đầu của phần tử p */
+.Sanpham-cost-phantram p {
+  position : absolute;
+  top      : -25%;
+  /* Đặt vị trí ban đầu là -25% */
+  opacity  : 0;
+  /* Ẩn phần tử */
+  animation: showHide 0.5s infinite;
+  /* Sử dụng animation để tự động hiển thị và ẩn đi */
+}
+
+/* Keyframe animation */
+@keyframes showHide {
+  0% {
+
+    opacity: 0;
+    /* Ẩn phần tử */
+  }
+
+  50% {
+
+    opacity: 1;
+    /* Hiển thị phần tử */
+  }
+
+  100% {
+
+    opacity: 0;
+    /* Giữ phần tử hiển thị */
+  }
+}
+
+/* Ẩn phần tử khi không cần thiết */
+.Sanpham-cost-phantram p.hidden {
+  display: none;
+}
+
+
+.More {
+  background-color: #c3ffcc;
+  width           : 100%;
+  cursor          : pointer;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  border-radius   : 5px;
+}
+
+.More p {
+  font-size : 16px;
+  color     : #454d66;
+  text-align: center;
+  padding   : 8px;
+
+}
+
+
+.More img {
+  width : 30px;
+  height: 30px;
+}
+
+.Voucher {
+  width: 100%;
+
+}
+
+.Voucher-txt {
+  display      : flex;
+  align-items  : center;
+  position     : relative;
+  
+}
+
+.Voucher-txt img {
+  height: 30px;
+  width : 30px;
+}
+
+.Voucher-txt p {
+  margin-left: 10px;
+  font-size  : 16px;
+  color      : black;
+  font-weight: bold;
+}
+
+.Voucher-txt a {
+  position : absolute;
+  right    : 0;
+  font-size: 16px;
+  color    : #454d66;
+}
+
+.Voucher-container {
+  display      : flex;
+  width        : 100%;
+  margin-bottom: 20px;
+  flex-wrap    : wrap;
+  margin-top: 30px;
+
+}
+
+.get-Voucher {
+  width        : 500px;
+  height       : 100px;
+  display      : flex;
+  align-items  : center;
+  box-shadow   : 0 0 5px 1.5px #888;
+  margin-right : 20px;
+  margin-bottom: 20px;
+}
+
+.get-Voucher img {
+  width       : 100px;
+  height      : 100px;
+  padding-left: 20px;
+}
+
+.Voucher-infor {
+  align-items: center;
+  margin     : 20px 20px;
+}
+
+.Voucher-info p {
+  padding-bottom: 10px;
+  margin-left   : 20px;
+}
+
+.get-Voucher button {
+  width           : 90px;
+  height          : 40px;
+  margin-left     : 20px;
+  background-color: #7EA1C4;
+  color           : #1B365C;
+  border          : none;
+  cursor          : pointer;
+}
+
+.Meo {
+  display: flex;
+  width  : 100%;
+}
+
+.Meo-video iframe {
+  border-radius: 10px;
+}
+
+.Meo-txt {
+  margin-left: 50px;
+
+}
+
+.Meo-txt img {
+  height: 100px;
+  width : 100px;
+}
+
+.Meo-txt a {
+  font-size      : 16px;
+  text-decoration: none;
+  color          : rgb(81 87 100/var(--tw-text-opacity));
+
+}
+
+
+.Meo-txt-container {
+  display      : flex;
+  margin-bottom: 30px;
+}
+
+.Meo-txt-a {
+  display    : flex;
+  
+  
+}
+
+.Meo-txt-a p {
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.Meo-txt .More p {
+  color    : #7f5199;
+  font-size: 16px;
+}
+
+footer {
+  min-width    : 1200px;
+  width        : 100%;
+  margin-top   : 30px;
+  margin-bottom: 20px;
+  clear        : both;
+
+}
+
+
+.footer-container {
+  width  : 100%;
+  display: flex;
+}
+
+.footer-container img {
+  width : 500px;
+  height: 200px;
+
+}
+
+.tt-Admin {
+  display    : flex;
+  align-items: center;
+}
+
+.tt-Admin img {
+  height: 200px;
+  width : 200px;
+}
+
+.tt-Admin p {
+  margin-bottom: 10px;
+}
+
+.tt-bachhoaxanh {
+  margin-left: 50px;
+
+}
+
+.tt-bachhoaxanh p {
+  margin    : 20px 20px;
+  text-align: center;
+
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+.footer-container {
+  max-width      : 1200px;
+  margin         : 0 auto;
+  display        : flex;
+  justify-content: space-between;
+  
+}
+
+.footer-container img {
+  width        : 500px;
+  height       : 200px;
+  border-radius: 10px;
+}
+
+.tt-Admin {
+  display    : flex;
+  align-items: center;
+}
+
+.tt-Admin img {
+  height       : 200px;
+  width        : 200px;
+  border-radius: 10px;
+}
+
+.tt-Admin p {
+  margin-bottom: 10px;
+}
+
+.tt-Admin-txt p{
+  font-size: 16px;
+}
+
+.tt-bachhoaxanh {
+  margin-left: 50px;
+
+}
+
+.tt-bachhoaxanh p {
+  margin    : 20px 20px;
+  text-align: center;
+
+}

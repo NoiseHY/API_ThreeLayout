@@ -8,11 +8,12 @@ namespace DTO
 {
     public class product
     {
-        public int MaSp { get; set; }
-        public string TenSp { get; set; } = null!;
+        public int MaSP { get; set; }
+        public string TenSP { get; set; } = null!;
         public string? Mota { get; set; }
         public int SoLuong { get; set; }
         public decimal Dongia { get; set; }
-        public int MaTl { get; set; }
+        public int MaTL { get; set; }
+        public string? Img { get; set; }
     }
 }

@@ -9,9 +9,9 @@ namespace DAL.Repository
     public class customerRepository : IcustomerRepository
     {
         private ExcuteProcedure _excuteProcedure;
-        public customerRepository(ExcuteProcedure databaseHelper)
+        public customerRepository(ExcuteProcedure excuteProcedure)
         {
-            _excuteProcedure = databaseHelper;
+            _excuteProcedure = excuteProcedure;
         }
 
         [Authorize]

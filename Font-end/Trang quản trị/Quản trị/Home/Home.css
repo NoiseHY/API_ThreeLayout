@@ -1,0 +1,133 @@
+* {
+  margin     : 0;
+  padding    : 0;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing : border-box;
+}
+
+.admin-content-container-main{
+  display: flex;
+}
+.admin-content-container-tt{
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 100%;
+  background-color: #56d96a;
+}
+
+.admin-content-container-left{
+  width: 40%;
+}
+
+.admin-content-container-tt a {
+  font-weight: bold;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+.admin-content-container-tt p {
+  margin-top: 10px;
+  font-size: 30px;
+  color: #f5f4f1;
+}
+.div-line{
+  border-bottom: 1px solid #cccbc8;
+  margin-top: 20px;
+  width: 100%;
+}
+.admin-content-container-tn{
+  margin-top: 10px;
+}
+
+.admin-content-container-tn h3{
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.admin-content-container-tn-kh{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  
+}
+.admin-content-container-tn-kh img{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #56d96a;
+  width: 40px;
+  height: 40px;
+}
+.admin-content-container-tn-kh-nd{
+  margin-left: 10px;
+  margin-right: 7.5em;
+  font-size: 16px;
+}
+.admin-content-container-tn-kh-nd p{
+  margin-top: 6px;
+  
+}
+
+.admin-content-container-right{
+  width: 60%;
+  margin-left: 40px;
+}
+.admin-content-container-right-chart{
+  margin-bottom: 50px;
+}
+.chart {
+  display: flex;
+  
+}
+
+.chart-month {
+  text-align: center;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.chart-month a {
+  display: block;
+  margin-bottom: 5px;
+}
+.bar {
+  width: 20px;
+  background-color: #03a63c;
+  margin-bottom: 5px;
+  
+}
+.admin-content-container-right-tt{
+  display: flex;
+  margin-bottom: 50px;
+}
+.admin-content-container-right-tt div{
+  margin-right: 5em;
+}
+
+.admin-content-container-right-tt div > h3{
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.admin-content-container-right-tt div >img{
+  height: 40px;
+  width: 40px;
+  
+}
+
+.admin-content-container-right-img{
+  width: 100%;
+  margin-top: 1em;
+}
+.admin-content-container-right-img img{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+}
+

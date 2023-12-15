@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Bussiness
 {
-    public class customerBusiness:IcustomerBusiness
+    public partial class customerBusiness:IcustomerBusiness
     {
         private IcustomerRepository icustomerRepository;
         public customerBusiness(IcustomerRepository _icustomerRepository)

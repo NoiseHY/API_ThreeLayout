@@ -30,20 +30,23 @@ namespace API_BHX.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(string username, string password)
+        public IActionResult Login([FromBody] account loginRequest)
         {
-            var accountInfo = _loginBusiness.Login(username, password);
+            if (loginRequest == null || string.IsNullOrEmpty(loginRequest.TenTk) || string.IsNullOrEmpty(loginRequest.MkTk))
+            {
+                return BadRequest(new { error = "Vui lòng cung cấp tên đăng nhập và mật khẩu." });
+            }
+
+            var accountInfo = _loginBusiness.Login(loginRequest.TenTk, loginRequest.MkTk);
 
             if (accountInfo != null)
             {
-                // Nếu đăng nhập thành công, tạo và trả về JWT
                 var token = GenerateJwtToken(accountInfo);
                 return Ok(new { MaTK = accountInfo.MaTk, TenTK = accountInfo.TenTk, Token = token });
             }
             else
             {
-                // Nếu đăng nhập không thành công, trả về thông báo lỗi
-                return BadRequest(new { error = "Tài khoản hoặc mật khẩu sai " });
+                return BadRequest(new { error = "Tài khoản hoặc mật khẩu không đúng." });
             }
         }
 

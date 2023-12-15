@@ -42,6 +42,8 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+
+
 // Đăng ký các dịch vụ khác trong container DI
 builder.Services.AddTransient<ExcuteProcedure, ConnectToDatabase>();
 builder.Services.AddTransient<IcustomerRepository, customerRepository>();
@@ -65,6 +67,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+// Cấu hình CORS
+app.UseCors(builder =>
+{
+    builder.WithOrigins("http://127.0.0.1:5501") // Thay đổi domain của frontend của bạn ở đây
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+});
+
 
 app.UseRouting();
 

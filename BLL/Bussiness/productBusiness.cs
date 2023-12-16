@@ -36,5 +36,9 @@ namespace BLL.Bussiness
         {
             return iproductRepository.Delete(id);
         }
+        public bool UpdateImageFilePath(int productId, string imagePath)
+        {
+            return iproductRepository.UpdateImageFilePath(productId, imagePath);
+        }
     }
 }

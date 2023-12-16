@@ -16,17 +16,36 @@ namespace DAL.Repository
         {
             _excuteProcedure = excuteProcedure;
         }
-      
+
+        public bool UpdateImageFilePath(int productId, string imagePath)
+        {
+            string msg = "";
+            try
+            {
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "UpdateSanPhamImg",
+                     "@MaSP", productId,
+                     "@NewImg", imagePath);
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public product GetProductByID(int id)
         {
-            string msgError = "";
+            string msg = "";
             try
             {
-                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "GetProductById",
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "GetProductById",
                      "@ProductId", id);
-                if (!string.IsNullOrEmpty(msgError))
-                    throw new Exception(msgError);
+                if (!string.IsNullOrEmpty(msg))
+                    throw new Exception(msg );
                 return dt.ConvertTo<product>().FirstOrDefault();
 
             }
@@ -38,15 +57,15 @@ namespace DAL.Repository
 
         public List<product> GetAll(int pageNumber, int pageSize)
         {
-            string msgError = "";
+            string msg = "";
             try
             {
-                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "GetPaginatedProducts",
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "GetPaginatedProducts",
                     "@PageNumber", pageNumber,
                     "@PageSize", pageSize);
 
-                if (!string.IsNullOrEmpty(msgError))
-                    throw new Exception(msgError);
+                if (!string.IsNullOrEmpty(msg))
+                    throw new Exception(msg);
 
                 return dt.ConvertTo<product>().ToList();
             }
@@ -59,11 +78,11 @@ namespace DAL.Repository
 
         public bool Create(product product)
         {
-            string msgError = "";
+            string msg = "";
             try
             {
-                var result = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(
-                    out msgError, "AddProduct",
+                var productId = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(
+                    out msg, "AddProduct",
                     "@TenSP", product.TenSP,
                     "@Mota", product.Mota,
                     "@SoLuong", product.SoLuong,
@@ -71,65 +90,67 @@ namespace DAL.Repository
                     "@MaTL", product.MaTL,
                     "@Img", product.Img);
 
-                if (result != null || !string.IsNullOrEmpty(msgError))
+                if (productId != null || !string.IsNullOrEmpty(msg))
                 {
-                    throw new Exception(Convert.ToString(result) + msgError);
+                    throw new Exception(Convert.ToString(productId) + msg);
                 }
+
 
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
-        }
 
+        }
 
         public bool Update(product product)
         {
-            string msgError = "";
+            string msg = "";
             try
             {
                 var result = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(
-                     out msgError, "AddProduct",
-                     "@MaSP",product.MaSP,
+                     out msg, "UpdateProduct",
+                     "@MaSP", product.MaSP,
                      "@TenSP", product.TenSP,
                      "@Mota", product.Mota,
                      "@SoLuong", product.SoLuong,
                      "@Dongia", product.Dongia,
                      "@MaTL", product.MaTL,
-                     "@Img", product.Img);
+                     "@Img", product.Img); 
 
-                if (result != null || !string.IsNullOrEmpty(msgError))
+                if (result != null || !string.IsNullOrEmpty(msg))
                 {
-                    throw new Exception(Convert.ToString(result) + msgError);
+                    throw new Exception(Convert.ToString(result) + msg);
                 }
+
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
-
+                return false;
             }
         }
+
         public bool Delete(int id)
         {
-            string msgError = "";
+            string msg = "";
             try
             {
-                var result = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(out msgError, "DeleteProduct",
+                var result = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(out msg, "DeleteProduct",
                     "@MaSP", id);
 
-                if (result != null || !string.IsNullOrEmpty(msgError))
+                if (result != null || !string.IsNullOrEmpty(msg))
                 {
-                    throw new Exception(Convert.ToString(result) + msgError);
+                    throw new Exception(Convert.ToString(result) + msg);
                 }
 
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                return false;
             }
         }
 

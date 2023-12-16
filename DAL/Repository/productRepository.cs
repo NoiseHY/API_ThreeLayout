@@ -24,7 +24,7 @@ namespace DAL.Repository
             {
                 var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "UpdateSanPhamImg",
                      "@MaSP", productId,
-                     "@NewImg", imagePath);
+                     "@Img", imagePath);
                 if (!string.IsNullOrEmpty(msg))
                 {
                     return false;

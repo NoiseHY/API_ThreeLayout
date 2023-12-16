@@ -17,7 +17,7 @@ namespace API_BHX.Controllers
             _iproductBusiness = iproductBusiness;
         }
 
-        [Route("api/product/uploadImage")]
+        [Route("uploadImage")]
         [HttpPost]
         public async Task<IActionResult> UploadImage(int productID ,IFormFile file)
         {
@@ -44,6 +44,10 @@ namespace API_BHX.Controllers
                     await file.CopyToAsync(stream);
                 }
 
+                if (productID == 0)
+                {
+                    return BadRequest("Mã sản phẩm = 0");
+                }
                 // Lưu đường dẫn của ảnh vào cơ sở dữ liệu
                 bool success = _iproductBusiness.UpdateImageFilePath(productID, filePath);
 
@@ -126,9 +130,6 @@ namespace API_BHX.Controllers
                 return BadRequest("Đã xảy ra lỗi khi sửa sản phẩm !");
             }
         }
-
-
-
 
         [Route("Delete/{id}")]
         [HttpDelete]

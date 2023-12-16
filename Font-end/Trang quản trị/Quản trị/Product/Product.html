@@ -19,28 +19,32 @@
     rel="stylesheet">
   </P>
   <link rel="stylesheet" href="Product.css">
-  <script src="/Angular JS/angular-1.8.2/angular.min.js"></script>
+  <script src="/Angular JS/angular-1.8.2/angular.js"></script>
   <script src="Product.js"></script>
   
 </head>
 
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="productCtrl">
   <div class="customer-container">
     <div class="form-group">
-      <input type="text" id="fullname" name="fullname" required>
-      <label for="fullname">Tên sản phẩm</label>
+      <input type="text" id="productID" ng-model="product.id" name="productId" required>
+      <label for="productId">Mã sản phẩm</label>
     </div>
     <div class="form-group">
-      <input type="text" id="fullname" name="fullname" required>
-      <label for="fullname">Mô tả</label>
+      <input type="text" id="productName" name="productName" required>
+      <label for="productName">Tên sản phẩm</label>
     </div>
     <div class="form-group">
-      <input type="text" id="fullname" name="fullname" required>
-      <label for="fullname">Số lượng</label>
+      <input type="text" id="productDescription" name="productDescription" required>
+      <label for="productDescription">Mô tả</label>
     </div>
     <div class="form-group">
-      <input type="text" id="fullname" name="fullname" required>
-      <label for="fullname">Đơn giá</label>
+      <input type="text" id="productQuantity" name="productQuantity" required>
+      <label for="productQuantity">Số lượng</label>
+    </div>
+    <div class="form-group">
+      <input type="text" id="productPrice" name="productPrice" required>
+      <label for="productPrice">Đơn giá</label>
     </div>
 
     <!-- Trong template của Angular -->
@@ -51,12 +55,11 @@
     </div>
 
     <div class="form-group">
-      <input type="file" ng-model="imageFile" accept="image/*">
+      <input type="file" id="imageFile" accept="image/*" onchange="angular.element(this).scope().setImageFile(event)">
     </div>
-
-    <div class="button-product">
-      <button ng-click="createProduct()">Thêm sản phẩm</button>
-    </div>
+    
+    
+    <button ng-click="createProduct()">Tạo Sản phẩm</button>
   </div>
 </body>
 

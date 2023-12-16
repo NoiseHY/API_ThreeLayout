@@ -19,11 +19,12 @@
     rel="stylesheet">
   </P>
   <link rel="stylesheet" href="Product.css">
+  <script src="/Angular JS/angular-1.8.2/angular.min.js"></script>
   <script src="Product.js"></script>
-
+  
 </head>
 
-<body>
+<body ng-app="myApp">
   <div class="customer-container">
     <div class="form-group">
       <input type="text" id="fullname" name="fullname" required>
@@ -41,33 +42,17 @@
       <input type="text" id="fullname" name="fullname" required>
       <label for="fullname">Đơn giá</label>
     </div>
-    
-    <button type="submit">Làm mới</button>
-    <button type="submit">Thêm dữ liệu</button>
-    <button type="submit">Sửa dữ liệu </button>
-    <button type="submit">Xóa dữ liệu</button>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Mã KH</th>
-          <th>Tên KH</th>
-          <th>Địa chỉ</th>
-          <th>Số điện thoại</th>
-          <th>Ngày sinh</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Nguyễn Văn A</td>
-          <td>Hà Nội</td>
-          <td>0123456789</td>
-          <td>01/01/1990</td>
-        </tr>
-        
-      </tbody>
-    </table>
+    <!-- Trong template của Angular -->
+    <div  ng-controller="myCtrl" class="selectTL">
+      <select ng-model="selectedCategory" ng-options="category.tenLoai for category in categories">
+        <option value="">Chọn thể loại</option>
+      </select>      
+    </div>
+
+    
+
+
   </div>
 </body>
 

@@ -80,8 +80,6 @@ namespace API_BHX.Controllers
             return Ok(products);
         }
 
-
-
         [Route("GetProductByID")]
         [HttpGet]
         public product GetProductByID(int id)

@@ -51,3 +51,29 @@ app.controller('productCtrl', function($scope, $http) {
     });
   };  
 });
+
+app.controller('productController', function($scope, $http) {
+  $scope.productList = [];
+
+  // Gọi API để lấy danh sách sản phẩm
+  $http.get('https://localhost:7117/api/product/GetAll')
+    .then(function(response) {
+      // Trích xuất thông tin cần thiết từ dữ liệu trả về và gán vào productList
+      $scope.productList = response.data.map(function(product) {
+        return {
+          maSP: product.maSP,
+          tenSP: product.tenSP,
+          mota: product.mota,
+          soLuong: product.soLuong,
+          dongia: product.dongia,
+          maTL: product.maTL,
+          img: product.img // Đảm bảo rằng đường dẫn hình ảnh hợp lệ để hiển thị
+        };
+      });
+    })
+    .catch(function(error) {
+      // Xử lý lỗi nếu có
+      console.error('There was an error!', error);
+    });
+});
+

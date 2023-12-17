@@ -3,55 +3,44 @@ var app = angular.module('myApp', ['ngRoute']);
 app.config(function ($routeProvider) {
   $routeProvider
     .when('/quan-ly-khach-hang', {
-      templateUrl: 'Quản trị/Customer/Customer.html',
+      templateUrl: '/Trang quản trị/Quản trị/Customer/Customer.html',
       controller: 'QuanLyKhachHangController',
-      resolve: {
-        css: function() {
-
-          var head = document.getElementsByTagName('head')[0];
-          var link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.type = 'text/css';
-          link.href = 'Quản trị/Customer/Customer.css'; 
-          head.appendChild(link);
-        }
-      }
     })
     .when('/quan-ly-san-pham', {
-      templateUrl: 'Quản trị/Product/Product.html',
+      templateUrl: '/Trang quản trị/Quản trị/Product/Product.html',
       controller: 'QuanLySanPhamController',
-      resolve: {
-        css: function() {
-
-          var head = document.getElementsByTagName('head')[0];
-          var link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.type = 'text/css';
-          link.href = 'Quản trị/Product/Product.css'; 
-          head.appendChild(link);
-        }
-      }
     })
-    .when('/', {
-      templateUrl: 'Quản trị/Home/Home.html', 
-      controller: 'QuanLyAdminController', 
-      resolve: {
-        css: function() {
+    .when('/admin', {
+      templateUrl: 'Quản trị/Home/Home.html',
+      controller: 'QuanLyAdminController',
 
-          var head = document.getElementsByTagName('head')[0];
-          var link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.type = 'text/css';
-          link.href = 'Quản trị/Home/Home.css'; 
-          head.appendChild(link);
-        }
-      }
     })
     .otherwise({
-      redirectTo: '/'
+      redirectTo: '/admin'
     });
 });
 
+
+app.controller('QuanLySanPhamController', function ($scope, $location) {
+  $scope.navigateToPageSP = function () {
+    console.log('Clicked navigateToPageSP');
+    $location.path('/quan-ly-san-pham');
+  };
+});
+
+app.controller('QuanLyKhachHangController', function ($scope, $location) {
+  $scope.navigateToPageKH = function () {
+    console.log('Clicked navigateToPageKH');
+    $location.path('/quan-ly-khach-hang');
+  };
+});
+
+app.controller('QuanLyAdminController', function ($scope, $location) {
+  $scope.navigateToAdmin = function () {
+    console.log('Clicked navigateToAdmin');
+    $location.path('/quan-ly-admin');
+  };
+});
 
 app.controller('AdminContentController', function ($scope) {
   // Controller logic for chart view
@@ -71,27 +60,54 @@ app.controller('AdminContentController', function ($scope) {
   ];
 });
 
-app.controller('QuanLySanPhamController', function ($scope, $location) {
-  $scope.navigateToPageSP = function() {
-    console.log('Clicked navigateToPageSP');
-    $location.path('/quan-ly-san-pham');
-  };
+app.controller('categoryCtrl', function ($scope, $http) {
+  $http.get('https://localhost:7117/api/category/GetAll')
+    .then(function (response) {
+      $scope.categories = response.data;
+    })
+    .catch(function (error) {
+      console.error('Error fetching categories', error);
+    });
 });
 
-app.controller('QuanLyKhachHangController', function ($scope, $location) {
-  $scope.navigateToPageKH = function() {
-    console.log('Clicked navigateToPageKH');
-    $location.path('/quan-ly-khach-hang');
+app.controller('productCtrl', function($scope, $http) {
+  $scope.product = {};
+
+  // Hàm để lấy giá trị từ input file và gán cho $scope.imageFile
+  $scope.setImageFile = function(event) {
+    var files = event.target.files;
+    if (files.length > 0) {
+      $scope.imageFile = files[0];
+    }
   };
+  
+
+  $scope.createProduct = function() {
+    var productId = parseInt($scope.product.id);
+  
+    if (isNaN(productId) || productId <= 0) {
+      alert('Invalid product ID');
+      return;
+    }
+  
+    if (!$scope.imageFile) {
+      alert('No image selected');
+      return;
+    }
+  
+    var url = 'https://localhost:7117/api/product/uploadImage?productID=' + productId;
+    var formData = new FormData();
+    formData.append('file', $scope.imageFile);
+  
+    $http.post(url, formData, {
+      transformRequest: angular.identity,
+      headers: { 'Content-Type': undefined }
+    })
+    .then(function(response) {
+      alert('Upload ảnh thành công !!');
+    })
+    .catch(function(error) {
+      alert('Lỗi khi Upload ảnh', error.data);
+    });
+  };  
 });
-
-app.controller('QuanLyAdminController', function($scope, $location) {
-  $scope.navigateToAdmin = function() {
-    console.log('Clicked navigateToAdmin');
-    $location.path('/quan-ly-admin');
-  };
-});
-
-
-
-

@@ -22,7 +22,8 @@
   <script src="/Angular JS/angular-1.8.2/angular.min.js"></script>
   <script src="/Angular JS/angular-1.8.2/angular-route.js"></script>
   
-  <script src="Trang quản trị.js"></script>
+  <script src="/Trang quản trị/Trang quản trị.js"></script>
+
 </head>
 
 <body ng-app="myApp">
@@ -35,23 +36,23 @@
         <div class="search-text">
           <input type="search" name="Tìm kiếm" placeholder="Tìm kiếm của bạn ..." />
           <img class="icon-search"
-            src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/search-interface-symbol.png" />
+            src="/Trang chủ/Anh/header/search-interface-symbol.png" />
         </div>
         <ul>
           <li>
-            <img src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/home.png" />
+            <img src="/Trang chủ/Anh/header/home.png" />
           </li>
           <li>
-            <img src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/category.png" />
+            <img src="/Trang chủ/Anh/header/category.png" />
           </li>
           <li>
-            <img src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/user.png" />
+            <img src="/Trang chủ/Anh/header/user.png" />
           </li>
           <li>
-            <img src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/bell.png" />
+            <img src="/Trang chủ/Anh/header/bell.png" />
           </li>
           <li>
-            <img src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/shopping-cart.png" />
+            <img src="/Trang chủ/Anh/header/shopping-cart.png" />
           </li>
         </ul>
       </div>
@@ -109,8 +110,8 @@
       </div>
     </div>
     <!-- ng-view -->
-    <div class="admin-content"   ng-view>
-
+    <div class="admin-content" >
+      <div ng-view=""></div>
     </div>
     
   </main>

@@ -203,7 +203,7 @@ main{
 }
 
 
-.admin-content{
+/* .admin-content{
   margin-left: 9em;
 }
 
@@ -228,9 +228,9 @@ main{
   margin-top: 10px;
   width: 100%;
   background-color: #56d96a;
-}
+} */
 
-.admin-content-container-left{
+/* .admin-content-container-left{
   width: 40%;
 }
 
@@ -268,9 +268,9 @@ main{
 .admin-content-container-tn-kh-nd p{
   margin-top: 6px;
   
-}
+} */
 
-.admin-content-container-right{
+/* .admin-content-container-right{
   width: 60%;
   margin-left: 40px;
 }
@@ -323,4 +323,4 @@ main{
   border-radius: 5px;
   cursor: pointer;
 }
-
+ */

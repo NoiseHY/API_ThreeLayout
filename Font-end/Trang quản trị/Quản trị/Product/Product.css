@@ -7,7 +7,7 @@
 
 .customer-container{
   margin-top: 1em;
-  margin-left: 9em;
+  margin-left: 19em;
 }
 
 
@@ -55,10 +55,24 @@
   
 }
 
+.selectTL{
+  display: flex;
+  align-items: center;
+}
+
 .selectTL select{
   padding: 6px;
   border-radius: 3px;
 }
-.button-product button{
-  padding: 6px;
+.img-group{
+  display: flex;
+  align-items: baseline;
+  margin-top: 1em;
+  margin-left: 1.5em;
+  
+}
+
+.img-group button{
+  margin-left: 29px;
+  padding: 9px;
 }

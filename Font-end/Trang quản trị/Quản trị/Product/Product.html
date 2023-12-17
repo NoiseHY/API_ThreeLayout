@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Người dùng</title>
+  <title>Sản phẩm</title>
   <link rel="stylesheet" href="Trang quản trị.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,9 +18,9 @@
     href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400&family=Roboto:ital,wght@0,100;0,300;0,400;1,100&display=swap"
     rel="stylesheet">
   </P>
-  <link rel="stylesheet" href="Product.css">
+  <link rel="stylesheet" href="/Trang quản trị/Quản trị/Product/Product.css">
   <script src="/Angular JS/angular-1.8.2/angular.js"></script>
-  <script src="Product.js"></script>
+  <script src="/Trang quản trị/Quản trị/Product/Product.js"></script>
   
 </head>
 
@@ -49,17 +49,54 @@
 
     <!-- Trong template của Angular -->
     <div ng-controller="categoryCtrl" class="selectTL">
-      <select ng-model="selectedCategory" ng-options="category.tenLoai for category in categories">
-        <option value="">Chọn thể loại</option>
-      </select>      
+      <div>
+        <select ng-model="selectedCategory" ng-options="category.tenLoai for category in categories">
+          <option value="">Chọn thể loại</option>
+        </select> 
+      </div>
+      
+      
+      <div class="img-group">
+        <div class="form-group">
+          <input type="file" id="imageFile" accept="image/*" onchange="angular.element(this).scope().setImageFile(event)">
+        </div>
+        
+        <button ng-click="createProduct()">Tải ảnh lên </button>
+      </div>
     </div>
 
-    <div class="form-group">
-      <input type="file" id="imageFile" accept="image/*" onchange="angular.element(this).scope().setImageFile(event)">
+    <div ng-controller="productController">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Ảnh sản phẩm </th>
+            <th>Tên sản phẩm</th>
+            <th>Mô tả</th>
+            <th>Số lượng </th>
+            <th>Đơn giá </th>
+            <th>Mã thể loại </th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="product in productList">
+            <td><img ng-src="{{product.image}}" height="50px" width="50px"></td>
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.manufacturer}}</td>
+            <td>{{product.unit}}</td>
+            <td>
+              <button >Sửa</button>
+              <button >Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     
-    
-    <button ng-click="createProduct()">Tạo Sản phẩm</button>
+
+
   </div>
 </body>
 

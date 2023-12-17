@@ -4,7 +4,9 @@
   font-family: 'Montserrat', sans-serif;
   box-sizing : border-box;
 }
-
+.admin-content{
+  margin-left: 9em;
+}
 .admin-content-container-main{
   display: flex;
 }

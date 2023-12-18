@@ -10,5 +10,7 @@ namespace DAL.Interfaces
     public partial interface IcategoryRepository
     {
         List<category> GetCategories();
+
+        List<category> GetNameCategories(int id);
     }
 }

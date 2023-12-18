@@ -23,5 +23,11 @@ namespace API_BHX.Controllers
             return _icategoryBusiness.GetCategories();
         }
 
+        [Route("GetNameCategoryByID")]
+        [HttpGet]
+        public List<category> GetNameCategories(int id)
+        {
+            return (_icategoryBusiness.GetNameCategories(id));
+        }
     }
 }

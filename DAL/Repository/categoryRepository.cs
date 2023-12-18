@@ -33,6 +33,22 @@ namespace DAL.Repository
             }
         }
 
+        public List<category> GetNameCategories(int id)
+        {
+            string msg = "";
+            try
+            {
+                var category = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "GetTenLoaiByMaLoai",
+                    "@MaLoai", id);
+                if (!string.IsNullOrEmpty(msg))
+                    throw new Exception(msg);
+                return category.ConvertTo<category>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

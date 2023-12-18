@@ -10,5 +10,6 @@ namespace BLL.Inerfaces
     public partial interface IcategoryBusiness
     {
         List<category> GetCategories();
+        List<category> GetNameCategories(int id);
     }
 }

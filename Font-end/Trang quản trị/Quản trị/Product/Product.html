@@ -27,47 +27,44 @@
 <body ng-app="myApp" ng-controller="productCtrl">
   <div class="customer-container">
     <div class="form-group">
-      <input type="text" id="productID" ng-model="product.id" name="productId" required>
-      <label for="productId">Mã sản phẩm</label>
+      <input type="text" ng-model="product.id" name="productId" required>
+      <label>Mã sản phẩm</label>
     </div>
     <div class="form-group">
-      <input type="text" id="productName" name="productName" required>
-      <label for="productName">Tên sản phẩm</label>
+      <input type="text" ng-model="product.productName" name="productName" required>
+      <label>Tên sản phẩm</label>
     </div>
     <div class="form-group">
-      <input type="text" id="productDescription" name="productDescription" required>
-      <label for="productDescription">Mô tả</label>
+      <input type="text" ng-model="product.productDescription" name="productDescription" required>
+      <label>Mô tả</label>
     </div>
     <div class="form-group">
-      <input type="text" id="productQuantity" name="productQuantity" required>
-      <label for="productQuantity">Số lượng</label>
+      <input type="text" ng-model="product.productQuantity" name="productQuantity" required>
+      <label>Số lượng</label>
     </div>
     <div class="form-group">
-      <input type="text" id="productPrice" name="productPrice" required>
-      <label for="productPrice">Đơn giá</label>
+      <input type="text" ng-model="product.productPrice" name="productPrice" required>
+      <label>Đơn giá</label>
     </div>
 
-    <!-- Trong template của Angular -->
     <div ng-controller="categoryCtrl" class="selectTL">
       <div>
-        <select ng-model="selectedCategory" ng-options="category.tenLoai for category in categories">
+        <select ng-model="selectedCategory" ng-options="category as category.tenLoai for category in categories">
           <option value="">Chọn thể loại</option>
-        </select> 
+      </select>
       </div>
-      
-      
+         
       <div class="img-group">
         <div class="form-group">
           <input type="file" id="imageFile" accept="image/*" onchange="angular.element(this).scope().setImageFile(event)">
         </div>
         
-        <button ng-click="createProduct()">Tải ảnh lên </button>
+        <button ng-click="imgProduct()">Tải ảnh lên </button>
       </div>
 
-      <div class="button-TSXR">
-        <div class="button-TSXR-post">Thêm </div>
-        <div class="button-TSXR-put">Sửa </div>
-        <div class="button-TSXR-delete">Xóa </div>
+      <div class="button-TSXR" ng-controller="productController">
+        <div class="button-TSXR-post" ng-click="createProduct()">Thêm </div>
+        <div class="button-TSXR-put" ng-click="updateProduct()">Sửa </div>
         <div class="button-TSXR-refresh">Làm mới </div>
       </div>
     </div>
@@ -94,7 +91,7 @@
             <td>{{product.dongia}}</td>
             <td>{{product.maTL}}</td>
             <td>
-              <button >Sửa</button>
+              <button ng-click="editProduct(product)">Sửa</button>
               <button >Xóa</button>
             </td>
           </tr>

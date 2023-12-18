@@ -80,7 +80,6 @@ app.controller('productCtrl', function($scope, $http) {
       $scope.imageFile = files[0];
     }
   };
-  
 
   $scope.createProduct = function() {
     var productId = parseInt($scope.product.id);

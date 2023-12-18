@@ -20,5 +20,10 @@ namespace BLL.Bussiness
         {
             return _icategory.GetCategories();
         }
+
+        public List<category> GetNameCategories(int id)
+        {
+            return _icategory.GetNameCategories(id);
+        }
     }
 }

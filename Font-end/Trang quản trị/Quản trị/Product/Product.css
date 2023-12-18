@@ -5,8 +5,8 @@
   box-sizing : border-box;
 }
 
-.customer-container{
-  margin-top: 1em;
+.customer-container {
+  margin-top : 1em;
   margin-left: 19em;
 }
 
@@ -14,8 +14,9 @@
 .form-group {
   margin-bottom: 20px;
   position     : relative;
-  font-size: 13px;
+  font-size    : 13px;
 }
+
 .form-group input {
   width        : 100%;
   padding      : 10px;
@@ -52,30 +53,97 @@
   padding       : 0 5px;
   pointer-events: none;
   transition    : 0.5s;
-  
+
 }
 
-.selectTL{
-  display: flex;
+.selectTL {
+  display    : flex;
   align-items: center;
 }
 
-.selectTL select{
-  padding: 6px;
+.selectTL select {
+  padding      : 6px;
   border-radius: 3px;
 }
-.img-group{
-  display: flex;
+
+.img-group {
+  display    : flex;
   align-items: baseline;
-  margin-top: 1em;
+  margin-top : 1em;
   margin-left: 1.5em;
-  
+
 }
 
-.img-group button{
+.img-group button {
   margin-left: 29px;
-  padding: 9px;
+  padding    : 9px;
 }
-.table-product tr > th{
+
+.table-product tr>th {
   margin-right: 15px;
+}
+
+.button-TSXR {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  border         : 1px solid #ccc;
+  border-radius  : 5px;
+  padding        : 20px;
+  margin-left    : 20px;
+}
+
+.button-TSXR div {
+  margin-right : 20px;
+  padding      : 9px;
+  border       : 1px solid #03a63c;
+  border-radius: 5px;
+  cursor       : pointer;
+}
+
+
+.table-product {
+  margin-top     : 20px;
+  width          : 100%;
+  border-collapse: collapse;
+}
+
+.table-product th,
+.table-product td {
+  border    : 1px solid #ddd;
+  padding   : 8px;
+  text-align: left;
+}
+
+.table-product th {
+  background-color: #f2f2f2;
+  text-align      : center;
+}
+
+.table-product td:nth-child(4),
+.table-product td:nth-child(5),
+.table-product td:nth-child(6) {
+  text-align: center;
+}
+
+.table-product img {
+  max-width : 50px;
+  max-height: 50px;
+}
+
+.table-product button {
+  padding      : 6px 12px;
+  margin-right : 5px;
+  margin-bottom: 10px;
+  cursor       : pointer;
+  color        : white;
+  background   : #45a049;
+  border       : none;
+  border-radius: 3px;
+}
+
+.table-product button:hover {
+  background-color: white;
+  color: #45a049;
+  
 }

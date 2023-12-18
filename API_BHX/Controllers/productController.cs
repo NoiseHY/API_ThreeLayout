@@ -4,6 +4,11 @@ using DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Formats.Jpeg;
+
 namespace API_BHX.Controllers
 {
     [Route("api/[controller]")]
@@ -34,15 +39,28 @@ namespace API_BHX.Controllers
                     await file.CopyToAsync(ms);
                     byte[] imageBytes = ms.ToArray();
 
-                    // Chuyển đổi mảng byte thành chuỗi base64
-                    string base64String = Convert.ToBase64String(imageBytes);
+                    // Nén hình ảnh trước khi chuyển đổi thành base64
+                    byte[] compressedImageBytes;
+                    using (Image image = Image.Load(imageBytes))
+                    {
+                        var encoder = new JpegEncoder(); // Sử dụng JPEG encoder, bạn có thể chọn định dạng khác nếu cần
+                        image.Mutate(x => x.Resize(50, 50)); // Điều chỉnh kích thước hình ảnh nếu cần
+                        using (var compressedStream = new MemoryStream())
+                        {
+                            image.Save(compressedStream, encoder);
+                            compressedImageBytes = compressedStream.ToArray();
+                        }
+                    }
+
+                    // Chuyển đổi mảng byte đã nén thành chuỗi base64
+                    string base64String = Convert.ToBase64String(compressedImageBytes);
 
                     if (productID == 0)
                     {
                         return BadRequest("Mã sản phẩm = 0");
                     }
 
-                    // Nếu muốn lưu trữ chuỗi base64 vào cơ sở dữ liệu, thay vì đường dẫn filePath
+                    // Lưu trữ chuỗi base64 vào cơ sở dữ liệu
                     bool success = _iproductBusiness.UpdateImageFilePath(productID, base64String);
 
                     if (success)
@@ -60,8 +78,6 @@ namespace API_BHX.Controllers
                 return StatusCode(500, $"Lỗi: {ex.Message}");
             }
         }
-
-
 
         [Route("GetAll")]
         [HttpGet]

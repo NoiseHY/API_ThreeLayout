@@ -16,6 +16,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "6.0.25",
           "Newtonsoft.Json": "13.0.3",
           "Ocelot": "22.0.1",
+          "SixLabors.ImageSharp": "3.1.1",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -419,6 +420,14 @@
           "lib/net6.0/Ocelot.dll": {
             "assemblyVersion": "22.0.1.0",
             "fileVersion": "22.0.1.0"
+          }
+        }
+      },
+      "SixLabors.ImageSharp/3.1.1": {
+        "runtime": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.1.1.0"
           }
         }
       },
@@ -933,6 +942,13 @@
       "sha512": "sha512-thTMqIUu2Olj8n9YXzAtds8Hr5gK6IA3Gjrl4XGjebEpe7qRpigcsJ2dKzXcXqn7KIH7lpS38sjCst15HdYwQw==",
       "path": "ocelot/22.0.1",
       "hashPath": "ocelot.22.0.1.nupkg.sha512"
+    },
+    "SixLabors.ImageSharp/3.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AItH9C5CtUHn40ev2e683p9IvuWJvL9O9OZrGgvo3vSz5IOdLm5N3K1hC8e2wHb7wkMjTY+KIzXt6zrsq1LKig==",
+      "path": "sixlabors.imagesharp/3.1.1",
+      "hashPath": "sixlabors.imagesharp.3.1.1.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.5.0": {
       "type": "package",

@@ -82,3 +82,4 @@ F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\Mi
 F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\Microsoft.Extensions.DiagnosticAdapter.dll
 F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\Ocelot.dll
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API_BHX\bin\Debug\net6.0\SixLabors.ImageSharp.dll

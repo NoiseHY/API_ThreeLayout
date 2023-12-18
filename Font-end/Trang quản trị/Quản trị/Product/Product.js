@@ -67,13 +67,14 @@ app.controller('productController', function($scope, $http) {
           soLuong: product.soLuong,
           dongia: product.dongia,
           maTL: product.maTL,
-          img: product.img // Đảm bảo rằng đường dẫn hình ảnh hợp lệ để hiển thị
+          // Gán thuộc tính img với chuỗi base64 để hiển thị hình ảnh
+          img: 'data:image/jpeg;base64,' + product.img // Thay 'jpeg' bằng định dạng thích hợp
         };
       });
     })
     .catch(function(error) {
-      // Xử lý lỗi nếu có
-      console.error('There was an error!', error);
+      console.error('Lỗi khi lấy danh sách sản phẩm !', error);
     });
 });
+
 

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -65,6 +67,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+
 // Cấu hình HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
@@ -95,5 +98,6 @@ app.UseAuthorization();
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
 
 app.Run();

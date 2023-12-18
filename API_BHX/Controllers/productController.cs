@@ -19,7 +19,7 @@ namespace API_BHX.Controllers
 
         [Route("uploadImage")]
         [HttpPost]
-        public async Task<IActionResult> UploadImage(int productID ,IFormFile file)
+        public async Task<IActionResult> UploadImage(int productID, IFormFile file)
         {
             try
             {
@@ -28,36 +28,31 @@ namespace API_BHX.Controllers
                     return BadRequest("File không hợp lệ.");
                 }
 
-                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
-
-                // Tạo thư mục uploads nếu nó chưa tồn tại
-                if (!Directory.Exists(uploadsFolder))
+                // Đọc dữ liệu từ file thành mảng byte
+                using (var ms = new MemoryStream())
                 {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
+                    await file.CopyToAsync(ms);
+                    byte[] imageBytes = ms.ToArray();
 
-                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                string filePath = Path.Combine(uploadsFolder, fileName);
+                    // Chuyển đổi mảng byte thành chuỗi base64
+                    string base64String = Convert.ToBase64String(imageBytes);
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
+                    if (productID == 0)
+                    {
+                        return BadRequest("Mã sản phẩm = 0");
+                    }
 
-                if (productID == 0)
-                {
-                    return BadRequest("Mã sản phẩm = 0");
-                }
-                // Lưu đường dẫn của ảnh vào cơ sở dữ liệu
-                bool success = _iproductBusiness.UpdateImageFilePath(productID, filePath);
+                    // Nếu muốn lưu trữ chuỗi base64 vào cơ sở dữ liệu, thay vì đường dẫn filePath
+                    bool success = _iproductBusiness.UpdateImageFilePath(productID, base64String);
 
-                if (success)
-                {
-                    return Ok("Tải ảnh lên và cập nhật thành công!");
-                }
-                else
-                {
-                    return BadRequest("Đã xảy ra lỗi khi cập nhật đường dẫn ảnh vào cơ sở dữ liệu.");
+                    if (success)
+                    {
+                        return Ok("Thêm hình ảnh thành công!");
+                    }
+                    else
+                    {
+                        return BadRequest("Đã xảy ra lỗi khi cập nhật base64 vào cơ sở dữ liệu.");
+                    }
                 }
             }
             catch (Exception ex)
@@ -65,6 +60,7 @@ namespace API_BHX.Controllers
                 return StatusCode(500, $"Lỗi: {ex.Message}");
             }
         }
+
 
 
         [Route("GetAll")]

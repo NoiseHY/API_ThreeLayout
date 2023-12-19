@@ -161,12 +161,10 @@ app.controller('productController', function ($scope, $http) {
       .then(function (response) {
         alert('Xóa thành công sản phẩm !');
         console.log(response.data);
-        // Tải lại danh sách sản phẩm sau khi xóa thành công
-        $scope.getProductList();
       })
       .catch(function (error) {
         alert('Đã xảy ra lỗi khi xóa sản phẩm!');
-        console.error('Lỗi khi xóa sản phẩm:', error);
+        console.error('Lỗi khi xóa sản phẩm:', error); 
       });
   };
 });

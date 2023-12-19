@@ -17,6 +17,31 @@
   font-size    : 13px;
 }
 
+.form-group a {
+  font-size: 15px;
+  background: #03a63c;
+  color: #fff;
+  padding: 0 10px;
+  border: 1px solid #03a63c;
+  border-radius: 5px;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  transition: top 0.3s, font-size 0.3s, color 0.3s;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: transparent;
+  outline: none;
+  transition: border-color 0.3s;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
 .form-group input {
   width        : 100%;
   padding      : 10px;
@@ -27,8 +52,9 @@
   transition   : border-color 0.3s;
   margin-top   : 10px;
   font-size    : 15px;
-
+  white-space: pre-wrap;
 }
+
 
 .form-group input:focus {
   border-color: #6d026d;
@@ -140,6 +166,7 @@
   background   : #45a049;
   border       : none;
   border-radius: 3px;
+  width: 60px;
 }
 
 .table-product button:hover {

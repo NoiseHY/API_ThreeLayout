@@ -164,7 +164,60 @@ app.controller('productController', function ($scope, $http) {
       })
       .catch(function (error) {
         alert('Đã xảy ra lỗi khi xóa sản phẩm!');
-        console.error('Lỗi khi xóa sản phẩm:', error); 
+        console.error('Lỗi khi xóa sản phẩm:', error);
       });
   };
+
+  $scope.pageNumber = 1; // Số trang mặc định
+  $scope.pageSize = 10; // Số lượng sản phẩm trên mỗi trang mặc định
+
+  $scope.buttonNext = function () {
+    $scope.pageNumber++; // Tăng pageNumber lên 1
+    debugger;
+    $http.get('https://localhost:7117/api/product/GetAll?pageNumber=' + $scope.pageNumber + '&pageSize=' + $scope.pageSize)
+      .then(function (response) {
+        // Xử lý dữ liệu trả về tương tự như trước
+        $scope.productList = response.data.map(function (product) {
+          return {
+            maSP: product.maSP,
+            tenSP: product.tenSP,
+            mota: product.mota,
+            soLuong: product.soLuong,
+            dongia: product.dongia,
+            maTL: product.maTL,
+            img: 'data:image/jpeg;base64,' + product.img
+          };
+        });
+      })
+      .catch(function (error) {
+        console.error('Lỗi khi lấy danh sách sản phẩm!', error);
+      });
+  };
+
+  $scope.buttonPrev = function () {
+    if ($scope.pageNumber > 1) { // Đảm bảo pageNumber không âm
+      $scope.pageNumber--; // Giảm pageNumber đi 1
+
+      $http.get('https://localhost:7117/api/product/GetAll?pageNumber=' + $scope.pageNumber + '&pageSize=' + $scope.pageSize)
+        .then(function (response) {
+          // Xử lý dữ liệu trả về tương tự như trước
+          $scope.productList = response.data.map(function (product) {
+            return {
+              maSP: product.maSP,
+              tenSP: product.tenSP,
+              mota: product.mota,
+              soLuong: product.soLuong,
+              dongia: product.dongia,
+              maTL: product.maTL,
+              img: 'data:image/jpeg;base64,' + product.img
+            };
+          });
+        })
+        .catch(function (error) {
+          console.error('Lỗi khi lấy danh sách sản phẩm!', error);
+        });
+    }
+  };
+
+
 });

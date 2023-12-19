@@ -174,3 +174,17 @@
   color: #45a049;
   
 }
+.button-listproduct{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.button-listproduct button{
+  margin-left: 20px;
+  padding: 10px;
+  border: 1px solid #03a63c;
+  border-radius: 5px;
+  cursor: pointer;
+}

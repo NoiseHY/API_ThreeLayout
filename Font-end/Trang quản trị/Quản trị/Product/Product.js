@@ -166,6 +166,8 @@ productModule.controller('productController', function ($scope, $http) {
     $scope.productQuantity = selectedItem.soLuong;
     $scope.productPrice = selectedItem.dongia;
 
+    $scope.name = selectedItem.tenSP;
+
     console.log($scope.productId);
   };
 

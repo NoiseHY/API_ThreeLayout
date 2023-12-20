@@ -141,7 +141,7 @@ namespace API_BHX.Controllers
             }
         }
 
-        [Route("Delete/{id}")]
+        [Route("Delete")]
         [HttpDelete]
         public IActionResult Delete(int id)
         {

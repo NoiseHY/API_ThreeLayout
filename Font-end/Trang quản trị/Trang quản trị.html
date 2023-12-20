@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html ng-app="myApp">
 
 <head>
   <title>Trang người dùng</title>
@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400&display=swap" rel="stylesheet">
 
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -19,14 +19,15 @@
     rel="stylesheet">
 
   <!-- <link href="Quản trị/Customer/Customer.html" >  -->
-  <script src="/Angular JS/angular-1.8.2/angular.min.js"></script>
+  <script src="/Angular JS/angular-1.8.2/angular.js"></script>
   <script src="/Angular JS/angular-1.8.2/angular-route.js"></script>
-  
-  <script src="/Trang quản trị/Trang quản trị.js"></script>
 
+  <script src="/Trang quản trị/Trang quản trị.js"></script>
+  <script src="/Trang quản trị/Quản trị/Home/Home.js"></script>
+  <script src="/Trang quản trị/Quản trị/Product/Product.js"></script>
 </head>
 
-<body ng-app="myApp">
+<body >
   <header>
     <nav>
       <div class="menuHead">
@@ -35,8 +36,7 @@
         </div>
         <div class="search-text">
           <input type="search" name="Tìm kiếm" placeholder="Tìm kiếm của bạn ..." />
-          <img class="icon-search"
-            src="/Trang chủ/Anh/header/search-interface-symbol.png" />
+          <img class="icon-search" src="/Trang chủ/Anh/header/search-interface-symbol.png" />
         </div>
         <ul>
           <li>
@@ -68,14 +68,15 @@
       </div>
       <h1>Trang quản lý</h1>
       <!--  Chức năng-->
+      
       <div class="menuND">
-        <div class="menuND-nd" ng-click="navigateToAdmin()" ng-controller="QuanLyAdminController">
+        <div class="menuND-nd" ng-click="navigateToAdmin()" ng-controller="QuanLyAdminController" >
           <img src="Anh/side-bar/user.png">
           Trang chủ
-          
+
         </div>
         <div class="menuND-ql">
-          <div class="menuND-ql-txt" >
+          <div class="menuND-ql-txt">
             <img src="Anh/side-bar/manager.png">
             Quản lý
             <span class="more-icon">&#8942;</span>
@@ -84,11 +85,14 @@
 
           <div class="submenu-ql">
             <div class="submenu-dropdown">
-              <div class="submenu-ql-sp" ng-click="navigateToPageSP()" ng-controller="QuanLySanPhamController">Quản lý Sản phẩm</div>
+
+              <div class="submenu-ql-sp" ng-click="navigateToPageSP()" ng-controller="QuanLySanPhamController">Quản lý
+                Sản phẩm</div>
               <div class="submenu-ql-dh">Quản lý Đơn hàng</div>
-              
-              <div class="submenu-ql-kh" ng-click="navigateToPageKH()" ng-controller="QuanLyKhachHangController" >Quản lý Khách hàng</div>
-              
+
+              <div class="submenu-ql-kh" ng-click="navigateToPageKH()" ng-controller="QuanLyKhachHangController">Quản lý
+                Khách hàng</div>
+
               <div class="submenu-ql-tt">Quản lý Thanh toán</div>
               <div class="submenu-ql-nd">Người dùng</div>
             </div>
@@ -113,7 +117,7 @@
     <div class="admin-content" >
       <div ng-view=""></div>
     </div>
-    
+
   </main>
 </body>
 

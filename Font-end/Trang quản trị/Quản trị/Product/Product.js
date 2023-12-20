@@ -1,6 +1,6 @@
-var app = angular.module('myApp', []);
+var productModule = angular.module('product', []);
 
-app.controller('categoryCtrl', function ($scope, $http) {
+productModule.controller('btproductController', function ($scope, $http) {
   $http.get('https://localhost:7117/api/category/GetAll')
     .then(function (response) {
       $scope.categories = response.data;
@@ -8,11 +8,10 @@ app.controller('categoryCtrl', function ($scope, $http) {
     .catch(function (error) {
       console.error('Error fetching categories', error);
     });
-});
 
-app.controller('productCtrl', function ($scope, $http) {
-  $scope.product = {};
 
+
+  // ---------------------- IMG ---------------------------------
   // Hàm để lấy giá trị từ input file và gán cho $scope.imageFile
   $scope.setImageFile = function (event) {
     var files = event.target.files;
@@ -22,15 +21,15 @@ app.controller('productCtrl', function ($scope, $http) {
   };
 
   $scope.imgProduct = function () {
-    var productId = parseInt($scope.product.id);
+    var productId = parseInt($scope.productId);
 
     if (isNaN(productId) || productId <= 0) {
-      alert('Invalid product ID');
+      alert('Hãy nhập Mã sản phẩm !');
       return;
     }
 
     if (!$scope.imageFile) {
-      alert('No image selected');
+      alert('Không hình ảnh được chọn !');
       return;
     }
 
@@ -49,16 +48,78 @@ app.controller('productCtrl', function ($scope, $http) {
         alert('Lỗi khi Upload ảnh', error.data);
       });
   };
+
+
+  // ------------- Create -----------------------------
+  $scope.createProduct = function () {
+
+    if ($scope.selectedCategory == null) {
+      alert('Hãy chọn thể loại');
+      return;
+    }
+
+    var productData = {
+      maSP: $scope.productId,
+      tenSP: $scope.productName,
+      mota: $scope.productDescription,
+      soLuong: $scope.productQuantity,
+      dongia: $scope.productPrice,
+      maTL: $scope.selectedCategory ? $scope.selectedCategory.maLoai : null
+    };
+
+    $http.post('https://localhost:7117/api/product/Create', productData)
+      .then(function (response) {
+        alert('Thêm sản phẩm thành công!');
+        // console.log(response.data); 
+      })
+      .catch(function (error) {
+        alert('Đã xảy ra lỗi khi thêm sản phẩm!');
+        console.error('Lỗi khi tạo sản phẩm:', error);
+      });
+  };
+
+  //----------------- Update ----------------------------
+  $scope.updateProduct = function () {
+
+    if (isNaN($scope.productId) || $scope.productId <= 0) {
+      alert('Hãy nhập Mã sản phẩm !');
+      return;
+    }
+
+    if ($scope.selectedCategory == null) {
+      alert('Hãy chọn thể loại');
+      return;
+    }
+
+    var productData = {
+      maSP: $scope.productId,
+      tenSP: $scope.productName,
+      mota: $scope.productDescription,
+      soLuong: $scope.productQuantity,
+      dongia: $scope.productPrice,
+      maTL: $scope.selectedCategory ? $scope.selectedCategory.maLoai : null
+    };
+
+    $http.put('https://localhost:7117/api/product/Update', productData)
+      .then(function (response) {
+        alert('Sửa sản phẩm thành công!');
+        // console.log(response.data);
+      })
+      .catch(function (error) {
+        alert('Đã xảy ra lỗi khi sửa sản phẩm!');
+        console.error('Lỗi khi sửa sản phẩm:', error);
+      });
+  };
+
+
 });
 
-app.controller('productController', function ($scope, $http) {
+productModule.controller('productController', function ($scope, $http) {
   $scope.productList = [];
-  $scope.selectedProduct = {}; // Biến lưu trữ hàng được chọn
+  $scope.product = {};
 
-  // Gọi API để lấy danh sách sản phẩm
   $http.get('https://localhost:7117/api/product/GetAll')
     .then(function (response) {
-      // Trích xuất thông tin cần thiết từ dữ liệu trả về và gán vào productList
       $scope.productList = response.data.map(function (product) {
         return {
           maSP: product.maSP,
@@ -67,7 +128,7 @@ app.controller('productController', function ($scope, $http) {
           soLuong: product.soLuong,
           dongia: product.dongia,
           maTL: product.maTL,
-          // Gán thuộc tính img với chuỗi base64 để hiển thị hình ảnh
+
           img: 'data:image/jpeg;base64,' + product.img
         };
       });
@@ -76,91 +137,20 @@ app.controller('productController', function ($scope, $http) {
       console.error('Lỗi khi lấy danh sách sản phẩm !', error);
     });
 
-  $scope.createProduct = function () {
-    var productData = {
-      maSP: $scope.product.id,
-      tenSP: $scope.product.productName,
-      mota: $scope.product.productDescription,
-      soLuong: $scope.product.productQuantity,
-      dongia: $scope.product.productPrice,
-      maTL: $scope.selectedCategory ? $scope.selectedCategory.maLoai : null, // Đảm bảo đã chọn danh mục
-      img: $scope.imageFile
-    };
-
-    $http.post('https://localhost:7117/api/product/Create', productData)
-      .then(function (response) {
-        // Xử lý khi tạo sản phẩm thành công
-        alert('Thêm sản phẩm thành công!');
-        console.log(response.data); // log kết quả từ API
-      })
-      .catch(function (error) {
-        // Xử lý khi có lỗi
-        alert('Đã xảy ra lỗi khi thêm sản phẩm!');
-        console.error('Lỗi khi tạo sản phẩm:', error);
-      });
-  };
-
-  $scope.selectRow = function (product) {
-    $scope.selectedProduct = product; // Gán hàng được chọn vào biến selectedProduct
-  };
-  $scope.editProduct = function (product) {
-    $scope.selectedProduct = angular.copy(product); // Copy dữ liệu từ hàng được chọn vào selectedProduct
-    // Gán dữ liệu từ selectedProduct vào các input
-    $scope.product.id = $scope.selectedProduct.maSP;
-    $scope.product.productName = $scope.selectedProduct.tenSP;
-    $scope.product.productDescription = $scope.selectedProduct.mota;
-    $scope.product.productQuantity = $scope.selectedProduct.soLuong;
-    $scope.product.productPrice = $scope.selectedProduct.dongia;
-
-    // $scope.selectedCategory = "Thịt 12312321";
-    // // Gọi API để lấy tên thể loại
-    // $http.get('https://localhost:7117/api/category/GetNameCategoryByID?id=' + $scope.selectedProduct.maTL)
-    //   .then(function (response) {
-    //     if (Array.isArray(response.data) && response.data.length > 0) {
-    //       $scope.selectedCategory = response.data[0].tenLoai;
-    //     } else {
-    //       alert('Không có dữ liệu thể loại trả về.');
-    //     }
-    //   })
-    //   .catch(function (error) {
-    //     alert('Lỗi khi lấy tên thể loại:', error);
-    //   });
-  };
-
-  $scope.updateProduct = function () {
-    var productData = {
-      maSP: $scope.product.id,
-      tenSP: $scope.product.productName,
-      mota: $scope.product.productDescription,
-      soLuong: $scope.product.productQuantity,
-      dongia: $scope.product.productPrice,
-      maTL: $scope.selectedCategory ? $scope.selectedCategory.maLoai : null,
-    };
-
-    $http.put('https://localhost:7117/api/product/Update', productData)
-      .then(function (response) {
-        alert('Sửa sản phẩm thành công!');
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        alert('Đã xảy ra lỗi khi sửa sản phẩm!');
-        console.error('Lỗi khi sửa sản phẩm:', error);
-      });
-  };
-
+  // ----------------- Delete ---------------------------
   $scope.confirmDelete = function (productId) {
     if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) {
-      debugger;
+      // debugger;
       $scope.deleteProduct(productId);
-
     }
   };
 
   $scope.deleteProduct = function (productId) {
-    $http.delete('https://localhost:7117/api/product/Delete/' + productId)
+    $http.delete('https://localhost:7117/api/product/Delete?id=' + productId)
       .then(function (response) {
         alert('Xóa thành công sản phẩm !');
         console.log(response.data);
+        
       })
       .catch(function (error) {
         alert('Đã xảy ra lỗi khi xóa sản phẩm!');
@@ -168,15 +158,26 @@ app.controller('productController', function ($scope, $http) {
       });
   };
 
-  $scope.pageNumber = 1; // Số trang mặc định
-  $scope.pageSize = 10; // Số lượng sản phẩm trên mỗi trang mặc định
+  $scope.selectItem = function (selectedItem) {
+    // debugger;
+    $scope.productId = selectedItem.maSP;
+    $scope.productName = selectedItem.tenSP;
+    $scope.productDescription = selectedItem.mota;
+    $scope.productQuantity = selectedItem.soLuong;
+    $scope.productPrice = selectedItem.dongia;
+
+    console.log($scope.productId);
+  };
+
+  $scope.pageNumber = 1;
+  $scope.pageSize = 10;
 
   $scope.buttonNext = function () {
-    $scope.pageNumber++; // Tăng pageNumber lên 1
+    $scope.pageNumber++;
     debugger;
     $http.get('https://localhost:7117/api/product/GetAll?pageNumber=' + $scope.pageNumber + '&pageSize=' + $scope.pageSize)
       .then(function (response) {
-        // Xử lý dữ liệu trả về tương tự như trước
+
         $scope.productList = response.data.map(function (product) {
           return {
             maSP: product.maSP,
@@ -195,12 +196,12 @@ app.controller('productController', function ($scope, $http) {
   };
 
   $scope.buttonPrev = function () {
-    if ($scope.pageNumber > 1) { // Đảm bảo pageNumber không âm
-      $scope.pageNumber--; // Giảm pageNumber đi 1
+    if ($scope.pageNumber > 1) {
+      $scope.pageNumber--;
 
       $http.get('https://localhost:7117/api/product/GetAll?pageNumber=' + $scope.pageNumber + '&pageSize=' + $scope.pageSize)
         .then(function (response) {
-          // Xử lý dữ liệu trả về tương tự như trước
+
           $scope.productList = response.data.map(function (product) {
             return {
               maSP: product.maSP,

@@ -1,6 +1,6 @@
-var app = angular.module('myApp', ['ngRoute']);
+var subApp = angular.module('Home', []);
 
-app.controller('AdminContentController', function ($scope) {
+subApp.controller('HomeController', function ($scope) {
   // Controller logic for chart view
   $scope.chartMonths = [
     { name: 'Tháng 1', value: 50 },

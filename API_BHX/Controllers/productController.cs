@@ -8,9 +8,11 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Jpeg;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API_BHX.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class productController : ControllerBase
@@ -21,6 +23,7 @@ namespace API_BHX.Controllers
         {
             _iproductBusiness = iproductBusiness;
         }
+
 
         [Route("uploadImage")]
         [HttpPost]

@@ -1,5 +1,30 @@
 var myApp  = angular.module('myApp', ['ngRoute', 'Home', 'product'], );
 
+myApp.factory('AuthInterceptor', function ($q, $window) {
+  return {
+    request: function (config) {
+      config.headers = config.headers || {};
+      var token = $window.localStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = 'Bearer ' + token;
+      }
+      return config;
+    },
+    responseError: function (response) {
+      if (response.status === 401 || response.status === 403) {
+
+        $window.location.href = '/Trang đăng nhập/Đăng nhập.html';
+      }
+      return $q.reject(response);
+    }
+  };
+});
+
+myApp.config(function ($httpProvider) {
+  $httpProvider.interceptors.push('AuthInterceptor');
+});
+
+
 myApp.config(function ($routeProvider) {
   $routeProvider
     .when('/quan-ly-khach-hang', {

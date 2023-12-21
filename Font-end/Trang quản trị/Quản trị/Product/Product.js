@@ -1,5 +1,30 @@
 var productModule = angular.module('product', []);
 
+productModule.factory('AuthInterceptor', function ($q, $window) {
+  return {
+    request: function (config) {
+      config.headers = config.headers || {};
+      var token = $window.localStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = 'Bearer ' + token;
+      }
+      return config;
+    },
+    responseError: function (response) {
+      if (response.status === 401 || response.status === 403) {
+        // Xử lý khi xác thực không thành công
+        // Ví dụ: chuyển hướng người dùng đến trang đăng nhập
+        $window.location.href = '/login';
+      }
+      return $q.reject(response);
+    }
+  };
+});
+
+productModule.config(function ($httpProvider) {
+  $httpProvider.interceptors.push('AuthInterceptor');
+});
+
 productModule.controller('btproductController', function ($scope, $http) {
   $http.get('https://localhost:7117/api/category/GetAll')
     .then(function (response) {
@@ -8,8 +33,6 @@ productModule.controller('btproductController', function ($scope, $http) {
     .catch(function (error) {
       console.error('Error fetching categories', error);
     });
-
-
 
   // ---------------------- IMG ---------------------------------
   // Hàm để lấy giá trị từ input file và gán cho $scope.imageFile

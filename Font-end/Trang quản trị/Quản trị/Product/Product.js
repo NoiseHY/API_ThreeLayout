@@ -173,7 +173,7 @@ productModule.controller('productController', function ($scope, $http) {
       .then(function (response) {
         alert('Xóa thành công sản phẩm !');
         console.log(response.data);
-        
+
       })
       .catch(function (error) {
         alert('Đã xảy ra lỗi khi xóa sản phẩm!');
@@ -196,24 +196,29 @@ productModule.controller('productController', function ($scope, $http) {
 
   $scope.pageNumber = 1;
   $scope.pageSize = 10;
+  $scope.noData = false; // Biến flag để kiểm tra dữ liệu trả về
 
   $scope.buttonNext = function () {
     $scope.pageNumber++;
     debugger;
     $http.get('https://localhost:7117/api/product/GetAll?pageNumber=' + $scope.pageNumber + '&pageSize=' + $scope.pageSize)
       .then(function (response) {
-
-        $scope.productList = response.data.map(function (product) {
-          return {
-            maSP: product.maSP,
-            tenSP: product.tenSP,
-            mota: product.mota,
-            soLuong: product.soLuong,
-            dongia: product.dongia,
-            maTL: product.maTL,
-            img: 'data:image/jpeg;base64,' + product.img
-          };
-        });
+        if (response.data.length === 0) {
+          $scope.noData = true; // Đặt biến flag khi dữ liệu rỗng
+          $scope.pageNumber--; // Trả về trang trước đó vì không có dữ liệu
+        } else {
+          $scope.productList = response.data.map(function (product) {
+            return {
+              maSP: product.maSP,
+              tenSP: product.tenSP,
+              mota: product.mota,
+              soLuong: product.soLuong,
+              dongia: product.dongia,
+              maTL: product.maTL,
+              img: 'data:image/jpeg;base64,' + product.img
+            };
+          });
+        }
       })
       .catch(function (error) {
         console.error('Lỗi khi lấy danh sách sản phẩm!', error);
@@ -226,7 +231,7 @@ productModule.controller('productController', function ($scope, $http) {
 
       $http.get('https://localhost:7117/api/product/GetAll?pageNumber=' + $scope.pageNumber + '&pageSize=' + $scope.pageSize)
         .then(function (response) {
-
+          $scope.noData = false; // Đặt lại biến flag khi chuyển trang về trước đó
           $scope.productList = response.data.map(function (product) {
             return {
               maSP: product.maSP,
@@ -244,6 +249,5 @@ productModule.controller('productController', function ($scope, $http) {
         });
     }
   };
-
 
 });

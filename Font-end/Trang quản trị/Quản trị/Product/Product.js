@@ -12,8 +12,7 @@ productModule.factory('AuthInterceptor', function ($q, $window) {
     },
     responseError: function (response) {
       if (response.status === 401 || response.status === 403) {
-        // Xử lý khi xác thực không thành công
-        // Ví dụ: chuyển hướng người dùng đến trang đăng nhập
+
         $window.location.href = '/login';
       }
       return $q.reject(response);
@@ -31,7 +30,7 @@ productModule.controller('btproductController', function ($scope, $http) {
       $scope.categories = response.data;
     })
     .catch(function (error) {
-      console.error('Error fetching categories', error);
+      console.error('Lỗi', error);
     });
 
   // ---------------------- IMG ---------------------------------

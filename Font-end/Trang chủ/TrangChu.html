@@ -11,11 +11,12 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,200;1,300;1,400;1,500;1,700&display=swap"
     rel="stylesheet">
 
-
+  <link rel="icon" type="image/x-icon"
+    href="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
   <script src="/Angular JS/angular-1.8.2/angular.js"></script>
 </head>
 
-<body>
+<body ng-app="myApp" >
   <header>
     <nav>
       <div class="menuHead">
@@ -28,7 +29,7 @@
         </div>
         <ul>
           <li>
-            <img src="Anh/header/home.png" />
+            <img src="Anh/header/home.png" id="imgHome">
             <!-- <a class="txtTT">Trang chủ</a> -->
           </li>
           <li>
@@ -44,7 +45,7 @@
             <!-- <a class="txtTB">Thông báo</a> -->
           </li>
           <li>
-            <img src="Anh/header/shopping-cart.png" />
+            <img src="Anh/header/shopping-cart.png" id="imgCart" onclick="convertToJSON()"/>
             <!-- <a class="txtGH">Giỏ hàng</a> -->
           </li>
         </ul>
@@ -190,9 +191,21 @@
 
     <!-- Sản phẩm giảm giá------------------------------------------------- -->
     <div class="Sanpham">
-      <div class="txtSanpham">
-        <img src="Anh/Icon/sale.png">
-        <p>Khuyến mãi sốc</p>
+      <div class="Sanpham-countdown">
+        <div class="txtSanpham">
+          <img src="Anh/Icon/sale.png">
+          <p>Khuyến mãi sốc</p>
+        </div>
+
+        <div id="clock" class="countdown">
+          <div id="days"></div>
+          <a> : </a>
+          <div id="hours"></div>
+          <a> : </a>
+          <div id="minutes"></div>
+          <a> : </a>
+          <div id="seconds"></div>
+        </div>
       </div>
 
       <div class="div-line"></div>
@@ -201,286 +214,342 @@
         <section class="sectionSanpham">
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img id="product-img" src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
             </picture>
-            <p>
+            <p id="product-name">
               Dầu thực vật Tường An Cooking Oil can 5 lít
             </p>
             <div class="Sanpham-cost">
-              <div class="Sanpham-cost-sales">
-                <p style="text-decoration-line: line-through; color: black;">
-                  280.000 đ
-                </p>
-                <p>
-                  230.000 đ
-                </p>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;" id="product-price">
+                    280.000đ
+                  </p>
+                  <p id="product-sales">
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a  id="product-stars">
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p id="product-pt">
+                    -25%
+                  </p>
+                </div>
               </div>
-              <div class="Sanpham-cost-phantram">
-                <a>
-                  4.5
-                  <img src="Anh/SanPham/star.png">
-                </a>
-                <p>
-                  -25%
-                </p>
-              </div>
-
             </div>
+            <button class="danhmuc-CT-sp-bt" onclick="addToProductList(this)">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/cam.jpg" id="product-img">
             </picture>
-            <p>
+            <p id="product-name">
               Cam Cara Úc 1kg (9 - 11 trái)
             </p>
             <div class="Sanpham-cost">
-              <div class="Sanpham-cost-sales">
-                <p style="text-decoration-line: line-through; color: black;">
-                  280.000 đ
-                </p>
-                <p>
-                  230.000 đ
-                </p>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;" id="product-price">
+                    80.000đ
+                  </p>
+                  <p id="product-sales">
+                    55.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a id="product-stars">
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p id="product-pt">
+                    -31%
+                  </p>
+                </div>
               </div>
-              <div class="Sanpham-cost-phantram">
-                <a>
-                  4.5
-                  <img src="Anh/SanPham/star.png">
-                </a>
-                <p>
-                  -25%
-                </p>
-              </div>
-            </div>
 
+            </div>
+            <button class="danhmuc-CT-sp-bt" onclick="addToProductList(this)">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/suacogaihalan.jpg">
+              <img src="Anh/SanPham/Sales/suacogaihalan.jpg" id="product-img">
             </picture>
-            <p>
+            <p id="product-name">
               Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady Canxi & Protein 180ml
             </p>
             <div class="Sanpham-cost">
-              <div class="Sanpham-cost-sales">
-                <p style="text-decoration-line: line-through; color: black;">
-                  280.000 đ
-                </p>
-                <p>
-                  230.000 đ
-                </p>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;" id="product-price">
+                    169.000đ
+                  </p>
+                  <p id="product-sales">
+                    127.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a id="product-stars">
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p id="product-pt">
+                    -25%
+                  </p>
+                </div>
               </div>
-              <div class="Sanpham-cost-phantram">
-                <a>
-                  4.5
-                  <img src="Anh/SanPham/star.png">
-                </a>
-                <p>
-                  -25%
-                </p>
-              </div>
-            </div>
 
+            </div>
+            <button class="danhmuc-CT-sp-bt" onclick="addToProductList(this)">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/dualeo.jpg">
+            <picture >
+              <img src="Anh/SanPham/Sales/dualeo.jpg" id="product-img">
             </picture>
-            <p>
+            <p id="product-name">
               Dưa leo baby 500g (8-10 trái)
             </p>
             <div class="Sanpham-cost">
-              <div class="Sanpham-cost-sales">
-                <p style="text-decoration-line: line-through; color: black;">
-                  280.000 đ
-                </p>
-                <p>
-                  230.000 đ
-                </p>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;" id="product-price">
+                    18500đ
+                  </p>
+                  <p id="product-sales">
+                    9975đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a id="product-stars">
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p id="product-pt">
+                    -46%
+                  </p>
+                </div>
               </div>
-              <div class="Sanpham-cost-phantram">
-                <a>
-                  4.5
-                  <img src="Anh/SanPham/star.png">
-                </a>
-                <p>
-                  -25%
-                </p>
-              </div>
-            </div>
 
+            </div>
+            <button class="danhmuc-CT-sp-bt" onclick="addToProductList(this)">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture >
+              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg" id="product-img">
+            </picture>
+            <p id="product-name">
+              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;" id="product-price">
+                    32.000đ
+                  </p>
+                  <p id="product-sales">
+                    29.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a id="product-stars">
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p id="product-pt">
+                    -5%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" onclick="addToProductList(this)">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture >
+              <img src="Anh/SanPham/Sales/-202309251041572994.jpg" id="product-img">
+            </picture>
+            <p id="product-name">
+              Râu mực nhập khẩu đông lạnh 450-550g
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;" id="product-price">
+                    200.000đ
+                  </p>
+                  <p id="product-sales">
+                    180.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a id="product-stars">
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p id="product-pt">
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture >
+              <img id="product-img" src="Anh/SanPham/Sales/gao-thom-dac-san-neptune-st25-tui-5kg-202306191510459928.jpg">
+            </picture>
+            <p id="product-name">
+              Gạo thơm đặc sản Neptune ST25 túi 5kg
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;" id="product-price">
+                    230.000đ
+                  </p>
+                  <p id="product-sales">
+                    199.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a id="product-stars">
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p id="product-pt">
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" onclick="addToProductList(this)">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture >
+              <img id="product-img" src="Anh/SanPham/Sales/mit-thai-cat-mieng-1kg-202311251121287273.jpg">
+            </picture>
+            <p id="product-name">
+              Mít Thái 1kg
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;" id="product-price">
+                    120.000đ
+                  </p>
+                  <p id="product-sales">
+                    60.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a id="product-stars">
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p id="product-pt">
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 45px;" onclick="addToProductList(this)">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
+              <img id="product-img"
+                src="Anh/SanPham/Sales/thung-48-hop-sua-tuoi-tiet-trung-it-duong-th-true-milk-180ml-202307120913218141.jpg">
             </picture>
-            <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
+            <p id="product-name">
+              Thùng 48 hộp sữa tươi tiệt trùng ít đường TH true MILK 180ml
             </p>
             <div class="Sanpham-cost">
-              <div class="Sanpham-cost-sales">
-                <p style="text-decoration-line: line-through; color: black;">
-                  280.000 đ
-                </p>
-                <p>
-                  230.000 đ
-                </p>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;" id="product-price">
+                    280.000đ
+                  </p>
+                  <p id="product-sales">
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a id="product-stars">
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p id="product-pt">
+                    -25%
+                  </p>
+                </div>
               </div>
-              <div class="Sanpham-cost-phantram">
-                <a>
-                  4.5
-                  <img src="Anh/SanPham/star.png">
-                </a>
-                <p>
-                  -25%
-                </p>
-              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" onclick="addToProductList(this)">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
+              <img id="product-img" src="Anh/SanPham/Sales/bap-cai-trang-07-13kg-202312050931279187.jpg">
             </picture>
-            <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
+            <p id="product-name">
+              Bắp cải trắng 0.7-1.3kg
             </p>
             <div class="Sanpham-cost">
-              <div class="Sanpham-cost-sales">
-                <p style="text-decoration-line: line-through; color: black;">
-                  280.000 đ
-                </p>
-                <p>
-                  230.000 đ
-                </p>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;" id="product-price">
+                    15.000đ
+                  </p>
+                  <p id="product-sales">
+                    13.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a id="product-stars">
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p id="product-pt">
+                    -2%
+                  </p>
+                </div>
               </div>
-              <div class="Sanpham-cost-phantram">
-                <a>
-                  4.5
-                  <img src="Anh/SanPham/star.png">
-                </a>
-                <p>
-                  -25%
-                </p>
-              </div>
-            </div>
-          </div>
 
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
-            </picture>
-            <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-sales">
-                <p style="text-decoration-line: line-through; color: black;">
-                  280.000 đ
-                </p>
-                <p>
-                  230.000 đ
-                </p>
-              </div>
-              <div class="Sanpham-cost-phantram">
-                <a>
-                  4.5
-                  <img src="Anh/SanPham/star.png">
-                </a>
-                <p>
-                  -25%
-                </p>
-              </div>
             </div>
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
-            </picture>
-            <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-sales">
-                <p style="text-decoration-line: line-through; color: black;">
-                  280.000 đ
-                </p>
-                <p>
-                  230.000 đ
-                </p>
-              </div>
-              <div class="Sanpham-cost-phantram">
-                <a>
-                  4.5
-                  <img src="Anh/SanPham/star.png">
-                </a>
-                <p>
-                  -25%
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
-            </picture>
-            <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-sales">
-                <p style="text-decoration-line: line-through; color: black;">
-                  280.000 đ
-                </p>
-                <p>
-                  230.000 đ
-                </p>
-              </div>
-              <div class="Sanpham-cost-phantram">
-                <a>
-                  4.5
-                  <img src="Anh/SanPham/star.png">
-                </a>
-                <p>
-                  -25%
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
-            </picture>
-            <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-sales">
-                <p style="text-decoration-line: line-through; color: black;">
-                  280.000 đ
-                </p>
-                <p>
-                  230.000 đ
-                </p>
-              </div>
-              <div class="Sanpham-cost-phantram">
-                <a>
-                  4.5
-                  <img src="Anh/SanPham/star.png">
-                </a>
-                <p>
-                  -25%
-                </p>
-              </div>
-            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 45px;" onclick="addToProductList(this)">
+              Mua
+            </button>
           </div>
         </section>
       </div>
@@ -504,195 +573,394 @@
 
       <div class="div-line"></div>
 
-      <div class="containerSanpham">
+      <div class="productsNew" ng-controller="GetNewProductsController">
+        <ul>
+          <li ng-repeat="product in products">
+            <div class="product">
+              <img ng-src="data:image/jpeg;base64,{{ product.img }}" alt="{{ product.tenSP }}" />
+              <p>{{ product.mota }}</p>
+              <p>Số lượng: {{ product.soLuong }}</p>
+              <p>Đơn giá: {{ product.dongia }}</p>
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+          </li>
+          
+        </ul>
+        
+      </div>
+
+      <div class="containerSanpham" >
         <section class="sectionSanpham">
-          <div class="Sanpham-tpye">
+        
+
+          <!-- <div ng-controller="GetNewProductsController" class="Sanpham-tpye"> 
+            <div class="Sanpham-tpye" ng-repeat="product in products">
+              <picture>
+                <img ng-src="{{product.img}}">
+              </picture>
+              <p>{{ product.tenSP }}</p>
+              <div class="Sanpham-cost">
+                <div class="Sanpham-cost-container">
+                  <div class="Sanpham-cost-sales">
+                    <p style="text-decoration-line: line-through; color: black;">{{product.dongia}}</p>
+                    <p>{{product.dongia}}</p>
+                  </div>                 
+                </div>
+              </div>
+              <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">Mua</button>
+            </div>
+          </div> -->
+          
+          <!-- <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
+              <img src="Anh/SanPham/Sales/-202312071118312236.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              2 chai Nước mắm cao cấp cốt nhĩ tôm Đầu Bếp Tôm 18 độ đạm 500ml
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
-          </div>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
 
-          <div class="Sanpham-tpye">
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+          </div> -->
+
+          <!-- <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/-202310031112465755.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              3 hộp trứng gà Omega Happy Egg hộp 6 quả
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/suacogaihalan.jpg">
-            </picture>
-            <p>
-              Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady Canxi & Protein 180ml
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                127.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/dualeo.jpg">
-            </picture>
-            <p>
-              Dưa leo baby 500g (8-10 trái)
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                18.500 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.8
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
-            </picture>
-            <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                32.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.1
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
-            </picture>
-            <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/cua-thit-ca-mau-hop-1-con-250g-300g-202302171435479017.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              Cua thịt Cà Mau 220g - 300g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/-202308221447006766.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              2 trái bí xanh trái 400g - 500g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/cai-thia-500gr-202309141121469506.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              Cải thìa 450g - 550g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 60px;">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/nuoc-tuong-nhat-ca-tam-thai-tu-chai-500ml-202308111729325157.jpg">
+            </picture>
+            <p>
+              Nước tương Nhất Ca Tam Thái Tử chai 500ml
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/thung-24-lon-nuoc-ngot-pepsi-cola-320ml-202303151110173844.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              Thùng 24 lon nước ngọt Pepsi Cola 320ml
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/2-thung-bia-tiger-bac-330ml-202312041329446735.jpg">
+            </picture>
+            <p>
+              2 thùng bia Tiger Bạc 330ml
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img
+                src="Anh/SanPham/Sales/thung-48-hop-sua-dinh-duong-tiet-trung-co-duong-nuvi-180ml-202212260930565289.jpg">
+            </picture>
+            <p>
+              Thùng 48 hộp sữa dinh dưỡng tiệt trùng có đường Nuvi 180ml
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/banh-que-dorkbua-sum-vay-mix-6-vi-goi-348g-202311221336063790.jpg">
+            </picture>
+            <p>
+              Bánh que Dorkbua Sum Vầy mix 6 vị gói 348g
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
+          </div> -->
         </section>
       </div>
 
@@ -717,189 +985,350 @@
         <section class="sectionSanpham">
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/sellingpoint.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Bánh xương chăm sóc răng cho chó con Pedigree túi 5 que x 15g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/sot-cho-meo-whiskas-vi-ca-bien-goi-80g-202203271544073981.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              Sốt cho mèo Whiskas vị cá biển gói 80g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/suacogaihalan.jpg">
-            </picture>
-            <p>
-              Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady Canxi & Protein 180ml
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                127.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/dualeo.jpg">
-            </picture>
-            <p>
-              Dưa leo baby 500g (8-10 trái)
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                18.500 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.8
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
+              <img
+                src="Anh/SanPham/Sales/binh-giu-nhiet-500ml-dien-may-xanh-qe-2022-giao-mau-ngau-nhien-202203241553329179.jpg">
             </picture>
             <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
+              Bình giữ nhiệt Điện máy XANH QE-2022 500ml
             </p>
             <div class="Sanpham-cost">
-              <p>
-                32.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.1
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
-          </div>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    3.6
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
 
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
-            </picture>
-            <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
             </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
-            </picture>
-            <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img
+                src="Anh/SanPham/Sales/mieng-rua-chen-sieu-sach-co-mut-scotch-brite-chu-nhat-101cm-202204231536136810.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              Miếng rửa chén siêu sạch có mút Scotch Brite chữ nhật 10.1cm
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/nuoc-tay-bon-cau-nha-tam-vim-diet-khuan-900ml-202303251501209162.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              Nước tẩy bồn cầu & nhà tắm VIM diệt khuẩn 880ml
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/nuoc-xa-vai-downy-huong-nuoc-hoa-huyen-bi-tui-35-lit-202309121438380071.jpg">
+            </picture>
+            <p>
+              Nước xả vải Downy hương nước hoa huyền bí túi 3.5 lít
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/2-tui-nuoc-giat-surf-huong-nuoc-hoa-3-lit-202307071509572704.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              2 túi nước giặt Surf hương nước hoa 3.1kg
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/sellingpoint (1).jpg">
+            </picture>
+            <p>
+              Sữa tắm detox Lifebuoy thảo dược và hoa sen bảo vệ da khỏi vi khuẩn 784ml
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/kem-danh-rang-colgate-ngua-sau-rang-chac-khoe-225g-202212090815144374.jpg">
+            </picture>
+            <p>
+              Kem đánh răng Colgate ngừa sâu răng chắc khoẻ 225g
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/sellingpoint (2).jpg">
+            </picture>
+            <p>
+              Nước xả vải Comfort dịu nhẹ thơm dịu êm 3.2 lít
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
         </section>
@@ -979,185 +1408,345 @@
         <section class="sectionSanpham">
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/dua-hau-do-trai-18kg-tro-len-202309221953314485.png">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Dưa hấu đỏ trái từ 1.8kg
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 Đđ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 55px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/dua-luoi-tron-ruot-cam-12kg-15kg-202310021032305398.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              Dưa lưới tròn ruột cam 1.5kg
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/suacogaihalan.jpg">
-            </picture>
-            <p>
-              Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady Canxi & Protein 180ml
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                127.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/dualeo.jpg">
-            </picture>
-            <p>
-              Dưa leo baby 500g (8-10 trái)
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                18.500 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.8
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
+              <img src="Anh/SanPham/Sales/-202312010916099304.jpg">
             </picture>
             <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
+              Lê Tai Nung nội địa Trung 0.9-1.1kg
             </p>
             <div class="Sanpham-cost">
-              <p>
-                32.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.1
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/-202309131125437396.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Ổi nữ hoàng vỉ 1kg (2 - 4 trái)
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/-202309071525382900.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Xà lách thủy tinh thủy canh từ 200g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/-202310071044434475.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Rau mồng tơi baby 300g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 55px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/bi-do-ho-lo-1-trai-700g-900g-202303170919157959.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Bí đỏ hồ lô 800g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 55px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/nam-kim-cham-han-quoc-tui-150g-202202151015334518.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Nấm kim châm Hàn Quốc 150g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/cu-hanh-tim-lam-sach-100g-202308280941590189.jpg">
+            </picture>
+            <p>
+              Củ hành tím làm sạch 100g
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/khoai-tay-dong-lanh-tran-gia-goi-1kg-202309080920562817.jpg">
+            </picture>
+            <p>
+              Khoai tây đông lạnh Trần Gia gói 1kg
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
         </section>
       </div>
@@ -1181,185 +1770,345 @@
         <section class="sectionSanpham">
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/3-cay-kem-vani-socola-merino-super-teen-60g-202310101347489756.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              3 cây kem vani socola Merino Super Teen 60g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/pizza-hai-san-vi-y-manna-120g-202312121451140040.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              Pizza hải sản vị Ý Manna 120g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/suacogaihalan.jpg">
-            </picture>
-            <p>
-              Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady Canxi & Protein 180ml
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                127.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/dualeo.jpg">
-            </picture>
-            <p>
-              Dưa leo baby 500g (8-10 trái)
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                18.500 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.8
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
+              <img src="Anh/SanPham/Sales/sellingpoint (3).jpg">
             </picture>
             <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
+              Dồi sụn thượng hạng LC FOODS gói 500g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                32.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.1
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/cha-lua-hue-hoa-doanh-goi-200g-202306190956322842.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Chả lụa huế Hoa Doanh gói 200g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/cha-gio-da-xop-thit-nam-huong-la-cusina-goi-400g-202307090840260438.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Chả giò da xốp thịt nấm hương La Cusina gói 400g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/-202312121425442090.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Cá viên Kitkool gói 500g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 55px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/banh-xep-han-quoc-nhan-hai-san-bibigo-goi-175g-202202110721355571.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Bánh xếp nhân hải sản Bibigo gói 175g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/sellingpoint (4).jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Thịt ba rọi bò Thảo Tiến Foods khay 300g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/com-chien-hai-san-ngu-sac-sg-food-200g-202312121356511438.jpg">
+            </picture>
+            <p>
+              Cơm chiên hải sản ngũ sắc SG Food gói 200g
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/sellingpoint (5).jpg">
+            </picture>
+            <p>
+              Xúc xích phô mai đặc biệt Hoa Doanh gói 125g
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
         </section>
       </div>
@@ -1384,185 +2133,345 @@
         <section class="sectionSanpham">
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/mi-khoai-tay-cung-dinh-lau-tom-chua-cay-ly-65g-clone-202312130853434636.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              3 ly mì khoai tây Cung Đình lẩu tôm chua cay 65g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/cam.jpg">
+              <img src="Anh/SanPham/Sales/thung-30-goi-mi-kokomi-90-tom-chua-cay-90g-202209122344054307.jpg">
             </picture>
             <p>
-              Cam Cara Úc 1kg (9 - 11 trái)
+              Thùng 30 gói mì Kokomi 90 tôm chua cay 90g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                53.400 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/suacogaihalan.jpg">
-            </picture>
-            <p>
-              Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady Canxi & Protein 180ml
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                127.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                5.0
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/dualeo.jpg">
-            </picture>
-            <p>
-              Dưa leo baby 500g (8-10 trái)
-            </p>
-            <div class="Sanpham-cost">
-              <p>
-                18.500 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.8
-                <img src="Anh/SanPham/star.png">
-              </a>
-            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
 
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg">
+              <img src="Anh/SanPham/Sales/3-goi-mien-phu-huong-suon-heo-55g-202303030834433271.jpg">
             </picture>
             <p>
-              2 gói ngũ cốc ăn sáng Nestlé Koko Krunch gói 50g
+              3 gói miến Phú Hương sườn heo 55g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                32.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.1
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/thung-24-goi-mien-phu-huong-suon-heo-58g-202209101649015797.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Thùng 24 gói miến Phú Hương sườn heo 55g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/pho-an-lien-vifon-vi-ga-goi-75g-clone-202312150905483507.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              4 gói phở gà Vifon 75g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 55px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/thung-50-goi-chao-thit-bam-gau-do-50g-202209282312185643.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Thùng 50 gói cháo thịt bằm Gấu Đỏ 50g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/bun-gao-lut-huyet-rong-bich-chi-goi-200g-202202101525481314.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Bún gạo lứt huyết rồng Bích Chi gói 200g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
 
           <div class="Sanpham-tpye">
             <picture>
-              <img src="Anh/SanPham/Sales/dau-thuc-vat-tuong-an.jpg">
+              <img src="Anh/SanPham/Sales/nui-tom-kho-safoco-goi-500g-202203182149008494.jpg">
             </picture>
             <p>
-              Dầu thực vật Tường An Cooking Oil can 5 lít
+              Nui tôm khô Safoco gói 500g
             </p>
             <div class="Sanpham-cost">
-              <p>
-                230.000 đ
-              </p>
-              <a class="Sanpham-cost-star">
-                4.5
-                <img src="Anh/SanPham/star.png">
-              </a>
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
             </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/mi-spaghetti-so-5-san-remo-goi-250g-202203181612385126.jpg">
+            </picture>
+            <p>
+              Mì Spaghetti số 5 San Remo gói 250g
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
+          </div>
+
+          <div class="Sanpham-tpye">
+            <picture>
+              <img src="Anh/SanPham/Sales/banh-gao-topokki-ofood-vi-truyen-thong-goi-140g-202202121013437112.jpg">
+            </picture>
+            <p>
+              Bánh gạo topokki O'food vị truyền thống gói 140g
+            </p>
+            <div class="Sanpham-cost">
+              <div class="Sanpham-cost-container">
+                <div class="Sanpham-cost-sales">
+                  <p style="text-decoration-line: line-through; color: black;">
+                    280.000đ
+                  </p>
+                  <p>
+                    230.000đ
+                  </p>
+                </div>
+                <div class="Sanpham-cost-phantram">
+                  <a>
+                    4.5
+                    <img src="Anh/SanPham/star.png">
+                  </a>
+                  <p>
+                    -25%
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+              Mua
+            </button>
           </div>
         </section>
       </div>
@@ -1591,21 +2500,22 @@
             <p>Thử ngay bún cá cuộn lạ miệng tại ngõ Trung Yên (Hoàn Kiếm, Hà Nội)</p>
           </a>
           <a class="Meo-txt-a"
-            href="https://www.bachhoaxanh.com/kinh-nghiem-hay/thu-ngay-bun-ca-cuon-la-mieng-tai-ngo-trung-yen-hoan-kiem-ha-noi-1555454">
-            <img src="Anh/Meo/thu-ngay-bun-ca-cuon-la-mieng-tai-ngo-trung-yen-hoan-kiem-ha-noi-202311201535514588.jpg">
-            <p>Thử ngay bún cá cuộn lạ miệng tại ngõ Trung Yên (Hoàn Kiếm, Hà Nội)</p>
+            href="https://www.bachhoaxanh.com/kinh-nghiem-hay/phoi-ao-khoac-denim-hack-tuoi-nhu-luu-diec-phi-duong-mich-1558044">
+            <img src="Anh/Meo/phoi-ao-khoac-denim-hack-tuoi-nhu-luu-diec-phi-duong-mich-202312211418574999.jpg">
+            <p>Phối áo khoác denim 'hack' tuổi như Lưu Diệc Phi, Dương Mịch</p>
           </a>
         </div>
         <div class="Meo-txt-container">
           <a class="Meo-txt-a"
-            href="https://www.bachhoaxanh.com/kinh-nghiem-hay/thu-ngay-bun-ca-cuon-la-mieng-tai-ngo-trung-yen-hoan-kiem-ha-noi-1555454">
-            <img src="Anh/Meo/thu-ngay-bun-ca-cuon-la-mieng-tai-ngo-trung-yen-hoan-kiem-ha-noi-202311201535514588.jpg">
-            <p>Thử ngay bún cá cuộn lạ miệng tại ngõ Trung Yên (Hoàn Kiếm, Hà Nội)</p>
+            href="https://www.bachhoaxanh.com/kinh-nghiem-hay/goi-y-cac-cach-bay-tiec-trai-cay-phong-cach-giang-sinh-that-xinh-xan-1558067">
+            <img
+              src="Anh/Meo/goi-y-cac-cach-bay-tiec-trai-cay-phong-cach-giang-sinh-that-xinh-xan-202312211438228402.jpg">
+            <p>Gợi ý các cách bày tiệc trái cây phong cách Giáng sinh thật xinh xắn</p>
           </a>
           <a class="Meo-txt-a"
-            href="https://www.bachhoaxanh.com/kinh-nghiem-hay/thu-ngay-bun-ca-cuon-la-mieng-tai-ngo-trung-yen-hoan-kiem-ha-noi-1555454">
-            <img src="Anh/Meo/thu-ngay-bun-ca-cuon-la-mieng-tai-ngo-trung-yen-hoan-kiem-ha-noi-202311201535514588.jpg">
-            <p>Thử ngay bún cá cuộn lạ miệng tại ngõ Trung Yên (Hoàn Kiếm, Hà Nội)</p>
+            href="https://www.bachhoaxanh.com/kinh-nghiem-hay/don-tet-sum-vay-cung-bo-qua-tet-kinh-do-loc-1558042">
+            <img src="Anh/Meo/don-tet-sum-vay-cung-bo-qua-tet-kinh-do-loc-202312211445337896.jpg">
+            <p>Đón Tết Sum Vầy cùng bộ quà Tết Kinh Đô Lộc</p>
           </a>
         </div>
         <div class="More">

@@ -46,8 +46,8 @@ namespace API_BHX.Controllers
                     byte[] compressedImageBytes;
                     using (Image image = Image.Load(imageBytes))
                     {
-                        var encoder = new JpegEncoder(); // Sử dụng JPEG encoder, bạn có thể chọn định dạng khác nếu cần
-                        image.Mutate(x => x.Resize(50, 50)); // Điều chỉnh kích thước hình ảnh nếu cần
+                        var encoder = new JpegEncoder(); 
+                        image.Mutate(x => x.Resize(200, 200)); 
                         using (var compressedStream = new MemoryStream())
                         {
                             image.Save(compressedStream, encoder);
@@ -92,6 +92,20 @@ namespace API_BHX.Controllers
             }
 
             var products = _iproductBusiness.GetAll(pageNumber, pageSize);
+            return Ok(products);
+        }
+
+        [AllowAnonymous]
+        [Route("GetNewProductsAll")]
+        [HttpGet]
+        public IActionResult GetNewProducts(int pageNumber = 1, int pageSize = 10)
+        {
+            if (pageNumber < 1 || pageSize < 1)
+            {
+                return BadRequest("Không thể tạo !!");
+            }
+
+            var products = _iproductBusiness.GetNewProducts(pageNumber, pageSize);
             return Ok(products);
         }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="myApp" >
 
 <head>
   <meta charset="UTF-8">
@@ -16,16 +16,18 @@
   <script src="/Angular JS/angular-1.8.2/angular.js"></script>
 </head>
 
-<body ng-app="myApp" >
+<body ng-controller="SearchController">
   <header>
     <nav>
       <div class="menuHead">
         <div class="logo">
           <a>Bách hóa xanh</a>
         </div>
-        <div class="search-text">
-          <input type="search" name="Tìm kiếm" placeholder="Tìm kiếm của bạn ..." />
-          <img class="icon-search" src="Anh/header/search-interface-symbol.png" />
+        <div class="search-text" >
+          <input type="search" ng-model="productName" name="Tìm kiếm" placeholder="Tìm kiếm của bạn ..." />
+          <img class="icon-search" src="Anh/header/search-interface-symbol.png" ng-click="searchProduct()"/>
+
+          
         </div>
         <ul>
           <li>
@@ -53,6 +55,12 @@
     </nav>
   </header>
   <main>
+    <div ng-repeat="product in products" class="productSearch">
+      <img ng-src="data:image/jpeg;base64,{{ product.img }}" />
+      <h3>{{ product.tenSP }}</h3>
+      <p>{{ product.mota }}</p>
+      <div class="div-line"></div>
+    </div>
     <div class="slideshow-container">
       <div class="slide fade">
         <img src="Slider/gio-qua-tet-2411202394433.jpg" alt="Hình 1"">

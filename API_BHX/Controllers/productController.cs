@@ -109,6 +109,25 @@ namespace API_BHX.Controllers
             return Ok(products);
         }
 
+        [AllowAnonymous]
+        [Route("SearchProductByName")]
+        [HttpGet]
+        public IActionResult SearchProductByName(string Name, int pageNumber, int pageSize)
+        {
+            if (pageNumber < 1 || pageSize < 1)
+            {
+                return BadRequest("Không thể tạo !!");
+            }
+
+            if (Name == null)
+            {
+                return Ok("Không có sản phẩm !");
+            }
+
+            var products = _iproductBusiness.SearchProductByName(Name, pageNumber, pageSize);
+            return Ok(products);
+        }
+
         [Route("GetProductByID")]
         [HttpGet]
         public product GetProductByID(int id)

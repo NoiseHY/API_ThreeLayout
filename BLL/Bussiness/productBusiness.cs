@@ -28,6 +28,10 @@ namespace BLL.Bussiness
         {
             return iproductRepository.GetNewProducts(pageNumber, pageSize);
         }
+        public List<product> SearchProductByName(string Name, int pageNumber, int pageSize)
+        {
+            return iproductRepository.SearchProductByName(Name, pageNumber, pageSize);
+        }
         public bool Create(product product)
         {
             return iproductRepository.Create(product);

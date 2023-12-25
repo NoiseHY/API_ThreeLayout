@@ -120,5 +120,25 @@ app.controller('GetNewProductsController', function($scope, $http) {
     });
 });
 
+app.controller('SearchController', function($scope, $http) {
+  $scope.productName = '';
 
+  $scope.searchProduct = function() {
+    $http.get('https://localhost:7117/api/product/SearchProductByName', {
+        params: {
+          Name: $scope.productName,
+          pageNumber: 1,
+          pageSize: 5
+        }
+      })
+      .then(function(response) {
+        // Xử lý dữ liệu trả về từ API ở đây
+        $scope.products = response.data;
+      })
+      .catch(function(error) {
+        // Xử lý lỗi nếu có
+        console.error('Lỗi khi gọi API:', error);
+      });
+  };
+});
 

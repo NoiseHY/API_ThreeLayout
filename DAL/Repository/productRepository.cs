@@ -95,6 +95,26 @@ namespace DAL.Repository
             }
         }
 
+        public List<product> SearchProductByName(string Name, int pageNumber, int pageSize)
+        {
+            string msg = "";
+            try
+            {
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "SearchProductByName",
+                    "@ProductName",Name,
+                    "@PageNumber", pageNumber,
+                    "@PageSize", pageSize);
+
+                if (!string.IsNullOrEmpty(msg))
+                    throw new Exception(msg);
+
+                return dt.ConvertTo<product>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public bool Create(product product)
         {

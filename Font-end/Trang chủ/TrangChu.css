@@ -103,6 +103,16 @@ header {
   transform: scale(1.5);
 }
 
+.li-button button{
+  border-radius: 3px;
+  border: 1px solid  #ccc ;
+  color: #03a63c;
+  padding: 2px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+
 main {
   padding-top: 50px;
   min-width  : 1200px;

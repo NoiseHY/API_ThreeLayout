@@ -1,0 +1,98 @@
+.profile {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.profile-picture img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.profile-info {
+  color: #333;
+}
+
+.name {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.location, .occupation {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.bio {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.social-links li {
+  margin-right: 10px;
+}
+
+.social-link {
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.input-section {
+  margin-top: 30px;
+}
+
+.input-section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.btn-update {
+  padding: 8px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-update:hover {
+  background-color: #0056b3;
+}

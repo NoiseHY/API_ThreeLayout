@@ -108,37 +108,66 @@
 // Trong controller AngularJS
 var app = angular.module('myApp', []);
 
-app.controller('GetNewProductsController', function($scope, $http) {
+app.controller('GetNewProductsController', function ($scope, $http) {
   $http.get('https://localhost:7117/api/product/GetNewProductsAll?pageNumber=1&pageSize=10')
-    .then(function(response) {
+    .then(function (response) {
 
       $scope.products = response.data;
     })
-    .catch(function(error) {
-      
+    .catch(function (error) {
+
       console.error('Lỗi', error);
     });
 });
 
-app.controller('SearchController', function($scope, $http) {
+app.controller('SearchController', function ($scope, $http) {
   $scope.productName = '';
 
-  $scope.searchProduct = function() {
+  $scope.searchProduct = function () {
     $http.get('https://localhost:7117/api/product/SearchProductByName', {
-        params: {
-          Name: $scope.productName,
-          pageNumber: 1,
-          pageSize: 5
-        }
-      })
-      .then(function(response) {
+      params: {
+        Name: $scope.productName,
+        pageNumber: 1,
+        pageSize: 5
+      }
+    })
+      .then(function (response) {
         // Xử lý dữ liệu trả về từ API ở đây
         $scope.products = response.data;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // Xử lý lỗi nếu có
         console.error('Lỗi khi gọi API:', error);
       });
   };
 });
 
+app.controller('UserController', function ($scope, $window) {
+  $scope.imageUrl = 'Anh/header/user.png';
+  $scope.showButtons = false;
+
+  $scope.checkLogin = function () {
+    var userID = $window.localStorage.getItem('userID');
+    $scope.isLoggedIn = !!userID;
+
+    if ($scope.isLoggedIn) {
+      $scope.showButtons = true;
+    } else {
+      // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+      $window.location.href = '/Trang đăng nhập/Đăng nhập.html';
+    }
+  };
+
+  $scope.goToProfile = function () {
+    // Điều hướng đến trang cá nhân
+    $window.location.href = '/Trang cá nhân/Trang cá nhân.html';
+  };
+
+  $scope.logout = function () {
+    // Xóa userID khỏi local storage và đặt trạng thái đăng nhập về false
+    $window.localStorage.removeItem('userID');
+    $scope.showButtons = false;
+    // Sau khi đăng xuất, có thể chuyển hướng người dùng đến trang chủ hoặc trang khác
+    $window.location.href = '/Trang chủ/TrangChu.html';
+  };
+});

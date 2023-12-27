@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html ng-app="myApp" >
+<html ng-app="myApp">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Bach Hoa Xanh</title>
+  <title>Bách Hóa Xanh</title>
   <link rel="stylesheet" href="TrangChu.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,9 +10,9 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,200;1,300;1,400;1,500;1,700&display=swap"
     rel="stylesheet">
 
-  <link rel="icon" type="image/x-icon"
-    href="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
+  <link rel="icon" type="image/x-icon" href="/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
   <script src="/Angular JS/angular-1.8.2/angular.js"></script>
+  <script src="TrangChu.js"></script>
 </head>
 
 <body ng-controller="SearchController">
@@ -23,13 +22,13 @@
         <div class="logo">
           <a>Bách hóa xanh</a>
         </div>
-        <div class="search-text" >
+        <div class="search-text">
           <input type="search" ng-model="productName" name="Tìm kiếm" placeholder="Tìm kiếm của bạn ..." />
-          <img class="icon-search" src="Anh/header/search-interface-symbol.png" ng-click="searchProduct()"/>
+          <img class="icon-search" src="Anh/header/search-interface-symbol.png" ng-click="searchProduct()" />
 
-          
+
         </div>
-        <ul>
+        <ul ng-controller="UserController">
           <li>
             <img src="Anh/header/home.png" id="imgHome">
             <!-- <a class="txtTT">Trang chủ</a> -->
@@ -38,16 +37,23 @@
             <img src="Anh/header/category.png" id="imgDanhMuc" />
             <!-- <a class="txtDM">Danh mục</a> -->
           </li>
-          <li>
-            <img src="Anh/header/user.png" />
-            <!-- <a class="txtDN">Đăng nhập</a> -->
-          </li>
+
+          <div class="li-button">
+            <li>
+              <img ng-click="checkLogin()" src="{{imageUrl}}" />
+            </li>
+            <li>
+              <button ng-show="showButtons" ng-click="goToProfile()">Trang cá nhân</button>
+              <button ng-show="showButtons" ng-click="logout()">Đăng xuất</button>
+            </li>
+          </div>
+          
           <li>
             <img src="Anh/header/bell.png" />
             <!-- <a class="txtTB">Thông báo</a> -->
           </li>
           <li>
-            <img src="Anh/header/shopping-cart.png" id="imgCart" onclick="convertToJSON()"/>
+            <img src="Anh/header/shopping-cart.png" id="imgCart" onclick="convertToJSON()" />
             <!-- <a class="txtGH">Giỏ hàng</a> -->
           </li>
         </ul>
@@ -74,8 +80,8 @@
       <div class="slide fade ">
         <img src="Slider/sua-cac-loai-10112023163314.jpg" alt="Hình 4">
       </div>
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
     </div>
     <!-- Danh mục-->
     <div class="Danhmuc">
@@ -238,7 +244,7 @@
                   </p>
                 </div>
                 <div class="Sanpham-cost-phantram">
-                  <a  id="product-stars">
+                  <a id="product-stars">
                     4.5
                     <img src="Anh/SanPham/star.png">
                   </a>
@@ -322,7 +328,7 @@
           </div>
 
           <div class="Sanpham-tpye">
-            <picture >
+            <picture>
               <img src="Anh/SanPham/Sales/dualeo.jpg" id="product-img">
             </picture>
             <p id="product-name">
@@ -356,7 +362,7 @@
           </div>
 
           <div class="Sanpham-tpye">
-            <picture >
+            <picture>
               <img src="Anh/SanPham/Sales/2-goi-ngu-coc-an-sang.jpg" id="product-img">
             </picture>
             <p id="product-name">
@@ -390,7 +396,7 @@
           </div>
 
           <div class="Sanpham-tpye">
-            <picture >
+            <picture>
               <img src="Anh/SanPham/Sales/-202309251041572994.jpg" id="product-img">
             </picture>
             <p id="product-name">
@@ -424,8 +430,9 @@
           </div>
 
           <div class="Sanpham-tpye">
-            <picture >
-              <img id="product-img" src="Anh/SanPham/Sales/gao-thom-dac-san-neptune-st25-tui-5kg-202306191510459928.jpg">
+            <picture>
+              <img id="product-img"
+                src="Anh/SanPham/Sales/gao-thom-dac-san-neptune-st25-tui-5kg-202306191510459928.jpg">
             </picture>
             <p id="product-name">
               Gạo thơm đặc sản Neptune ST25 túi 5kg
@@ -458,7 +465,7 @@
           </div>
 
           <div class="Sanpham-tpye">
-            <picture >
+            <picture>
               <img id="product-img" src="Anh/SanPham/Sales/mit-thai-cat-mieng-1kg-202311251121287273.jpg">
             </picture>
             <p id="product-name">
@@ -594,14 +601,14 @@
               Mua
             </button>
           </li>
-          
+
         </ul>
-        
+
       </div>
 
-      <div class="containerSanpham" >
+      <div class="containerSanpham">
         <section class="sectionSanpham">
-        
+
 
           <!-- <div ng-controller="GetNewProductsController" class="Sanpham-tpye"> 
             <div class="Sanpham-tpye" ng-repeat="product in products">
@@ -620,7 +627,7 @@
               <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">Mua</button>
             </div>
           </div> -->
-          
+
           <!-- <div class="Sanpham-tpye">
             <picture>
               <img src="Anh/SanPham/Sales/-202312071118312236.jpg">
@@ -2559,6 +2566,6 @@
     </div>
   </footer>
 </body>
-<script src="TrangChu.js"></script>
+
 
 </html>

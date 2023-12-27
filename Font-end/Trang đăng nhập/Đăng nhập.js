@@ -41,8 +41,12 @@ app.controller('myCtrl', function($scope, $http, $window) {
         // Chuyển hướng người dùng đến trang admin
         $window.location.href = '/Trang quản trị/Trang quản trị.html'; // Thay đổi URL của trang admin
       } else {
-        
+        var userID = response.data.maTK;
+
         $window.location.href = '/Trang chủ/TrangChu.html';
+
+        $window.localStorage.setItem('userID', userID);
+
         $window.localStorage.removeItem('token');
       }
 

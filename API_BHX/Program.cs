@@ -75,16 +75,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 // Cấu hình CORS
 app.UseCors(builder =>
 {
-    builder.WithOrigins("http://127.0.0.1:5501") // Thay đổi domain của frontend của bạn ở đây
+    builder.WithOrigins("http://127.0.0.1:5501") // Thay đổi domain của frontend 
         .AllowAnyHeader()
         .AllowAnyMethod();
 });

@@ -143,15 +143,19 @@ app.controller('SearchController', function ($scope, $http) {
 });
 
 app.controller('UserController', function ($scope, $window) {
-  $scope.imageUrl = 'Anh/header/user.png';
   $scope.showButtons = false;
 
-  $scope.checkLogin = function () {
+  $scope.toggleButtons = function () {
     var userID = $window.localStorage.getItem('userID');
     $scope.isLoggedIn = !!userID;
 
     if ($scope.isLoggedIn) {
-      $scope.showButtons = true;
+      $scope.showButtons = !$scope.showButtons;
+      if ($scope.showButtons) {
+        document.getElementById('buttonDialog').style.display = 'block'; // Hiển thị phần button-dialog
+      } else {
+        document.getElementById('buttonDialog').style.display = 'none'; // Ẩn phần button-dialog
+      }
     } else {
       // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
       $window.location.href = '/Trang đăng nhập/Đăng nhập.html';
@@ -171,3 +175,8 @@ app.controller('UserController', function ($scope, $window) {
     $window.location.href = '/Trang chủ/TrangChu.html';
   };
 });
+
+
+
+
+

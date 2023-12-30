@@ -38,16 +38,19 @@
             <!-- <a class="txtDM">Danh mục</a> -->
           </li>
 
-          <div class="li-button">
-            <li>
-              <img ng-click="checkLogin()" src="{{imageUrl}}" />
+          <div class="li-button" ng-controller="UserController">
+            <li class="user-li">
+              <img id="openDialog" ng-click="toggleButtons()" src="Anh/header/user.png" />
             </li>
             <li>
-              <button ng-show="showButtons" ng-click="goToProfile()">Trang cá nhân</button>
-              <button ng-show="showButtons" ng-click="logout()">Đăng xuất</button>
+              <div id="buttonDialog" class="button-dialog" ng-show="showButtons">
+                <img src="Anh/header/information.png" ng-click="goToProfile()" />
+                <img src="Anh/header/exit.png" ng-click="logout()" />
+              </div>
             </li>
           </div>
           
+                                
           <li>
             <img src="Anh/header/bell.png" />
             <!-- <a class="txtTB">Thông báo</a> -->

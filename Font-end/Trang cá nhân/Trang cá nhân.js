@@ -24,26 +24,54 @@ app.controller('CustomerController', function ($scope, $http) {
   };
 
   $scope.fillForm = function () {
-    $scope.customer = $scope.customer || {}; // Đảm bảo $scope.customer không null
-    // Gán thông tin từ $scope.customer vào các trường input
-    document.getElementById('input-name').value = $scope.customer.tenKH || '';
-    document.getElementById('input-address').value = $scope.customer.diachiKH || '';
-    document.getElementById('input-phone').value = $scope.customer.sdt || '';
-    document.getElementById('input-birthday').value = $scope.customer.ngaysinh || '';
+    $scope.nameCustomer = $scope.customer.tenKH || '';
+    $scope.address = $scope.customer.diachiKH || '';
+    $scope.phone = $scope.customer.sdt || '';
+
+    $scope.birthday = $scope.customer.ngaysinh ? new Date($scope.customer.ngaysinh) : null;
+
   };
 
-  // Gọi hàm để lấy thông tin khách hàng khi cần thiết
+
   $scope.getCustomer();
 
 
-  // Hàm cập nhật thông tin khách hàng
+});
+
+app.controller('updateCustomer', function ($scope, $http, $window) {
   $scope.updateCustomer = function () {
-    $http.put('URL của API Update', $scope.customer)
+    var name = $scope.nameCustomer;
+
+    var address = $scope.address;
+
+    var phone = $scope.phone;
+
+    var birthday = new Date($scope.birthday); 
+    birthday.setDate(birthday.getDate() + 1)
+
+    var maKH = $window.localStorage.getItem('userID');
+
+    var updatedInfo = {
+      maKH: maKH,
+      tenKH: name,
+      diachiKH: address,
+      sdt: phone,
+      ngaysinh: birthday
+    };
+
+    debugger;
+
+    // Gửi yêu cầu cập nhật thông tin lên server
+    $http.put('https://localhost:7118/api/InfoCustomer/Update', updatedInfo)
       .then(function (response) {
-        console.log('Đã cập nhật khách hàng:', response.data);
+        console.log('Đã cập nhật thông tin khách hàng:', response.data);
+        alert("Cập nhật thành công !");
       })
       .catch(function (error) {
-        console.error('Lỗi khi cập nhật khách hàng:', error);
+        console.error('Lỗi khi cập nhật thông tin khách hàng:', error);
+        alert('Lỗi khi cập nhật thông tin khách hàng');
       });
   };
 });
+
+

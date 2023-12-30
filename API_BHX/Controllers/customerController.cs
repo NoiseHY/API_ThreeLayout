@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API_BHX.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class customerController : ControllerBase

@@ -23,6 +23,8 @@ header {
   width           : 100%;
   top             : 0;
   z-index         : 999;
+  height: 80px;
+  position: fixed;
 }
 
 .menuHead {
@@ -92,8 +94,8 @@ header {
   text-decoration: none;
 }
 
-.menuHead ul li img {
-  max-width   : 20px;
+.menuHead ul > li >img {
+  max-width   : 23px;
   height      : auto;
   margin-right: 5px;
   transition  : all 0.3s ease;
@@ -103,14 +105,38 @@ header {
   transform: scale(1.5);
 }
 
-.li-button button{
-  border-radius: 3px;
-  border: 1px solid  #ccc ;
-  color: #03a63c;
-  padding: 2px;
-  margin-top: 2px;
-  cursor: pointer;
+.li-button {
+  position: relative; 
 }
+
+.user-li img{
+  width: 23px;
+}
+
+.button-dialog {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  width: 50px;
+  margin-top: 5px;
+}
+
+
+.button-dialog img {
+  border-radius: 5px;
+  padding: 2px;
+  margin-top: 10px;
+  cursor: pointer;
+  width: 30px;
+  margin-right: 5px;
+  align-items: center;
+}
+
 
 
 main {

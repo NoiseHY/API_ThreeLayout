@@ -17,7 +17,7 @@
   <script src="Trang cá nhân.js"></script>
 </head>
 
-<body ng-controller="CustomerController">
+<body >
   <header>
     <nav>
       <div class="menuHead">
@@ -55,8 +55,8 @@
     </nav>
   </header>
 
-  <main>
-    <div class="profile">
+  <main ng-controller="CustomerController">
+    <div class="profile" >
       <div class="profile-picture">
         <img src="Anh/324110632_891269045238599_2160661645098458509_n.jpg" alt="Profile Picture">
       </div>
@@ -69,34 +69,34 @@
         </div>
         <ul class="social-links">
           <li><a href="#" class="social-link">Twitter</a></li>
-          <li><a href="#" class="social-link">LinkedIn</a></li>
+          <li><a href="#" class="social-link">Facebook</a></li>
           <li><a href="#" class="social-link">GitHub</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="input-section">
+    <div class="input-section" ng-controller="updateCustomer">
       <h2>Thông tin cơ bản</h2>
-      <form id="basic-info-form">
+      <form id="basic-info-form" >
         <div class="form-group">
           <label for="input-name">Họ và tên</label>
-          <input type="text" id="input-name" name="name" placeholder="Nhập họ và tên của bạn">
+          <input type="text" id="input-name" ng-model="nameCustomer" placeholder="Nhập họ và tên của bạn">
         </div>
         <div class="form-group">
           <label for="input-address">Địa chỉ</label>
-          <input type="text" id="input-address" name="address" placeholder="Nhập địa chỉ của bạn">
+          <input type="text" id="input-address"  ng-model="address" placeholder="Nhập địa chỉ của bạn">
         </div>
         <div class="form-group">
           <label for="input-phone">Số điện thoại</label>
-          <input type="text" id="input-phone" name="phone" placeholder="Nhập số điện thoại của bạn">
+          <input type="text" id="input-phone"  ng-model="phone" placeholder="Nhập số điện thoại của bạn">
         </div>
         <div class="form-group">
           <label for="input-birthday">Ngày sinh</label>
-          <input type="text" id="input-birthday" name="birthday" placeholder="Nhập ngày sinh của bạn">
+          <input type="date" id="input-birthday" ng-model="birthday">
         </div>
-        <button type="submit" class="btn-update">Cập nhật</button>
-        
+        <button type="button" class="btn-update" ng-click="updateCustomer()">Cập nhật</button>
       </form>
+      
     </div>
   </main>
 </body>

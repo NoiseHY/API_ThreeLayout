@@ -14,7 +14,7 @@ namespace DAL.Repository
             _excuteProcedure = excuteProcedure;
         }
 
-        [Authorize]
+        
         public List<customer> GetAll()
         {
             string msgError = "";

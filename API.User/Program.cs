@@ -9,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<ExcuteProcedure, ConnectToDatabase>();
 builder.Services.AddTransient<IcustomerRepository, customerRepository>();
 builder.Services.AddTransient<IcustomerBusiness, customerBusiness>();
-
+builder.Services.AddTransient<IproductRepository, productRepository>();
+builder.Services.AddTransient<IproductBusiness, productBusiness>();
 
 // Add services to the container.
 

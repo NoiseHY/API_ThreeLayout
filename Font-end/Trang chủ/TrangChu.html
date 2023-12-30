@@ -10,6 +10,7 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,200;1,300;1,400;1,500;1,700&display=swap"
     rel="stylesheet">
 
+  <!-- <link href="/Chi tiết sản phẩm/Chi tiết sản phẩm.html">   -->
   <link rel="icon" type="image/x-icon" href="/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
   <script src="/Angular JS/angular-1.8.2/angular.js"></script>
   <script src="TrangChu.js"></script>
@@ -49,8 +50,8 @@
               </div>
             </li>
           </div>
-          
-                                
+
+
           <li>
             <img src="Anh/header/bell.png" />
             <!-- <a class="txtTB">Thông báo</a> -->
@@ -583,7 +584,7 @@
 
 
     <!-- Sản phẩm mới------------------------------------------------- -->
-    <div class="Sanpham">
+    <div class="Sanpham" ng-controller="GetNewProductsController">
       <div class="txtSanpham">
         <img src="Anh/Icon/product.png">
         <p>Sản phẩm mới</p>
@@ -591,12 +592,13 @@
 
       <div class="div-line"></div>
 
-      <div class="productsNew" ng-controller="GetNewProductsController">
+      <div class="productsNew">
         <ul>
           <li ng-repeat="product in products">
             <div class="product">
-              <img ng-src="data:image/jpeg;base64,{{ product.img }}" alt="{{ product.tenSP }}" />
-              <p>{{ product.mota }}</p>
+              <img ng-src="data:image/jpeg;base64,{{ product.img }}"
+                ng-click="viewProductDetail(product.maSP)" />
+              <p>{{ product.tenSP }}</p>
               <p>Số lượng: {{ product.soLuong }}</p>
               <p>Đơn giá: {{ product.dongia }}</p>
             </div>
@@ -609,378 +611,6 @@
 
       </div>
 
-      <div class="containerSanpham">
-        <section class="sectionSanpham">
-
-
-          <!-- <div ng-controller="GetNewProductsController" class="Sanpham-tpye"> 
-            <div class="Sanpham-tpye" ng-repeat="product in products">
-              <picture>
-                <img ng-src="{{product.img}}">
-              </picture>
-              <p>{{ product.tenSP }}</p>
-              <div class="Sanpham-cost">
-                <div class="Sanpham-cost-container">
-                  <div class="Sanpham-cost-sales">
-                    <p style="text-decoration-line: line-through; color: black;">{{product.dongia}}</p>
-                    <p>{{product.dongia}}</p>
-                  </div>                 
-                </div>
-              </div>
-              <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">Mua</button>
-            </div>
-          </div> -->
-
-          <!-- <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/-202312071118312236.jpg">
-            </picture>
-            <p>
-              2 chai Nước mắm cao cấp cốt nhĩ tôm Đầu Bếp Tôm 18 độ đạm 500ml
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-container">
-                <div class="Sanpham-cost-sales">
-                  <p style="text-decoration-line: line-through; color: black;">
-                    280.000đ
-                  </p>
-                  <p>
-                    230.000đ
-                  </p>
-                </div>
-                <div class="Sanpham-cost-phantram">
-                  <a>
-                    4.5
-                    <img src="Anh/SanPham/star.png">
-                  </a>
-                  <p>
-                    -25%
-                  </p>
-                </div>
-              </div>
-
-            </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
-              Mua
-            </button>
-          </div> -->
-
-          <!-- <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/-202310031112465755.jpg">
-            </picture>
-            <p>
-              3 hộp trứng gà Omega Happy Egg hộp 6 quả
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-container">
-                <div class="Sanpham-cost-sales">
-                  <p style="text-decoration-line: line-through; color: black;">
-                    280.000đ
-                  </p>
-                  <p>
-                    230.000đ
-                  </p>
-                </div>
-                <div class="Sanpham-cost-phantram">
-                  <a>
-                    4.5
-                    <img src="Anh/SanPham/star.png">
-                  </a>
-                  <p>
-                    -25%
-                  </p>
-                </div>
-              </div>
-
-            </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
-              Mua
-            </button>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/cua-thit-ca-mau-hop-1-con-250g-300g-202302171435479017.jpg">
-            </picture>
-            <p>
-              Cua thịt Cà Mau 220g - 300g
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-container">
-                <div class="Sanpham-cost-sales">
-                  <p style="text-decoration-line: line-through; color: black;">
-                    280.000đ
-                  </p>
-                  <p>
-                    230.000đ
-                  </p>
-                </div>
-                <div class="Sanpham-cost-phantram">
-                  <a>
-                    4.5
-                    <img src="Anh/SanPham/star.png">
-                  </a>
-                  <p>
-                    -25%
-                  </p>
-                </div>
-              </div>
-
-            </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
-              Mua
-            </button>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/-202308221447006766.jpg">
-            </picture>
-            <p>
-              2 trái bí xanh trái 400g - 500g
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-container">
-                <div class="Sanpham-cost-sales">
-                  <p style="text-decoration-line: line-through; color: black;">
-                    280.000đ
-                  </p>
-                  <p>
-                    230.000đ
-                  </p>
-                </div>
-                <div class="Sanpham-cost-phantram">
-                  <a>
-                    4.5
-                    <img src="Anh/SanPham/star.png">
-                  </a>
-                  <p>
-                    -25%
-                  </p>
-                </div>
-              </div>
-
-            </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
-              Mua
-            </button>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/cai-thia-500gr-202309141121469506.jpg">
-            </picture>
-            <p>
-              Cải thìa 450g - 550g
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-container">
-                <div class="Sanpham-cost-sales">
-                  <p style="text-decoration-line: line-through; color: black;">
-                    280.000đ
-                  </p>
-                  <p>
-                    230.000đ
-                  </p>
-                </div>
-                <div class="Sanpham-cost-phantram">
-                  <a>
-                    4.5
-                    <img src="Anh/SanPham/star.png">
-                  </a>
-                  <p>
-                    -25%
-                  </p>
-                </div>
-              </div>
-
-            </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 60px;">
-              Mua
-            </button>
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/nuoc-tuong-nhat-ca-tam-thai-tu-chai-500ml-202308111729325157.jpg">
-            </picture>
-            <p>
-              Nước tương Nhất Ca Tam Thái Tử chai 500ml
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-container">
-                <div class="Sanpham-cost-sales">
-                  <p style="text-decoration-line: line-through; color: black;">
-                    280.000đ
-                  </p>
-                  <p>
-                    230.000đ
-                  </p>
-                </div>
-                <div class="Sanpham-cost-phantram">
-                  <a>
-                    4.5
-                    <img src="Anh/SanPham/star.png">
-                  </a>
-                  <p>
-                    -25%
-                  </p>
-                </div>
-              </div>
-
-            </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
-              Mua
-            </button>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/thung-24-lon-nuoc-ngot-pepsi-cola-320ml-202303151110173844.jpg">
-            </picture>
-            <p>
-              Thùng 24 lon nước ngọt Pepsi Cola 320ml
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-container">
-                <div class="Sanpham-cost-sales">
-                  <p style="text-decoration-line: line-through; color: black;">
-                    280.000đ
-                  </p>
-                  <p>
-                    230.000đ
-                  </p>
-                </div>
-                <div class="Sanpham-cost-phantram">
-                  <a>
-                    4.5
-                    <img src="Anh/SanPham/star.png">
-                  </a>
-                  <p>
-                    -25%
-                  </p>
-                </div>
-              </div>
-
-            </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
-              Mua
-            </button>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/2-thung-bia-tiger-bac-330ml-202312041329446735.jpg">
-            </picture>
-            <p>
-              2 thùng bia Tiger Bạc 330ml
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-container">
-                <div class="Sanpham-cost-sales">
-                  <p style="text-decoration-line: line-through; color: black;">
-                    280.000đ
-                  </p>
-                  <p>
-                    230.000đ
-                  </p>
-                </div>
-                <div class="Sanpham-cost-phantram">
-                  <a>
-                    4.5
-                    <img src="Anh/SanPham/star.png">
-                  </a>
-                  <p>
-                    -25%
-                  </p>
-                </div>
-              </div>
-
-            </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
-              Mua
-            </button>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img
-                src="Anh/SanPham/Sales/thung-48-hop-sua-dinh-duong-tiet-trung-co-duong-nuvi-180ml-202212260930565289.jpg">
-            </picture>
-            <p>
-              Thùng 48 hộp sữa dinh dưỡng tiệt trùng có đường Nuvi 180ml
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-container">
-                <div class="Sanpham-cost-sales">
-                  <p style="text-decoration-line: line-through; color: black;">
-                    280.000đ
-                  </p>
-                  <p>
-                    230.000đ
-                  </p>
-                </div>
-                <div class="Sanpham-cost-phantram">
-                  <a>
-                    4.5
-                    <img src="Anh/SanPham/star.png">
-                  </a>
-                  <p>
-                    -25%
-                  </p>
-                </div>
-              </div>
-
-            </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
-              Mua
-            </button>
-
-          </div>
-
-          <div class="Sanpham-tpye">
-            <picture>
-              <img src="Anh/SanPham/Sales/banh-que-dorkbua-sum-vay-mix-6-vi-goi-348g-202311221336063790.jpg">
-            </picture>
-            <p>
-              Bánh que Dorkbua Sum Vầy mix 6 vị gói 348g
-            </p>
-            <div class="Sanpham-cost">
-              <div class="Sanpham-cost-container">
-                <div class="Sanpham-cost-sales">
-                  <p style="text-decoration-line: line-through; color: black;">
-                    280.000đ
-                  </p>
-                  <p>
-                    230.000đ
-                  </p>
-                </div>
-                <div class="Sanpham-cost-phantram">
-                  <a>
-                    4.5
-                    <img src="Anh/SanPham/star.png">
-                  </a>
-                  <p>
-                    -25%
-                  </p>
-                </div>
-              </div>
-
-            </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
-              Mua
-            </button>
-
-          </div> -->
-        </section>
-      </div>
 
       <div class="More">
         <img src="Anh/Icon/more.png">

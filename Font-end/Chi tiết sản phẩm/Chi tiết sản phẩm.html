@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chi tiết sản phẩm</title>
+  <link rel="stylesheet" href="Chi tiết sản phẩm.css">
+  <link rel="stylesheet" href="/Trang chủ/TrangChu.css">
+  <link rel="icon" type="image/x-icon" href="/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+  <script src="/Angular JS/angular-1.8.2/angular.js"></script>
+  <script src="Chi tiết sản phẩm.js"></script>
+
+
+</head>
+
+<body ng-app="myApp">
+  <header>
+    <nav>
+      <div class="menuHead">
+        <div class="logo">
+          <a>Bách hóa xanh</a>
+        </div>
+        <div class="search-text">
+          <input type="search" name="Tìm kiếm" placeholder="Tìm kiếm của bạn ..." />
+          <img class="icon-search" src="/Trang chủ/Anh/header/search-interface-symbol.png" />
+        </div>
+        <ul>
+          <li>
+            <img src="/Trang chủ/Anh/header/home.png" id="imgHome" />
+            <!-- <a class="txtTT">Trang chủ</a> -->
+          </li>
+          <li>
+            <img src="/Trang chủ/Anh/header/category.png" />
+            <!-- <a class="txtDM">Danh mục</a> -->
+          </li>
+          <li>
+            <img src="/Trang chủ/Anh/header/user.png" />
+            <!-- <a class="txtDN">Đăng nhập</a> -->
+          </li>
+          <li>
+            <img src="/Trang chủ/Anh/header/bell.png" />
+            <!-- <a class="txtTB">Thông báo</a> -->
+          </li>
+          <li>
+            <img src="/Trang chủ/Anh/header/shopping-cart.png" />
+            <!-- <a class="txtGH">Giỏ hàng</a> -->
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main ng-controller="ProductDetailController">
+    <div class="CTSP">
+      <div class="CTSP-container">
+
+        <div class="CTSP-img">
+          <div class="displayed-image">
+            <img ng-src="data:image/jpeg;base64,{{ productDetail.img }}" />
+
+          </div>
+
+        </div>
+
+        <div class="CTSP-txt">
+          <div class="CTSP-name">
+            <a>{{ productDetail.tenSP }}</a>
+          </div>
+
+          <div class="CTSP-DG">
+            <p>4,5 ☆</p>
+            <p>200 Đánh giá</p>
+            <p>500 Đã bán</p>
+          </div>
+
+          <div class="CTSP-cost">
+            <!-- <p class="CTSP-cost_GiaGoc">525.000 đ</p> -->
+            <a>{{ productDetail.dongia }}đ</a>
+            <!-- <p class="CTSP-cost-GG">-50%</p> -->
+          </div>
+
+          <div class="CTSP-GH">
+            <p>Vận chuyển</p>
+            <div class="CTSP-GH-DD">
+              <div class="CTSP-GH-DD-Freeship">
+                <img src="Anh/Chi tiet/sale-tag.png">
+                <a>Miễn phí vận chuyển</a>
+              </div>
+
+              <div class="CTSP-GH-DD-Go">
+                <img src="Anh/Chi tiet/delivery-truck.png">
+                <div class="CTSP-GH-DD-Go-Ship">
+                  <p>Vận chuyển tới ...</p>
+                  <p>Phí vận chuyển ...</p>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="CTSP-SL">
+            <p>Số lượng</p>
+            <div class="CTSP-SL-numbers">
+              <button class="btGiam">-</button>
+              <a class="ipNumbers">0 </a>
+              <button class="btTang">+</button>
+            </div>
+            <p>Còn có {{ productDetail.soLuong }} sản phẩm</p>
+          </div>
+
+          <div class="CTSP-DH">
+            <div class="btThemGH">
+              <img src="Anh/Button/add-to-cart.png">
+              <a>Thêm vào giỏ hàng</a>
+            </div>
+            <div class="btMua">
+              <img src="Anh/Button/shopping-cart.png">
+              <a>Mua ngay</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Thông tin sản phẩm ------------>
+    <div class="CTSP-TT">
+      <div class="CTSP-TT-container">
+        <div class="CTSP-TT-txt">
+          <div>
+            <h2>Thông tin sản phẩm</h2>
+
+            <div class="div-line"></div>
+
+            <p>{{ productDetail.mota }}</p>
+
+          </div>
+          <div>
+            <h2>Chất lượng sản phẩm</h2>
+            <div class="div-line"></div>
+            <p>Bách hoá XANH là một trong những chuỗi cửa hàng uy tín và đáng tin cậy, cam kết cung cấp những sản phẩm
+              tươi sạch, chất lượng cao.</p>
+
+          </div>
+          <div>
+            <h2>Công dụng</h2>
+            <div class="div-line"></div>
+            <p>Lê Singo, Kiwi, Táo Dazzle, Nho xanh đều có nhiều công dụng đáng kể đối với sức khỏe.</p>
+
+          </div>
+          <div>
+            <h2>Cách bảo quản</h2>
+            <div class="div-line"></div>
+            <p>Bảo quản ở nhiệt độ phòng trong vài ngày và bảo quản trong tủ lạnh trong 1-2 tuần.</p>
+
+          </div>
+          <div>
+            <h2>Lưu ý</h2>
+            <div class="div-line"></div>
+            <p>Sản phẩm nhận được có thể khác với hình ảnh về màu sắc và số lượng nhưng vẫn đảm bảo về mặt khối lượng và
+              chất lượng.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Star Rating -->
+    <div class="rating-container">
+      <h2>Xin mời đánh giá</h2>
+      <div class="div-line"></div>
+      <div class="rating">
+        <input type="radio" id="star5" name="rating" value="5">
+        <label for="star5">&#9733;</label>
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4">&#9733;</label>
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3">&#9733;</label>
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2">&#9733;</label>
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1">&#9733;</label>
+      </div>
+      <p id="rating-value" class="rating-txt">Chúng tôi rất cần đánh giá của bạn để cải thiện dịch vụ</p>
+
+      <div class="btFeedback">
+        <a>Đánh giá</a>
+      </div>
+
+    </div>
+
+    <div class="comment-section">
+      <div class="comment">
+        <div class="user-info">
+          <img src="Anh/Chi tiet/F3rs8F3WIAAR7rz.jpg" alt="User Avatar">
+          <span class="username">Nam</span>
+        </div>
+        <div class="comment-text">
+          <p>Bình luận tại đây ...</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="comment-section">
+      <div class="comment">
+        <div class="user-info">
+          <img src="Anh/Chi tiet/324302550_1796778337368612_2962869781815370285_n.jpg" alt="User Avatar">
+          <span class="username">Tùng</span>
+        </div>
+        <div class="comment-text">
+          <p>Giỏ hàng tươi và rất ngon, giá rẻ nữa, tks bhx nhé</p>
+        </div>
+      </div>
+      <div class="div-line"></div>
+      <div class="comment">
+        <div class="user-info">
+          <img src="Anh/Chi tiet/GBb39RZXcAAn4wB.jpg" alt="User Avatar">
+          <span class="username">Mạnh </span>
+        </div>
+        <div class="comment-text">
+          <p>Sản phẩm ngon lắm, giòn, ngọt, cơm dầy, ăn ngon lắm</p>
+        </div>
+      </div>
+      <div class="div-line"></div>
+      <div class="comment">
+        <div class="user-info">
+          <img src="Anh/Chi tiet/317475915_1213763922684331_1063313439444283753_n.jpg" alt="User Avatar">
+          <span class="username">Thắng </span>
+        </div>
+        <div class="comment-text">
+          <p>Ok lắm</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-line"></div>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div class="tt-Admin">
+        <img src="/Trang chủ/Anh/footer/WebsiteTemplateIcon.png">
+        <div class="tt-Admin-txt">
+          <p>Nguyễn Công Nam</p>
+          <p>Trường Đại Học Sư Phạm Kỹ Thuật Hưng Yên</p>
+          <p>Giảng viên hướng dẫn : ThS.TRần Đỗ Thu Hà</p>
+        </div>
+      </div>
+
+      <div class="tt-bachhoaxanh">
+        <p>Website được dựa trên website bách hóa xanh</p>
+        <p>Bán hàng 7:00 - 21:30 &#9997; 1900 1908</p>
+        <p>Khiếu nại 7:30 - 21:00 &#9997; 1800 1067</p>
+      </div>
+      <img src="/Trang chủ/Anh/footer/logo-bach-hoa-xanh.jpg">
+    </div>
+  </footer>
+</body>
+
+
+</html>

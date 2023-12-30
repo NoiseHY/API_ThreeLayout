@@ -157,8 +157,7 @@ namespace DAL.Repository
                      "@Mota", product.Mota,
                      "@SoLuong", product.SoLuong,
                      "@Dongia", product.Dongia,
-                     "@MaTL", product.MaTL,
-                     "@Img", product.Img); 
+                     "@MaTL", product.MaTL); 
 
                 if (result != null || !string.IsNullOrEmpty(msg))
                 {

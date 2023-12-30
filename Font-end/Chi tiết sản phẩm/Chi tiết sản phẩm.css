@@ -1,0 +1,424 @@
+* {
+  font-family: 'Playpen Sans', cursive;
+  font-family: 'Roboto', sans-serif;
+}
+
+.CTSP {
+  width     : 100%;
+  margin-top: 50px;
+
+}
+
+.CTSP-container {
+  display: flex;
+  width  : 100%;
+}
+
+/* .CTSP-img img {
+  width       : 350;
+  height      : 350px;
+  margin-right: 20px;
+} */
+
+.CTSP-img {
+  width: 100%;
+}
+
+.image-selector {
+  display     : flex;
+  /* flex-wrap: wrap; */
+  /* overflow    : hidden; */
+  width       : 100%;
+}
+
+.image-selector img {
+  width : 100px;
+  height: 100px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.image-selector-img{
+  display: flex;
+  width: 500px;
+  overflow: hidden;
+}
+
+.image-selector-img img.selected {
+  border: 2px solid #03a63c;
+}
+
+.displayed-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Độ cao bạn muốn */
+}
+
+.displayed-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Đảm bảo hình ảnh không bị méo */
+}
+
+
+.prev-img,
+.next-img {
+  color: white;
+  background-color: #ccc;
+  cursor          : pointer;
+  padding         : 4px;
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+.CTSP-txt {
+  width: 100%;
+
+}
+
+.CTSP-name a {
+  font-size  : 20px;
+  font-weight: bold;
+  color      : rgba(0, 0, 0, 0.8);
+
+}
+
+.CTSP-DG {
+  display: flex;
+
+}
+
+.CTSP-DG p {
+  margin-top: 15px;
+  padding   : 10px;
+  font-size : 16px;
+}
+
+.CTSP-cost {
+  margin-top : 20px;
+  display    : flex;
+  align-items: center;
+}
+
+.CTSP-cost_GiaGoc {
+  font-size      : 16px;
+  margin-right   : 10px;
+  text-decoration: line-through;
+}
+
+.CTSP-cost a {
+  color       : #ee4d2d;
+  margin-right: 10px;
+  font-size   : 16px;
+}
+
+.CTSP-cost-GG {
+  background-color: red;
+  color           : yellow;
+
+}
+
+.CTSP-GH {
+  width      : 100%;
+  display    : flex;
+  margin-top : 20px;
+  align-items: center;
+}
+
+.CTSP-GH p {
+  font-size: 16px;
+}
+
+.CTSP-GH-DD {
+  margin-left: 30px;
+
+}
+
+.CTSP-GH-DD-Freeship {
+  display    : flex;
+  align-items: center;
+}
+
+.CTSP-GH-DD-Freeship a {
+  margin-left: 10px;
+  font-size  : 16px;
+}
+
+.CTSP-GH-DD-Go {
+  display: flex;
+}
+
+.CTSP-GH-DD-Go img {
+  width : 50px;
+  height: 50px;
+}
+
+.CTSP-GH-DD-Go-Ship {
+  margin-top: 20px;
+}
+
+.CTSP-GH-DD-Go-Ship p {
+  margin-left  : 10px;
+  margin-bottom: 10px;
+  font-size    : 16px;
+}
+
+.CTSP-SL {
+  width      : 100%;
+  display    : flex;
+  margin-top : 15px;
+  align-items: center;
+}
+
+.CTSP-SL p {
+  margin-right: 70px;
+}
+
+.CTSP-SL-numbers {
+  display     : flex;
+  align-items : center;
+  margin-right: 20px;
+}
+
+.btGiam,
+.btTang {
+  height: 30px;
+  width : 30px;
+}
+
+.ipNumbers {
+  padding: 0 10px;
+}
+
+.CTSP-DH {
+  margin-top : 50px;
+  width      : 100%;
+  display    : flex;
+  align-items: center;
+}
+
+.btThemGH {
+  width           : 200px;
+  height          : 50px;
+  margin-right    : 20px;
+  border          : 1px solid #ee4d2d;
+  cursor          : pointer;
+  background-color: white;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  border-radius   : 3px;
+}
+
+.btThemGH a {
+  color    : #ee4d2d;
+  font-size: 16px;
+}
+
+.btThemGH img {
+  height      : 30px;
+  width       : 30px;
+  margin-right: 5px;
+}
+
+.btMua {
+  width           : 200px;
+  height          : 50px;
+  margin-right    : 20px;
+  border          : 1px solid #ee4d2d;
+  cursor          : pointer;
+  background-color: #ee4d2d;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  border-radius   : 3px;
+}
+
+.btMua a {
+  color    : white;
+  font-size: 16px;
+}
+
+.btMua img {
+  height      : 30px;
+  width       : 30px;
+  margin-right: 10px;
+}
+
+.CTSP-TT,
+.CTSP-TT-container {
+  width     : 100%;
+  margin-top: 50px;
+}
+
+.CTSP-TT-container p {
+  padding    : 10px 0px;
+  line-height: 1.5;
+}
+
+.CTSP-TT-txt h2 {
+  margin-top   : 20px;
+  padding      : 10px;
+  border-radius: 10px;
+  font-size    : 18px;
+
+}
+
+.div-line2 {
+  border: 1px solid #54E00C;
+  width : 20%;
+
+}
+
+.rating-container {
+  position: relative;
+}
+
+.rating-container h2 {
+  margin-top   : 20px;
+  border-radius: 10px;
+
+  padding  : 10px;
+  font-size: 18px;
+}
+
+.rating-container p {
+  position : absolute;
+  left     : 50%;
+  transform: translate(-50%, -50%);
+}
+
+.rating {
+  display        : flex;
+  flex-direction : row-reverse;
+  justify-content: center;
+  align-items    : center;
+  font-size      : 40px;
+  margin-top     : 10px;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  cursor       : pointer;
+  color        : gray;
+  margin-bottom: 20px;
+}
+
+.rating label:hover,
+.rating label:hover~label,
+.rating input:checked~label {
+  color: gold;
+}
+
+.btFeedback {
+  width           : 200px;
+  height          : 50px;
+  margin-right    : 20px;
+  border          : 1px solid #54E00C;
+  cursor          : pointer;
+  background-color: white;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  margin          : 30px auto;
+  border-radius   : 3px;
+
+}
+
+
+.btFeedback a {
+  color    : #54E00C;
+  font-size: 16px;
+}
+
+.btFeedback img {
+  height      : 30px;
+  width       : 30px;
+  margin-right: 5px;
+}
+
+.comment-section {
+  width        : 100%;
+  max-width    : 800px;
+  margin       : 0 auto;
+  padding      : 20px;
+  border       : 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.comment {
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display      : flex;
+  align-items  : center;
+  margin-bottom: 10px;
+}
+
+.user-info img {
+  width        : 40px;
+  height       : 40px;
+  border-radius: 50%;
+  margin-right : 10px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.comment-text p {
+  margin: 0;
+}
+
+footer {
+  width: 100%;
+}
+
+.footer-container {
+  max-width      : 1200px;
+  width          : 100%;
+  margin         : 0 auto;
+  display        : flex;
+  justify-content: space-between;
+}
+
+.footer-container img {
+  width        : 500px;
+  height       : 200px;
+  border-radius: 10px;
+}
+
+.tt-Admin {
+  display    : flex;
+  align-items: center;
+}
+
+.tt-Admin img {
+  height       : 200px;
+  width        : 200px;
+  border-radius: 10px;
+}
+
+.tt-Admin p {
+  margin-bottom: 10px;
+}
+
+.tt-bachhoaxanh {
+  margin-left: 50px;
+
+}
+
+.tt-bachhoaxanh p {
+  margin    : 20px 20px;
+  text-align: center;
+
+}

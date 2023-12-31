@@ -29,19 +29,18 @@ app.controller('myCtrl', function($scope, $http, $window) {
       },
       data: data
     }).then(function(response) {
-      // Xử lý phản hồi từ server
-      console.log(response.data);
 
-      if (response.data && response.data.maTK === 1 && response.data.token) {
+      // console.log(response.data);
+
+      if (response.data && response.data.maPQ === 1 && response.data.token) {
         var jwtToken = response.data.token;
         
-        // Lưu trữ token vào local storage
         $window.localStorage.setItem('token', jwtToken);
         
-        // Chuyển hướng người dùng đến trang admin
-        $window.location.href = '/Trang quản trị/Trang quản trị.html'; // Thay đổi URL của trang admin
+
+        $window.location.href = '/Trang quản trị/Trang quản trị.html';
       } else {
-        var userID = response.data.maTK;
+        var userID = response.data.maKH;
 
         $window.location.href = '/Trang chủ/TrangChu.html';
 

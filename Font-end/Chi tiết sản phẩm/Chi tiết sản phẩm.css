@@ -203,7 +203,7 @@
 
 .btThemGH {
   width           : 200px;
-  height          : 50px;
+  height          : 40px;
   margin-right    : 20px;
   border          : 1px solid #ee4d2d;
   cursor          : pointer;
@@ -227,7 +227,7 @@
 
 .btMua {
   width           : 200px;
-  height          : 50px;
+  height          : 40px;
   margin-right    : 20px;
   border          : 1px solid #ee4d2d;
   cursor          : pointer;
@@ -276,6 +276,7 @@
 
 .rating-container {
   position: relative;
+  margin-bottom: 20px;
 }
 
 .rating-container h2 {
@@ -355,7 +356,7 @@
 }
 
 .comment {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .user-info {
@@ -375,8 +376,34 @@
   font-weight: bold;
 }
 
-.comment-text p {
+.comment-text input {
   margin: 0;
+  border: none;
+  margin-top: 10px;
+}
+
+.comment-text input:focus{
+
+  border: none;
+  outline: none;
+}
+.comment-bt{
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.comment-bt button{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #03a63c;
+}
+
+.comment-bt button:hover{
+  border: 1px solid #03a63c;
+  cursor: pointer;
 }
 
 footer {

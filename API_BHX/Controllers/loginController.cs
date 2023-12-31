@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -32,17 +33,24 @@ namespace API_BHX.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] account loginRequest)
         {
-            if (loginRequest == null || string.IsNullOrEmpty(loginRequest.TenTk) || string.IsNullOrEmpty(loginRequest.MkTk))
+            if (loginRequest == null || string.IsNullOrEmpty(loginRequest.TenTK) || string.IsNullOrEmpty(loginRequest.MkTK))
             {
                 return BadRequest(new { error = "Vui lòng cung cấp tên đăng nhập và mật khẩu." });
             }
 
-            var accountInfo = _loginBusiness.Login(loginRequest.TenTk, loginRequest.MkTk);
+            var accountInfo = _loginBusiness.Login(loginRequest.TenTK, loginRequest.MkTK);
 
             if (accountInfo != null)
             {
-                var token = GenerateJwtToken(accountInfo);
-                return Ok(new { MaTK = accountInfo.MaTk, TenTK = accountInfo.TenTk, Token = token });
+                if (accountInfo.MaPQ == 1)
+                {
+                    var token = GenerateJwtToken(accountInfo);
+                    return Ok(new { MaTK = accountInfo.MaTK, TenTK = accountInfo.TenTK, Token = token, MaPQ = accountInfo.MaPQ  });
+                }
+                else
+                {
+                    return Ok(new { MaTK = accountInfo.MaTK, TenTK = accountInfo.TenTK ,MaKH = accountInfo.MaKH });
+                }
             }
             else
             {
@@ -59,9 +67,9 @@ namespace API_BHX.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, account.TenTk),
-                    new Claim(ClaimTypes.Role, account.MaPq.ToString())
-                    // Thêm các thông tin khác nếu cần
+                    new Claim(ClaimTypes.Name, account.TenTK),
+                    new Claim(ClaimTypes.Role, account.MaPQ.ToString())
+
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

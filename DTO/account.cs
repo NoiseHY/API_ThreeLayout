@@ -8,12 +8,12 @@ namespace DTO
 {
     public class account
     {
-        public int MaTk { get; set; }
-        public string TenTk { get; set; } = null!;
-        public string MkTk { get; set; } = null!;
+        public int MaTK { get; set; }
+        public string TenTK { get; set; } = null!;
+        public string MkTK { get; set; } = null!;
         public string? Email { get; set; }
-        public int? MaPq { get; set; }
-        public int? MaKh { get; set; }
-        public int? MaNv { get; set; }
+        public int? MaPQ { get; set; }
+        public int? MaKH { get; set; }
+        public int? MaNV { get; set; }
     }
 }

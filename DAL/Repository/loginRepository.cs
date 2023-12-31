@@ -41,13 +41,20 @@ namespace DAL.Repository
                 {
                     var user = login.Rows[0];
 
-                    accountInfo.MaTk = (int)user["MaTK"];
-                    accountInfo.TenTk = user["TenTK"].ToString();
-                    accountInfo.MkTk = user["MkTK"].ToString();
-                    //accountInfo.Email = user["Email"] != DBNull.Value ? user["Email"].ToString() : null;
-                    //accountInfo.MaPq = user["MaPQ"] != DBNull.Value ? (int)user["MaPQ"] : (int?)null;
-                    //accountInfo.MaKh = user["MaKH"] != DBNull.Value ? (int)user["MaKH"] : (int?)null;
-                    //accountInfo.MaNv = user["MaNV"] != DBNull.Value ? (int)user["MaNV"] : (int?)null;
+                    accountInfo.MaTK = (int)user["MaTK"];
+                    accountInfo.TenTK = user["TenTK"].ToString();
+                    accountInfo.MkTK = user["MkTK"].ToString();
+                    accountInfo.MaPQ = Convert.ToInt32(user["MaPQ"].ToString());
+                    if (string.IsNullOrEmpty(user["MaKH"].ToString()))
+                    {
+                        // Xử lý khi MaKH rỗng
+                    }
+                    else
+                    {
+                        accountInfo.MaKH = Convert.ToInt32(user["MaKH"].ToString());
+                    }
+
+
                 }
 
                 else

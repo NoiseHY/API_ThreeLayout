@@ -11,7 +11,8 @@ namespace DTO
         public int MaDanhGia {  get; set; }
         public int MaSP {  get; set; }
         public int MaTK { get; set; }
-        public int DanhGia { get; set; }
+        public float DanhGia { get; set; }
+        public string BinhLuan { get; set; }
         public DateTime ThoiGian { get; set; }
     }
 }

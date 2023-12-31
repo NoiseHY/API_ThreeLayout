@@ -16,19 +16,94 @@ namespace DAL.Repository
         {
             _excuteProcedure = excuteProcedure;
         }
-        public List<rating> GetAll()
+        public List<rating> GetAll(int pageNumber, int pageSize)
         {
-            string msgError = "";
+            string msg = "";
             try
             {
-                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "LayTatCaKhachHang");
-                if (!string.IsNullOrEmpty(msgError))
-                    throw new Exception(msgError);
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "PaginateRatings",
+                    "@PageNumber", pageNumber,
+                    "@PageSize", pageSize);
+
+                if (!string.IsNullOrEmpty(msg))
+                    throw new Exception(msg);
+
                 return dt.ConvertTo<rating>().ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+        public bool Create(rating rating)
+        {
+            string msg = "";
+            try
+            {
+                var productId = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(
+                    out msg, "InsertRating",
+                    "@MaSP", rating.MaSP,
+                    "@MaTK", rating.MaTK,
+                    "@DanhGia", rating.DanhGia,
+                    "@BinhLuan", rating.BinhLuan);
+
+                if (productId != null || !string.IsNullOrEmpty(msg))
+                {
+                    throw new Exception(Convert.ToString(productId) + msg);
+                }
+
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        public bool Update(rating rating)
+        {
+            string msg = "";
+            try
+            {
+                var result = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(
+                     out msg, "UpdateRating",
+                     "@MaDanhGia", rating.MaDanhGia,
+                     "@DanhGia", rating.DanhGia,
+                     "@BinhLuan", rating.BinhLuan);
+
+                if (result != null || !string.IsNullOrEmpty(msg))
+                {
+                    throw new Exception(Convert.ToString(result) + msg);
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Delete(int id)
+        {
+            string msg = "";
+            try
+            {
+                var result = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(out msg, "DeleteRating",
+                    "@MaDanhGia", id);
+
+                if (result != null || !string.IsNullOrEmpty(msg))
+                {
+                    throw new Exception(Convert.ToString(result) + msg);
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

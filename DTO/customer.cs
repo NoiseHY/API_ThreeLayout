@@ -13,5 +13,6 @@ namespace DTO
         public string? DiachiKH { get; set; }
         public string? Sdt { get; set; }
         public DateTime? Ngaysinh { get; set; }
+        public string? Img {  get; set; }
     }
 }

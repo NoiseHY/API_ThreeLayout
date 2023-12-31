@@ -14,5 +14,6 @@ namespace BLL.Inerfaces
         bool Create(customer customer);
         bool Update(customer customer);
         bool Delete(int id);
+        bool UpdateImageFilePath(int customerId, string imagePath);
     }
 }

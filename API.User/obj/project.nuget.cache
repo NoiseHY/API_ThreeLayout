@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QwVgNSUecG77FBkls39h3iNbveBtKHMrwuo1fjh1wbxS/vH4id8PIalDfKqWzVZL/IvXn5KCgbNmtTT6Ow2d4w==",
+  "dgSpecHash": "eG0wN1LqHxME8B89BYRj4Ro8sKSIaDgfTC+1Absymr88zxC/bS+sKbX3UsqgbylQMAorven5FHyMekwM30jABg==",
   "success": true,
   "projectFilePath": "F:\\LapTrinh\\Web API\\Bài tập lớn\\API_ThreeLayout\\API.User\\API.User.csproj",
   "expectedPackageFiles": [
@@ -34,6 +34,7 @@
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\sixlabors.imagesharp\\3.1.1\\sixlabors.imagesharp.3.1.1.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

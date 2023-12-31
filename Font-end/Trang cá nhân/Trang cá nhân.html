@@ -17,7 +17,7 @@
   <script src="Trang cá nhân.js"></script>
 </head>
 
-<body >
+<body>
   <header>
     <nav>
       <div class="menuHead">
@@ -56,10 +56,18 @@
   </header>
 
   <main ng-controller="CustomerController">
-    <div class="profile" >
+    <div class="profile">
       <div class="profile-picture">
-        <img src="Anh/324110632_891269045238599_2160661645098458509_n.jpg" alt="Profile Picture">
+        <div class="profile-image" ng-click="imgProduct()">
+          <img ng-src="data:image/jpeg;base64,{{ customer.img }}" />
+        </div>
+
+        <div>
+          <input type="file" id="imageFile" accept="image/*"
+            onchange="angular.element(this).scope().setImageFile(event)">
+        </div>
       </div>
+
       <div class="profile-info">
         <h1 class="name">{{ customer.tenKH }}</h1>
         <p class="location">{{ customer.diachiKH }}</p>
@@ -77,18 +85,18 @@
 
     <div class="input-section" ng-controller="updateCustomer">
       <h2>Thông tin cơ bản</h2>
-      <form id="basic-info-form" >
+      <form id="basic-info-form">
         <div class="form-group">
           <label for="input-name">Họ và tên</label>
           <input type="text" id="input-name" ng-model="nameCustomer" placeholder="Nhập họ và tên của bạn">
         </div>
         <div class="form-group">
           <label for="input-address">Địa chỉ</label>
-          <input type="text" id="input-address"  ng-model="address" placeholder="Nhập địa chỉ của bạn">
+          <input type="text" id="input-address" ng-model="address" placeholder="Nhập địa chỉ của bạn">
         </div>
         <div class="form-group">
           <label for="input-phone">Số điện thoại</label>
-          <input type="text" id="input-phone"  ng-model="phone" placeholder="Nhập số điện thoại của bạn">
+          <input type="text" id="input-phone" ng-model="phone" placeholder="Nhập số điện thoại của bạn">
         </div>
         <div class="form-group">
           <label for="input-birthday">Ngày sinh</label>
@@ -96,7 +104,7 @@
         </div>
         <button type="button" class="btn-update" ng-click="updateCustomer()">Cập nhật</button>
       </form>
-      
+
     </div>
   </main>
 </body>

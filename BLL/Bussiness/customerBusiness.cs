@@ -16,6 +16,10 @@ namespace BLL.Bussiness
         {
             icustomerRepository = _icustomerRepository;
         }
+        public bool UpdateImageFilePath(int customerId, string imagePath)
+        {
+            return icustomerRepository.UpdateImageFilePath(customerId, imagePath);
+        }
         public customer GetCustomerByID(int id)
         {
             return icustomerRepository.GetCustomerByID(id);

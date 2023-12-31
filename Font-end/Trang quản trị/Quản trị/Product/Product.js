@@ -49,7 +49,7 @@ productModule.controller('btproductController', function ($scope, $http) {
       alert('Hãy nhập Mã sản phẩm !');
       return;
     }
-
+    
     if (!$scope.imageFile) {
       alert('Không hình ảnh được chọn !');
       return;

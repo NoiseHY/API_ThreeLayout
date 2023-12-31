@@ -72,3 +72,4 @@ F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API.User\bin\Debug\net6.0\D
 F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API.User\bin\Debug\net6.0\BLL.pdb
 F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API.User\bin\Debug\net6.0\DTO.pdb
 F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API.User\bin\Debug\net6.0\DAL.pdb
+F:\LapTrinh\Web API\Bài tập lớn\API_ThreeLayout\API.User\bin\Debug\net6.0\SixLabors.ImageSharp.dll

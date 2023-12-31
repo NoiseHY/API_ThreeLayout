@@ -1,0 +1,17 @@
+﻿using DTO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BLL.Inerfaces
+{
+    public partial interface IratingBusiness
+    {
+        List<rating> GetAll(int pageNumber, int pageSize);
+        bool Create(rating rating);
+        bool Update(rating rating);
+        bool Delete(int id);
+    }
+}

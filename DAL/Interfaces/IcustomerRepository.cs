@@ -12,6 +12,7 @@ namespace DAL.Interfaces
     {
         customer GetCustomerByID(int id);
         List<customer> GetAll();
+        bool UpdateImageFilePath(int customerId, string imagePath);
         bool Create(customer customer);
         bool Update(customer customer);
         bool Delete(int id);

@@ -1,18 +1,18 @@
 var app = angular.module('myApp', []);
 
 app.controller('CustomerController', function ($scope, $http) {
-  $scope.customer = {}; // Dữ liệu khách hàng từ API
+  $scope.customer = {};
+  
+  var id = localStorage.getItem('userID');
 
-  // Hàm lấy thông tin khách hàng từ API dựa trên ID từ localStorage
   $scope.getCustomer = function () {
-    var id = localStorage.getItem('userID'); // Lấy ID từ localStorage
+    
     if (id) {
       $http.get('https://localhost:7118/api/InfoCustomer/GetCustomerByID/' + id)
         .then(function (response) {
           console.log("Hiển thị ");
-          $scope.customer = response.data; // Lưu thông tin khách hàng từ API
+          $scope.customer = response.data;
 
-          // Gán thông tin khách hàng vào các trường input
           $scope.fillForm();
         })
         .catch(function (error) {
@@ -35,7 +35,37 @@ app.controller('CustomerController', function ($scope, $http) {
 
   $scope.getCustomer();
 
+  $scope.setImageFile = function (event) {
+    var files = event.target.files;
+    if (files.length > 0) {
+      $scope.imageFile = files[0];
+    }
+  };
 
+  $scope.imgProduct = function () {
+
+    if (!$scope.imageFile) {
+      alert('Không hình ảnh được chọn !');
+      return;
+    }
+
+    var url = 'https://localhost:7118/api/InfoCustomer/uploadImage?customerID=' + id;
+    var formData = new FormData();
+    formData.append('file', $scope.imageFile);
+
+    $http.post(url, formData, {
+      transformRequest: angular.identity,
+      headers: { 'Content-Type': undefined }
+    })
+      .then(function (response) {
+        alert('Upload ảnh thành công !!');
+        window.location.reload();
+      })
+      .catch(function (error) {
+        alert('Lỗi khi Upload ảnh', error.data);
+      });
+  };
+  
 });
 
 app.controller('updateCustomer', function ($scope, $http, $window) {
@@ -46,7 +76,7 @@ app.controller('updateCustomer', function ($scope, $http, $window) {
 
     var phone = $scope.phone;
 
-    var birthday = new Date($scope.birthday); 
+    var birthday = new Date($scope.birthday);
     birthday.setDate(birthday.getDate() + 1)
 
     var maKH = $window.localStorage.getItem('userID');
@@ -72,6 +102,8 @@ app.controller('updateCustomer', function ($scope, $http, $window) {
         alert('Lỗi khi cập nhật thông tin khách hàng');
       });
   };
+
+
 });
 
 

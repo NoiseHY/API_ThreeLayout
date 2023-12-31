@@ -14,7 +14,26 @@ namespace DAL.Repository
             _excuteProcedure = excuteProcedure;
         }
 
-        
+        public bool UpdateImageFilePath(int customerId, string imagePath)
+        {
+            string msg = "";
+            try
+            {
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "UpdateCustomerImage",
+                     "@MaKH", customerId,
+                     "@NewImg", imagePath);
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public List<customer> GetAll()
         {
             string msgError = "";

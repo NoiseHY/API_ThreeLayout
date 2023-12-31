@@ -11,6 +11,10 @@ builder.Services.AddTransient<IcustomerRepository, customerRepository>();
 builder.Services.AddTransient<IcustomerBusiness, customerBusiness>();
 builder.Services.AddTransient<IproductRepository, productRepository>();
 builder.Services.AddTransient<IproductBusiness, productBusiness>();
+builder.Services.AddTransient<IratingRepository, ratingRepository>();
+builder.Services.AddTransient<IratingBusiness, ratingBussiness>();
+
+
 
 // Add services to the container.
 

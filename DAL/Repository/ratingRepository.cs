@@ -35,6 +35,24 @@ namespace DAL.Repository
                 throw ex;
             }
         }
+        public List<RatingWithCustomerInfo> GetAllRatingCmt()
+        {
+            string msg = "";
+            try
+            {
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "GetReviewsWithUserInfo");
+
+                if (!string.IsNullOrEmpty(msg))
+                    throw new Exception(msg);
+
+                return dt.ConvertTo<RatingWithCustomerInfo>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool Create(rating rating)
         {
             string msg = "";

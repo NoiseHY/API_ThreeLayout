@@ -15,6 +15,7 @@ namespace API.User.Controllers
         {
             _iratingBusiness = iratingBusiness;
         }
+
         [Route("GetAll")]
         [HttpGet]
         public IActionResult GetAll(int pageNumber = 1, int pageSize = 10)
@@ -28,8 +29,24 @@ namespace API.User.Controllers
 
             return Ok(products);
         }
+
+        [Route("GetAllRatingCmt")]
+        [HttpGet]
+        public IActionResult GetAllRatingCmt()
+        {
+            try
+            {
+                var ratings = _iratingBusiness.GetAllRatingCmt();
+                return Ok(ratings);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [Route("Create")]
-        [HttpPost]
+        [HttpPost]  
         public IActionResult Create([FromBody] rating rating)
         {
             if (rating == null)

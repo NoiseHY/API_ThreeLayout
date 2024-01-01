@@ -370,20 +370,26 @@
   height       : 40px;
   border-radius: 50%;
   margin-right : 10px;
+  margin-bottom: 10px;
 }
 
 .username {
   font-weight: bold;
 }
-
-.comment-text input {
+.comment-text p{
+  margin-bottom: 10px;
+}
+.comment-text textarea {
   margin: 0;
   border: none;
   margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  height: 100px;
 }
 
-.comment-text input:focus{
-
+.comment-text textarea:focus{
+  
   border: none;
   outline: none;
 }

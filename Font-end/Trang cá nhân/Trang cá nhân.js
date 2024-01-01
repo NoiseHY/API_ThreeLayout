@@ -89,9 +89,8 @@ app.controller('updateCustomer', function ($scope, $http, $window) {
       ngaysinh: birthday
     };
 
-    debugger;
+    // debugger;
 
-    // Gửi yêu cầu cập nhật thông tin lên server
     $http.put('https://localhost:7118/api/InfoCustomer/Update', updatedInfo)
       .then(function (response) {
         console.log('Đã cập nhật thông tin khách hàng:', response.data);

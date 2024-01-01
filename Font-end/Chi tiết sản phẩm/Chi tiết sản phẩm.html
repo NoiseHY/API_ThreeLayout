@@ -168,77 +168,66 @@
       </div>
     </div>
 
-    <!-- Star Rating -->
-    <div class="rating-container">
-      <h2>Xin mời đánh giá</h2>
-      <div class="div-line"></div>
-      <div class="rating">
-        <input type="radio" id="star5" name="rating" value="5">
-        <label for="star5">&#9733;</label>
-        <input type="radio" id="star4" name="rating" value="4">
-        <label for="star4">&#9733;</label>
-        <input type="radio" id="star3" name="rating" value="3">
-        <label for="star3">&#9733;</label>
-        <input type="radio" id="star2" name="rating" value="2">
-        <label for="star2">&#9733;</label>
-        <input type="radio" id="star1" name="rating" value="1">
-        <label for="star1">&#9733;</label>
-      </div>
-      <p id="rating-value" class="rating-txt">Chúng tôi rất cần đánh giá của bạn để cải thiện dịch vụ</p>
 
-    </div>
 
-    <div class="comment-section">
-      <div class="comment">
-        <div class="user-info">
-          <img src="Anh/Chi tiet/F3rs8F3WIAAR7rz.jpg" alt="User Avatar">
-          <span class="username">Nam</span>
-        </div>
-        <div class="comment-text">
-          <input placeholder="Bình luận tại đây ..."></input>
-        </div>
+    <div ng-controller="RatingController">
 
-        <div class="comment-bt">
-          <button>Bình luận</button>
+      <!-- Star Rating -->
+      <div class="rating-container">
+        <h2>Xin mời đánh giá</h2>
+        <div class="div-line"></div>
+        <div class="rating">
+          <input type="radio" id="star5" name="rating" ng-value="5" ng-model="rating" ng-click="setRating(5)">
+          <label for="star5">&#9733;</label>
+          <input type="radio" id="star4" name="rating" ng-value="4" ng-model="rating" ng-click="setRating(4)">
+          <label for="star4">&#9733;</label>
+          <input type="radio" id="star3" name="rating" ng-value="3" ng-model="rating" ng-click="setRating(3)">
+          <label for="star3">&#9733;</label>
+          <input type="radio" id="star2" name="rating" ng-value="2" ng-model="rating" ng-click="setRating(2)">
+          <label for="star2">&#9733;</label>
+          <input type="radio" id="star1" name="rating" ng-value="1" ng-model="rating" ng-click="setRating(1)">
+          <label for="star1">&#9733;</label>
         </div>
-        
+        <p id="rating-value" class="rating-txt">Bạn đã bình chọn : {{ ratingValue }} sao cho sản phẩm này !</p>
       </div>
 
-    </div>
 
-    <div class="comment-section">
-      <div class="comment">
-        <div class="user-info">
-          <img src="Anh/Chi tiet/324302550_1796778337368612_2962869781815370285_n.jpg" alt="User Avatar">
-          <span class="username">Tùng</span>
+      <div class="comment-section">
+        <div class="comment">
+          <div class="user-info">
+            <img ng-src="data:image/jpeg;base64,{{ customer.img }}" />
+            <span class="username">{{customer.tenKH}}</span>
+          </div>
+          <div class="comment-text">
+            <textarea placeholder="Bình luận tại đây ..." ng-model="comment"></textarea>
+          </div>
+
+          <div class="comment-bt">
+            <button ng-click="createRating()">Bình luận</button>
+          </div>
+
         </div>
-        <div class="comment-text">
-          <p>Giỏ hàng tươi và rất ngon, giá rẻ nữa, tks bhx nhé</p>
+
+      </div>
+
+      <div class="comment-section">
+        <div class="comment" ng-repeat="ratingData in ratingData">
+          <div class="user-info">
+            <img ng-src="data:image/jpeg;base64,{{ ratingData.userImg }}" />
+            <span class="username">{{ ratingData.userName }}</span>
+          </div>
+          <div class="comment-text">
+            <p>{{ ratingData.binhLuan }}</p>
+            <p>Thời gian : {{ratingData.thoiGian}}</p>
+          </div>
+          <div class="div-line"></div>
         </div>
       </div>
-      <div class="div-line"></div>
-      <div class="comment">
-        <div class="user-info">
-          <img src="Anh/Chi tiet/GBb39RZXcAAn4wB.jpg" alt="User Avatar">
-          <span class="username">Mạnh </span>
-        </div>
-        <div class="comment-text">
-          <p>Sản phẩm ngon lắm, giòn, ngọt, cơm dầy, ăn ngon lắm</p>
-        </div>
-      </div>
-      <div class="div-line"></div>
-      <div class="comment">
-        <div class="user-info">
-          <img src="Anh/Chi tiet/317475915_1213763922684331_1063313439444283753_n.jpg" alt="User Avatar">
-          <span class="username">Thắng </span>
-        </div>
-        <div class="comment-text">
-          <p>Ok lắm</p>
-        </div>
-      </div>
+
     </div>
 
     <div class="div-line"></div>
+
   </main>
   <footer>
     <div class="footer-container">

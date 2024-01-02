@@ -31,7 +31,7 @@
         </div>
         <ul ng-controller="UserController">
           <li>
-            <img src="Anh/header/home.png" id="imgHome">
+            <img src="Anh/header/home.png" id="imgHome" ng-click="viewHome()">
             <!-- <a class="txtTT">Trang chủ</a> -->
           </li>
           <li>
@@ -57,7 +57,7 @@
             <!-- <a class="txtTB">Thông báo</a> -->
           </li>
           <li>
-            <img src="Anh/header/shopping-cart.png" id="imgCart" onclick="convertToJSON()" />
+            <img ng-click="viewCart()" src="Anh/header/shopping-cart.png" id="imgCart" />
             <!-- <a class="txtGH">Giỏ hàng</a> -->
           </li>
         </ul>

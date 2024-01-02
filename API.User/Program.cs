@@ -13,7 +13,8 @@ builder.Services.AddTransient<IproductRepository, productRepository>();
 builder.Services.AddTransient<IproductBusiness, productBusiness>();
 builder.Services.AddTransient<IratingRepository, ratingRepository>();
 builder.Services.AddTransient<IratingBusiness, ratingBussiness>();
-
+builder.Services.AddTransient<IcartRepository, cartRepository>();
+builder.Services.AddTransient<IcartBusiness, cartBusiness>();
 
 
 // Add services to the container.

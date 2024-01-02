@@ -35,13 +35,13 @@ namespace DAL.Repository
                 throw ex;
             }
         }
-        public List<RatingWithCustomerInfo> GetAllRatingCmt()
+        public List<RatingWithCustomerInfo> GetAllRatingCmt(int id)
         {
             string msg = "";
             try
             {
-                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "GetReviewsWithUserInfo");
-
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "GetReviewsWithUserInfoByProductId",
+                     "@ProductId", id);
                 if (!string.IsNullOrEmpty(msg))
                     throw new Exception(msg);
 

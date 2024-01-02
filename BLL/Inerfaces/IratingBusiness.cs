@@ -10,7 +10,7 @@ namespace BLL.Inerfaces
     public partial interface IratingBusiness
     {
         List<rating> GetAll(int pageNumber, int pageSize);
-        List<RatingWithCustomerInfo> GetAllRatingCmt();
+        List<RatingWithCustomerInfo> GetAllRatingCmt(int id);
         bool Create(rating rating);
         bool Update(rating rating);
         bool Delete(int id);

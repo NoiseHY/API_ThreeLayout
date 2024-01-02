@@ -16,9 +16,9 @@ namespace BLL.Bussiness
         {
             _iratingRepository = iratingRepository;
         }
-        public List<RatingWithCustomerInfo> GetAllRatingCmt()
+        public List<RatingWithCustomerInfo> GetAllRatingCmt(int id)
         {
-            return _iratingRepository.GetAllRatingCmt();
+            return _iratingRepository.GetAllRatingCmt( id);
         }
         public List<rating> GetAll(int pageNumber, int pageSize)
         {

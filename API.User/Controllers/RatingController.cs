@@ -32,11 +32,11 @@ namespace API.User.Controllers
 
         [Route("GetAllRatingCmt")]
         [HttpGet]
-        public IActionResult GetAllRatingCmt()
+        public IActionResult GetAllRatingCmt(int id)
         {
             try
             {
-                var ratings = _iratingBusiness.GetAllRatingCmt();
+                var ratings = _iratingBusiness.GetAllRatingCmt(id);
                 return Ok(ratings);
             }
             catch (Exception ex)

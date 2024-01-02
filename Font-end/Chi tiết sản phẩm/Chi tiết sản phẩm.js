@@ -77,6 +77,7 @@ app.controller('RatingController', function ($scope, $http, $window) {
             .then(function (response) {
                 console.log('Thêm bình luận thành công !', response.data);
                 alert("Thêm bình luận thành công !");
+                $window.location.reload();
             })
             .catch(function (error) {
                 console.error('Lỗi khi thêm bình luận !', error);
@@ -85,7 +86,8 @@ app.controller('RatingController', function ($scope, $http, $window) {
     };
 
     $scope.getRating = function () {
-        $http.get('https://localhost:7118/api/Rating/GetAllRatingCmt')
+        var maSP = $window.localStorage.getItem('maSP');
+        $http.get('https://localhost:7118/api/Rating/GetAllRatingCmt?id=' + maSP)
             .then(function (response) {
                 console.log("Hiển thị 2");
                 $scope.ratingData = response.data;

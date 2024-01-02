@@ -15,6 +15,27 @@ app.controller('ProductDetailController', function ($scope, $http, $window) {
     };
 
     getProductByID(maSP);
+
+    $scope.addToCart = function (product) {
+        var maSP = $window.localStorage.getItem('maSP');
+        var maTK = $window.localStorage.getItem('userID');
+        var cart = {
+          MaKH: maTK,
+          MaSP: maSP,
+          Soluong: 1,
+          Dongia: $scope.dongia
+        };
+    
+        $http.post('https://localhost:7118/api/Cart/Create', cart)
+          .then(function (response) {
+            alert('Thêm sản phẩm vào giỏ hàng thành công !');
+            // console.log(response.data); 
+          })
+          .catch(function (error) {
+            alert('Đã xảy ra lỗi khi thêm vào giỏ hàng!');
+            console.error('Lỗi khi tạo sản phẩm:', error);
+          });
+      };
 });
 
 app.controller('RatingController', function ($scope, $http, $window) {

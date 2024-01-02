@@ -600,9 +600,9 @@
                 ng-click="viewProductDetail(product.maSP)" />
               <p>{{ product.tenSP }}</p>
               <p>Số lượng: {{ product.soLuong }}</p>
-              <p>Đơn giá: {{ product.dongia }}</p>
+              <p id="dongia">Đơn giá: {{ product.dongia }}</p>
             </div>
-            <button class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
+            <button ng-click="addToCart(product)" class="danhmuc-CT-sp-bt" style="margin-top: 35px;">
               Mua
             </button>
           </li>

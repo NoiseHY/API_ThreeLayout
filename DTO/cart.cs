@@ -11,9 +11,8 @@ namespace DTO
         public int MaGiohang {  get; set; }
         public int MaKH { get; set; }
         public int MaSP { get; set; }
-        public int Soluong { get; set; }
         public decimal Dongia { get; set; }
-        public decimal Thanhtien { get; set; }
         public DateTime Thoidiemtao { get; set; }
+        public string? ProductImg { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace DTO
         public string? Mota { get; set; }
         public int SoLuong { get; set; }
         public decimal Dongia { get; set; }
-        public int MaTL { get; set; }
+        public int? MaTL { get; set; }
         public string? Img { get; set; }
     }
 }

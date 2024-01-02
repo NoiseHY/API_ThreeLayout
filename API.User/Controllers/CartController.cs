@@ -63,7 +63,7 @@ namespace API.User.Controllers
             bool isSuccess = _icartBusiness.Delete(id);
             if (isSuccess)
             {
-                return Ok("Xóa thành công khách hàng !");
+                return Ok("Xóa thành công giỏ hàng !");
             }
             else
             {

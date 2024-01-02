@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 
 <head>
   <title>Giỏ hàng</title>
   <link rel="stylesheet" href="/Trang giỏ hàng/Giỏ hàng.css">
   <link rel="stylesheet" href="/Trang chủ/TrangChu.css">
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400&display=swap" rel="stylesheet">
 
-  <link rel="icon" type="image/x-icon" href="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
+  <link rel="icon" type="image/x-icon"
+    href="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
 
+  <link rel="icon" type="image/x-icon" href="/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
+
+  <script src="/Angular JS/angular-1.8.2/angular.js"></script>
   <script src="/Trang giỏ hàng/GIỏ hàng.js"></script>
 </head>
 
@@ -24,8 +28,7 @@
         </div>
         <div class="search-text">
           <input type="search" name="Tìm kiếm" placeholder="Tìm kiếm của bạn ..." />
-          <img class="icon-search"
-            src="/Trang chủ/Anh/header/search-interface-symbol.png" />
+          <img class="icon-search" src="/Trang chủ/Anh/header/search-interface-symbol.png" />
         </div>
         <ul>
           <li>
@@ -53,65 +56,55 @@
     </nav>
   </header>
 
-  <main>
+  <main ng-controller="CartController">
     <div class="cart">
       <div class="cart-container-txt">
         <h1>Giỏ hàng</h1>
         <div class="div-line2"></div>
       </div>
-      <div class="cart-container">      
-        <div class="cart-container-info">            
+      <div class="cart-container">
+        <div class="cart-container-info">
           <!--  -->
-          <div class="cart-container-product">
+          <div class="cart-container-product" ng-repeat="cartItem in cartItems">
             <div class="cart-container-product-checkbox">
               <input type="checkbox">
             </div>
             <div class="cart-container-product-img">
-              <img
-                src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/SanPham/Sales/3-cay-kem-vani-socola-merino-super-teen-60g-202310101347489756.jpg">
+              <img ng-src="data:image/jpeg;base64, {{ cartItem.productImg }} " />
             </div>
             <div class="cart-container-product-info">
-              <p>3 cây kem vani socola Merino Super Teen 60g</p>
+              <p>{{ cartItem.productName }}</p>
               <div class="cart-container-product-info-container">
                 <div class="sales-txt">
                   <p style="text-decoration-line: line-through; color: black;" id="product-price">
                     280.000đ
                   </p>
                   <p id="product-sales">
-                    230.000đ
+                    {{ cartItem.dongia }}
                   </p>
-                </div>
-                <div class="sales-stars">
-                  <div class="cart-container-product-info-sales">
-                    <a class="product-stars">
-                      4.5
-                      <img src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/SanPham/star.png">
-                    </a>
-                    <p>
-                      -25%
-                    </p>
-                  </div>
                 </div>
 
                 <div class="CTSP-SL-numbers">
-                  <button class="btGiam">-</button>
-                  <a class="ipNumbers">0 </a>
-                  <button class="btTang">+</button>
-                </div>                
+                  <button class="btGiam" ng-click="decrease(cartItem)">-</button>
+                  <a class="ipNumbers">{{ cartItem.quantity || 1 }}</a>
+                  <button class="btTang" ng-click="increase(cartItem)">+</button>
+                </div>
+
               </div>
 
               <div class="cart-container-product-info-bt">
-                <button>
-                  Xóa sản phẩm 
+                <button ng-click="confirmDelete(cartItem.maGiohang)">
+                  Xóa sản phẩm
                 </button>
                 <a>
                   Sản phẩm tương tự &#62; &#62;
                 </a>
               </div>
             </div>
-          </div> 
+          </div>
+
           <div class="div-line2"></div>
-          <div class="cart-container-product">
+          <!-- <div class="cart-container-product">
             <div class="cart-container-product-checkbox">
               <input type="checkbox">
             </div>
@@ -158,9 +151,8 @@
                 </a>
               </div>
             </div>
-          </div>  
-          <div class="div-line2"></div>
-          <div class="cart-container-product">
+          </div>   -->
+          <!-- <div class="cart-container-product">
             <div class="cart-container-product-checkbox">
               <input type="checkbox">
             </div>
@@ -206,30 +198,31 @@
                 </a>
               </div>
             </div>
-          </div>  
+          </div>   -->
         </div>
-        
-        <div class="cart-container-price">
+
+        <div class="cart-container-price" ng-controller="PaymentController">
           <div class="cart-price">
-            <h1>Thanh toán </h1>
+            <h1>Thanh toán</h1>
             <div class="div-line2"></div>
             <div class="cart-price-tt">
               <a>Tổng tiền hàng</a>
-              <p>120.000đ</p>
+              <p>{{ calculateTotalAmount() }}</p>
             </div>
             <div class="cart-price-vc">
               <a>Phí vận chuyển</a>
-              <p>120.000đ</p>
+              <p >50000</p>
             </div>
             <div class="cart-price-tong">
               <a>Tổng thanh toán</a>
-              <p>120.000đ</p>
+              <p>{{ calculateTotalPayment()  }}</p>
             </div>
-            <button class="cart-price-bt" id = "imgThanhtoan">
-              Đặt hàng 
+            <button class="cart-price-bt" id="imgThanhtoan" ng-click="placeOrder()">
+              Đặt hàng
             </button>
           </div>
         </div>
+
       </div>
 
     </div>

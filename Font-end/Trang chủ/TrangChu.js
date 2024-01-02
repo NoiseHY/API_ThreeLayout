@@ -19,6 +19,26 @@ app.controller('GetNewProductsController', function ($scope, $http, $window) {
     $window.location.href = '/Chi tiết sản phẩm/Chi tiết sản phẩm.html';
   };
 
+  $scope.addToCart = function (product) {
+    var maTK = $window.localStorage.getItem('userID');
+    var cart = {
+      MaKH: maTK,
+      MaSP: product.maSP,
+      Soluong: 1,
+      Dongia: product.dongia
+    };
+    
+    $http.post('https://localhost:7118/api/Cart/Create', cart)
+      .then(function () {
+        alert('Thêm sản phẩm vào giỏ hàng thành công !');
+      })
+      .catch(function (error) {
+        alert('Đã xảy ra lỗi khi thêm vào giỏ hàng!');
+        console.error('Lỗi khi tạo sản phẩm:', error);
+      });
+  };
+
+
 });
 
 

@@ -93,6 +93,7 @@ productModule.controller('btproductController', function ($scope, $http) {
       .then(function (response) {
         alert('Thêm sản phẩm thành công!');
         // console.log(response.data); 
+        window.location.reload();
       })
       .catch(function (error) {
         alert('Đã xảy ra lỗi khi thêm sản phẩm!');
@@ -126,6 +127,7 @@ productModule.controller('btproductController', function ($scope, $http) {
       .then(function (response) {
         alert('Sửa sản phẩm thành công!');
         // console.log(response.data);
+        window.location.reload();
       })
       .catch(function (error) {
         alert('Đã xảy ra lỗi khi sửa sản phẩm!');
@@ -164,6 +166,7 @@ productModule.controller('productController', function ($scope, $http) {
     if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) {
       // debugger;
       $scope.deleteProduct(productId);
+      window.location.reload();
     }
   };
 

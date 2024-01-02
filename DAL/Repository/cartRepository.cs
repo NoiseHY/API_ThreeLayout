@@ -21,7 +21,7 @@ namespace DAL.Repository
             string msgError = "";
             try
             {
-                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "GetCartByCustomerId",
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "GetCartWithProductImgByCustomerId",
                      "@CustomerId", id);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
@@ -42,9 +42,7 @@ namespace DAL.Repository
                     out msgError, "AddToCart",
                     "@CustomerId", cart.MaKH,
                     "@ProductId", cart.MaSP,
-                    "@Quantity", cart.Soluong,
-                    "@UnitPrice", cart.Dongia,
-                    "@TotalPrice", cart.Thanhtien);
+                    "@UnitPrice", cart.Dongia);
 
                 if (result != null || !string.IsNullOrEmpty(msgError))
                 {
@@ -65,9 +63,7 @@ namespace DAL.Repository
             {
                 var result = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(
                     out msgError, "UpdateCartItem",
-                    "@CartId", cart.MaGiohang,
-                    "@Quantity", cart.Soluong,
-                    "@TotalPrice", cart.Thanhtien);
+                    "@CartId", cart.MaGiohang);
 
                 if (result != null || !string.IsNullOrEmpty(msgError))
                 {

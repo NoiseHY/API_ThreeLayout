@@ -53,29 +53,29 @@ app.controller('CartController', function ($scope, $http, $window) {
 });
 
 app.controller('PaymentController', function ($scope) {
-  // Hàm tính tổng tiền hàng dựa trên số lượng và giá tiền của mỗi sản phẩm
+  
   $scope.calculateTotalAmount = function () {
     let total = 0;
-    const productElements = document.querySelectorAll('.cart-container-product-info'); // Thay #product-sales bằng class thích hợp
+    const productElements = document.querySelectorAll('.cart-container-product-info'); 
     for (let i = 0; i < productElements.length; i++) {
-      const quantityElement = productElements[i].querySelector('.ipNumbers'); // Selector cho số lượng sản phẩm
-      const priceElement = productElements[i].querySelector('#product-sales'); // Selector cho giá tiền của sản phẩm
+      const quantityElement = productElements[i].querySelector('.ipNumbers'); 
+      const priceElement = productElements[i].querySelector('#product-sales'); 
 
-      const quantity = parseInt(quantityElement.innerText.trim()); // Số lượng sản phẩm
+      const quantity = parseInt(quantityElement.innerText.trim()); 
       const priceText = priceElement.innerText.trim();
-      const price = parseFloat(priceText.replace('đ', '').replace(',', '.')); // Giá tiền của sản phẩm
+      const price = parseFloat(priceText.replace('đ', '').replace(',', '.')); 
 
-      total += price * quantity; // Tính tổng tiền hàng cho mỗi sản phẩm và số lượng tương ứng
+      total += price * quantity; 
     }
     return total;
   };
 
-  // Hàm tính tổng thanh toán
+  
   $scope.calculateTotalPayment = function () {
-    return $scope.calculateTotalAmount() + 50000; // Thêm phí vận chuyển thực tế nếu có
+    return $scope.calculateTotalAmount() + 50000; 
   };
 
-  // Hàm để thực hiện đặt hàng
+  
   $scope.placeOrder = function () {
     // Thực hiện đặt hàng - Có thể thêm logic xử lý khi nhấn nút Đặt hàng
     // ...

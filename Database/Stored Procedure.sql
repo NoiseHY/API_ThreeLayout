@@ -427,3 +427,93 @@ BEGIN
 END;
 
 
+--
+CREATE PROCEDURE AddHoaDonBan_ChiTiet
+    @TongTien DECIMAL(18,2),
+    @MaKH INT,
+    @NgayBan DATE,
+    @MaSP INT,
+    @SoLuong INT,
+    @Gia DECIMAL(18,2),
+    @ThanhTien DECIMAL(18,2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @MaHDB INT;
+
+    -- Thêm Hóa Đơn Bán
+    INSERT INTO HoaDonBan (Tongtien, MaKH, Ngayban)
+    VALUES (@TongTien, @MaKH, @NgayBan);
+
+    -- Lấy Mã Hóa Đơn Bán Vừa Thêm
+    SET @MaHDB = SCOPE_IDENTITY();
+
+    -- Thêm Chi Tiết Hóa Đơn Bán
+    INSERT INTO ChiTietHDBan (MaHDB, MaSP, Soluong, Gia, Thanhtien)
+    VALUES (@MaHDB, @MaSP, @SoLuong, @Gia, @ThanhTien);
+END;
+
+--
+--CREATE PROCEDURE GetHoaDonBanChiTietByMaKH
+--    @MaKH INT
+--AS
+--BEGIN
+--    SET NOCOUNT ON;
+
+--    SELECT HB.MaHDB, HB.Tongtien, HB.MaKH, HB.Ngayban,
+--           CT.MaCTHDB, CT.MaSP, CT.Soluong, CT.Gia, CT.Thanhtien
+--    FROM HoaDonBan HB
+--    INNER JOIN ChiTietHDBan CT ON HB.MaHDB = CT.MaHDB
+--    WHERE HB.MaKH = @MaKH;
+--END;
+
+--exec GetHoaDonBanChiTietByMaKH 3
+
+--
+CREATE TABLE TempChiTietHDBan (
+    MaSP INT,
+    Soluong INT,
+    Gia DECIMAL(18,2),
+    Thanhtien DECIMAL(18,2)
+);
+--
+CREATE PROCEDURE AddTempChiTietHDBan
+    @MaSP INT,
+    @Soluong INT,
+    @Gia DECIMAL(18,2),
+    @Thanhtien DECIMAL(18,2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO TempChiTietHDBan (MaSP, Soluong, Gia, Thanhtien)
+    VALUES (@MaSP, @Soluong, @Gia, @Thanhtien);
+END;
+
+--
+CREATE PROCEDURE AddHoaDonBan_ChiTiet
+    @TongTien DECIMAL(18,2),
+    @MaKH INT,
+    @NgayBan DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @MaHDB INT;
+
+    -- Thêm Hóa Đơn Bán
+    INSERT INTO HoaDonBan (Tongtien, MaKH, Ngayban)
+    VALUES (@TongTien, @MaKH, @NgayBan);
+
+    -- Lấy Mã Hóa Đơn Bán Vừa Thêm
+    SET @MaHDB = SCOPE_IDENTITY();
+
+    -- Thêm Chi Tiết Hóa Đơn Bán từ Bảng Tạm
+    INSERT INTO ChiTietHDBan (MaHDB, MaSP, Soluong, Gia, Thanhtien)
+    SELECT @MaHDB, MaSP, Soluong, Gia, Thanhtien
+    FROM TempChiTietHDBan;
+
+    -- Xóa Dữ Liệu Tạm
+    DELETE FROM TempChiTietHDBan;
+END;

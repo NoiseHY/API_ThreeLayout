@@ -74,9 +74,9 @@ app.controller('UserController', function ($scope, $window) {
     if ($scope.isLoggedIn) {
       $scope.showButtons = !$scope.showButtons;
       if ($scope.showButtons) {
-        document.getElementById('buttonDialog').style.display = 'block'; // Hiển thị phần button-dialog
+        document.getElementById('buttonDialog').style.display = 'block'; 
       } else {
-        document.getElementById('buttonDialog').style.display = 'none'; // Ẩn phần button-dialog
+        document.getElementById('buttonDialog').style.display = 'none';
       }
     } else {
 
@@ -98,6 +98,12 @@ app.controller('UserController', function ($scope, $window) {
   };
 
   $scope.viewCart = function (maSP) {
+    var userID = $window.localStorage.getItem('userID');
+    
+    if (userID == null){
+      alert("Hãy đăng nhập !");
+      return;
+    }
     $window.location.href = '/Trang giỏ hàng/Giỏ hàng.html';
   };
 

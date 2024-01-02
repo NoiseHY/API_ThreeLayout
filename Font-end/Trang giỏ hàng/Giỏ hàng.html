@@ -67,8 +67,10 @@
           <!--  -->
           <div class="cart-container-product" ng-repeat="cartItem in cartItems">
             <div class="cart-container-product-checkbox">
-              <input type="checkbox">
+              <input type="checkbox" ng-model="cartItem.selected" ng-change="updateTotalAmount()">
+
             </div>
+
             <div class="cart-container-product-img">
               <img ng-src="data:image/jpeg;base64, {{ cartItem.productImg }} " />
             </div>
@@ -86,7 +88,7 @@
 
                 <div class="CTSP-SL-numbers">
                   <button class="btGiam" ng-click="decrease(cartItem)">-</button>
-                  <a class="ipNumbers">{{ cartItem.quantity || 1 }}</a>
+                  <a class="ipNumbers">{{ cartItem.quantity || 0 }}</a>
                   <button class="btTang" ng-click="increase(cartItem)">+</button>
                 </div>
 
@@ -211,13 +213,13 @@
             </div>
             <div class="cart-price-vc">
               <a>Phí vận chuyển</a>
-              <p >50000</p>
+              <p>50000</p>
             </div>
             <div class="cart-price-tong">
               <a>Tổng thanh toán</a>
-              <p>{{ calculateTotalPayment()  }}</p>
+              <p>{{ calculateTotalPayment() }}</p>
             </div>
-            <button class="cart-price-bt" id="imgThanhtoan" ng-click="placeOrder()">
+            <button class="cart-price-bt" id="imgThanhtoan" ng-click="createBillFromCart()">
               Đặt hàng
             </button>
           </div>

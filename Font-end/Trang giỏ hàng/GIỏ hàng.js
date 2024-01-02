@@ -1,7 +1,6 @@
 var app = angular.module('myApp', []);
 
 app.controller('CartController', function ($scope, $http, $window) {
-  var maSP = $window.localStorage.getItem('maSP');
   var maTK = $window.localStorage.getItem('userID');
 
   var getProductByID = function () {
@@ -39,47 +38,92 @@ app.controller('CartController', function ($scope, $http, $window) {
     if (!cartItem.quantity) {
       cartItem.quantity = 0;
     }
-    cartItem.quantity++; // Tăng số lượng của sản phẩm khi nhấn nút "+"
+    cartItem.quantity++;
   };
 
   $scope.decrease = function (cartItem) {
     if (cartItem.quantity > 0) {
-      cartItem.quantity--; // Giảm số lượng của sản phẩm khi nhấn nút "-"
+      cartItem.quantity--;
     }
   };
-  
 
-  
+
+
 });
 
-app.controller('PaymentController', function ($scope) {
-  
+app.controller('PaymentController', function ($scope, $window, $http) {
+
   $scope.calculateTotalAmount = function () {
     let total = 0;
-    const productElements = document.querySelectorAll('.cart-container-product-info'); 
-    for (let i = 0; i < productElements.length; i++) {
-      const quantityElement = productElements[i].querySelector('.ipNumbers'); 
-      const priceElement = productElements[i].querySelector('#product-sales'); 
-
-      const quantity = parseInt(quantityElement.innerText.trim()); 
-      const priceText = priceElement.innerText.trim();
-      const price = parseFloat(priceText.replace('đ', '').replace(',', '.')); 
-
-      total += price * quantity; 
+    for (let i = 0; i < $scope.cartItems.length; i++) {
+      const product = $scope.cartItems[i];
+      if (product.selected) {
+        total += product.dongia * product.quantity;
+      }
     }
     return total;
   };
 
-  
+
+
   $scope.calculateTotalPayment = function () {
-    return $scope.calculateTotalAmount() + 50000; 
+    return $scope.calculateTotalAmount() + 50000;
   };
 
-  
-  $scope.placeOrder = function () {
-    // Thực hiện đặt hàng - Có thể thêm logic xử lý khi nhấn nút Đặt hàng
-    // ...
+  $scope.createBillFromCart = function () {
+    if ($scope.calculateTotalAmount() === 0 || !$scope.cartItems.some(item => item.selected)) {
+      alert('Vui lòng chọn sản phẩm và số lượng trước khi đặt hàng.');
+      return;
+    }
+
+    var maTK = $window.localStorage.getItem('userID');
+    var date = new Date();
+    var Ngayban = date.toISOString().slice(0, 10);
+
+    var tempBills = [];
+
+    debugger;
+
+    angular.forEach($scope.cartItems, function (cartItem) {
+      if (cartItem.selected) {
+        var tempBill = {
+          MaSP: cartItem.maSP,
+          Soluong: cartItem.quantity,
+          Gia: cartItem.dongia,
+          Thanhtien: cartItem.dongia * cartItem.quantity
+        };
+        tempBills.push(tempBill);
+      }
+    });
+
+    $http.post('https://localhost:7118/api/Bill/CreateTemp', tempBills)
+      .then(function () {
+        console.log('Thêm bảng tạm thành công');
+        createMainBill();
+      })
+      .catch(function (error) {
+        alert('Lỗi khi tạo bảng tạm', error);
+      });
+
+    function createMainBill() {
+      var mainBill = {
+        Tongtien: $scope.calculateTotalAmount() + 50000,
+        MaKH: maTK,
+        Ngayban: Ngayban
+      };
+
+      $http.post('https://localhost:7118/api/Bill/Create', mainBill)
+        .then(function (response) {
+          alert('Thêm hóa đơn thành công!');
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          alert('Lỗi khi tạo hóa đơn', error);
+        });
+    }
   };
+
+
 });
 
 

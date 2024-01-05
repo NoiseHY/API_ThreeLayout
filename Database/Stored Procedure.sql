@@ -377,20 +377,20 @@ END;
 
 
 -- Giỏ hàng 
-CREATE PROCEDURE GetCartWithProductImgByCustomerId
+CREATE PROCEDURE GetCartWithProductImgAndNameByCustomerId
     @CustomerId INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    SELECT GH.MaGiohang, GH.MaKH, GH.MaSP, GH.Dongia, GH.Thoidiemtao, SP.Img AS ProductImg
+    SELECT GH.MaGiohang, GH.MaKH, GH.MaSP, GH.Dongia, GH.Thoidiemtao, SP.Img AS ProductImg, SP.TenSP AS ProductName
     FROM Giohang GH
     INNER JOIN SanPham SP ON GH.MaSP = SP.MaSP
     WHERE GH.MaKH = @CustomerId;
 END;
 
 
-exec GetCartWithProductImgByCustomerId 3
+exec GetCartWithProductImgAndNameByCustomerId 3
 --
 CREATE PROCEDURE AddToCart
     @CustomerId INT,
@@ -517,3 +517,33 @@ BEGIN
     -- Xóa Dữ Liệu Tạm
     DELETE FROM TempChiTietHDBan;
 END;
+--
+CREATE PROCEDURE GetTopHoaDonBanByMaKH
+    @MaKH INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT TOP 1 *
+    FROM HoaDonBan
+    WHERE MaKH = @MaKH
+    ORDER BY Ngayban DESC;
+END;
+
+exec GetTopHoaDonBanByMaKH 3 
+
+--
+CREATE PROCEDURE GetChiTietHDBanWithProductNameByMaHDB
+    @MaHDB INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT CTHB.*, SP.TenSP AS ProductName
+    FROM ChiTietHDBan CTHB
+    JOIN SanPham SP ON CTHB.MaSP = SP.MaSP
+    WHERE CTHB.MaHDB = @MaHDB;
+END;
+
+
+exec GetChiTietHDBanWithProductNameByMaHDB 7 

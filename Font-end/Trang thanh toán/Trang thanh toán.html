@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 
 <head>
   <title>Trang thanh toán</title>
   <link rel="stylesheet" href="Trang thanh toán.css">
-  <link rel="stylesheet" href="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/TrangChu.css">
-  <link rel="icon" type="image/x-icon" href="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
+  <link rel="stylesheet" href="/Trang chủ/TrangChu.css">
+  <link rel="icon" type="image/x-icon" href="/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,200;1,300;1,400;1,500;1,700&display=swap"
     rel="stylesheet">
+
+  <script src="/Angular JS/angular-1.8.2/angular.js"></script>
+
   <script src="Trang thanh toán.js"></script>
 </head>
 
-<body>
+<body >
   <header>
     <nav>
       <div class="menuHead">
@@ -23,148 +26,126 @@
         </div>
         <div class="search-text">
           <input type="search" name="Tìm kiếm" placeholder="Tìm kiếm của bạn ..." />
-          <img class="icon-search"
-            src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/search-interface-symbol.png" />
+          <img class="icon-search" src="/Trang chủ/Anh/header/search-interface-symbol.png" />
         </div>
         <ul>
           <li>
-            <img id="imgTrangChu" src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/home.png" />
+            <img id="imgTrangChu" src="/Trang chủ/Anh/header/home.png" />
             <!-- <a class="txtTT">Trang chủ</a> -->
           </li>
           <li>
-            <img src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/category.png" />
+            <img src="/Trang chủ/Anh/header/category.png" />
             <!-- <a class="txtDM">Danh mục</a> -->
           </li>
           <li>
-            <img src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/user.png" />
+            <img src="/Trang chủ/Anh/header/user.png" />
             <!-- <a class="txtDN">Đăng nhập</a> -->
           </li>
           <li>
-            <img src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/bell.png" />
+            <img src="/Trang chủ/Anh/header/bell.png" />
             <!-- <a class="txtTB">Thông báo</a> -->
           </li>
           <li>
-            <img src="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/header/shopping-cart.png" />
+            <img src="/Trang chủ/Anh/header/shopping-cart.png" />
             <!-- <a class="txtGH">Giỏ hàng</a> -->
           </li>
         </ul>
       </div>
     </nav>
   </header>
-  <main>
+  <main ng-controller="BillController">
     <div class="container">
       <div class="container-txt">
         <img src="Anh/credit-card.png">
         <h2>Thanh toán</h2>
         <p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước khi Đặt hàng.</p>
       </div>
-  
+
       <div class="container-checkout">
         <div class="left-section">
           <h4>Thông tin khách hàng</h4>
           <div>
             <div class="">
               <label>Họ tên</label>
-              <input type="text" class="form-control">
-            </div>
-            <div>
-              <label>Giới tính</label>
-              <input type="text" class="form-control">
+              <input ng-model="nameCustomer" type="text" class="form-control">
             </div>
             <div>
               <label>Địa chỉ</label>
-              <input type="text" class="form-control">
+              <input ng-model="address" type="text" class="form-control">
             </div>
             <div>
               <label>Điện thoại</label>
-              <input type="text" class="form-control">
-            </div>
-            <div>
-              <label>Email</label>
-              <input type="text" class="form-control">
+              <input ng-model="phone" type="text" class="form-control">
             </div>
             <div>
               <label>Ngày sinh</label>
-              <input type="text" class="form-control">
-            </div>
-            <div>
-              <label>CMND</label>
-              <input type="text" class="form-control">
+              <input type="date" id="input-birthday" ng-model="birthday">
             </div>
           </div>
-  
+
           <h4>Hình thức thanh toán</h4>
           <div class="checkout-ht">
             <div class="checkout-ht-container">
               <label for="cash">Tiền mặt</label>
               <input type="radio">
-  
+
             </div>
             <div class="checkout-ht-container">
               <label for="transfer">Chuyển khoản</label>
               <input type="radio">
-  
+
             </div>
             <div class="checkout-ht-container">
               <label for="shipCod">Ship COD</label>
               <input type="radio">
-  
+
             </div>
           </div>
           <button type="submit">Đặt hàng</button>
-  
+
         </div>
-  
+
         <div class="right-section">
-          <!-- <div class="cart-details">
+          <div class="cart-details">
             <h4>
               <h2>Giỏ hàng</h2>
             </h4>
             <ul>
-              <li>
+              <li ng-repeat="BillItems in BillItems">
                 <div class="cart-details-info">
-                  <h6>Thùng dừa xiêm gọt vỏ 8 trái size VIP từ 500g trở lên</h6>
-                  <a>125.000 x 2</a>
+                  <h6>{{ BillItems.productName }}</h6>
+                  <a>{{ BillItems.gia }} x {{ BillItems.soluong }}</a>
+                  <a>= {{ BillItems.thanhtien }}</a>
                 </div>
-                <span>250.00đ</span>
+                <span></span>
               </li>
-  
-              <li>
-                <div class="cart-details-info">
-                  <h6>Giỏ quà tết Xuân An Khang</h6>
-                  <a>499.000 x 1</a>
-                </div>
-                <span>490.000đ</span>
-              </li>
+
+              <span >Phí vận chuyển</span>
+              <strong>50.000đ</strong></li>
+
               <li>
                 <span>Tổng thành tiền</span>
-                <strong>749.000đ</strong>
+                <strong>{{BillInfoItems[0].tongtien}}</strong>
+
               </li>
+
             </ul>
-  
+
             <div>
               <input type="text" class="form-control" placeholder="Mã khuyến mại">
               <div>
                 <button type="submit">Xác nhận</button>
               </div>
             </div>
-  
-          </div> -->
-          <ul id="cartList">
-            <!-- Các mục giỏ hàng sẽ được cập nhật ở đây -->
-          </ul>
-          <div>
-            <input type="text" class="form-control" placeholder="Mã khuyến mại">
-            <div>
-              <button type="submit">Xác nhận</button>
-            </div>
+
           </div>
+
         </div>
       </div>
 
     </div>
   </main>
-  
+
 </body>
 
 </html>

@@ -24,5 +24,13 @@ namespace BLL.Bussiness
         {
             return _ibillRepository.CreateTemp(bill);
         }
+        public List<bill> GetAllCategoryInfo(int id)
+        {
+            return _ibillRepository.GetAllCategoryInfo(id);
+        }
+        public List<bill> GetAllCategory(int id)
+        {
+            return _ibillRepository.GetAllCategory(id);
+        }
     }
 }

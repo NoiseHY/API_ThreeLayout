@@ -1,48 +1,64 @@
-document.addEventListener('DOMContentLoaded', function () {
-  function updateCartDetails() {
-    const cartItems = localStorage.getItem('allProductsJSON'); // Thay đổi tên key để lấy dữ liệu từ localStorage
-    const productList = JSON.parse(cartItems) || []; // Đổi tên biến để phản ánh dữ liệu sản phẩm
+var app = angular.module('myApp', []);
 
-    const cartList = document.getElementById('cartList');
+app.controller('BillController', function ($http, $window, $scope) {
+  $scope.customer = {};
 
-    // Xóa nội dung cũ của giỏ hàng
-    cartList.innerHTML = '';
+  var maTK = $window.localStorage.getItem('userID');
 
-    let totalPrice = 0;
+  $scope.getCustomer = function () {
 
-    productList.forEach(product => {
-      const item = document.createElement('li');
-      const itemInfo = document.createElement('div');
-      const itemName = document.createElement('h6');
-      const itemPrice = document.createElement('a');
-      const itemTotalPrice = document.createElement('span');
+    if (maTK) {
+      $http.get('https://localhost:7118/api/InfoCustomer/GetCustomerByID/' + maTK)
+        .then(function (response) {
+          console.log("Hiển thị ");
+          $scope.customer = response.data;
 
-      // Cập nhật lại tên biến để phản ánh dữ liệu từ localStorage
-      itemName.textContent = product.name.trim();
-      itemPrice.textContent = `${product.sales} x ${product.quantity}`;
-      itemTotalPrice.textContent = `${parseFloat(product.sales.replace('đ', '').replace(',', '').trim()) * product.quantity}đ`;
+          $scope.fillForm();
+        })
+        .catch(function (error) {
+          console.error('Lỗi khi lấy dữ liệu', error);
+        });
+    } else {
+      console.error('Không tìm thấy ID trong localStorage');
+    }
+  };
 
-      itemInfo.appendChild(itemName);
-      itemInfo.appendChild(itemPrice);
-      item.appendChild(itemInfo);
-      item.appendChild(itemTotalPrice);
+  $scope.fillForm = function () {
+    $scope.nameCustomer = $scope.customer.tenKH || '';
+    $scope.address = $scope.customer.diachiKH || '';
+    $scope.phone = $scope.customer.sdt || '';
 
-      cartList.appendChild(item);
+    $scope.birthday = $scope.customer.ngaysinh ? new Date($scope.customer.ngaysinh) : null;
 
-      totalPrice += parseFloat(product.sales.replace('đ', '').replace(',', '').trim()) * product.quantity;
-    });
+  };
 
-    // Hiển thị tổng thành tiền
-    const totalPriceElement = document.createElement('li');
-    totalPriceElement.innerHTML = `<span>Tổng thành tiền</span><strong>${totalPrice.toFixed(2)}đ</strong>`;
-    cartList.appendChild(totalPriceElement);
-  }
+  $scope.getCustomer();
 
-  // Gọi hàm cập nhật thông tin giỏ hàng khi trang được load
-  updateCartDetails();
+  var getBillByID = function () {
+    $http.get('https://localhost:7118/api/Bill/GetAllCategory/' + maTK)
+      .then(function (response) {
+        $scope.BillInfoItems = response.data;
+        var maHDB = $scope.BillInfoItems[0].maHDB;
+        $scope.getBillInfoByID(maHDB);
+      })
+      .catch(function (error) {
+        console.error('Lỗi', error);
+      });
+  };
 
-  var imgTrangChu = document.getElementById('imgTrangChu');
-  imgTrangChu.addEventListener('click', function () {
-    window.location.href = 'http://127.0.0.1:5500/L%E1%BA%ADp%20tr%C3%ACnh%20Web%20B%C3%A1ch%20H%C3%B3a%20Xanh/HTML/Trang%20ch%E1%BB%A7/TrangChu.html';
-  })
-});
+  $scope.getBillInfoByID = function (maHDB) {
+    $http.get('https://localhost:7118/api/Bill/GetAllCategoryInfo/' + maHDB)
+      .then(function (response) {
+        $scope.BillItems = response.data;
+        
+      })
+      .catch(function (error) {
+        console.error('Lỗi', error);
+      });
+  };
+
+  getBillByID(); 
+
+
+
+})

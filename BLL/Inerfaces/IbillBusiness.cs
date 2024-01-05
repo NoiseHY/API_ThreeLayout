@@ -11,5 +11,7 @@ namespace BLL.Inerfaces
     {
         bool CreateTemp(List<bill> bill);
         bool Create(bill bill);
+        List<bill> GetAllCategory(int id);
+        List<bill> GetAllCategoryInfo(int id);
     }
 }

@@ -11,5 +11,7 @@ namespace DAL.Interfaces
     {
         bool Create(bill bill);
         bool CreateTemp(List<bill> bill);
+        List<bill> GetAllCategory(int id);
+        List<bill> GetAllCategoryInfo(int id);
     }
 }

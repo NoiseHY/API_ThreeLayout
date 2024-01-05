@@ -69,5 +69,39 @@ namespace DAL.Repository
             }
         }
 
+        public List<bill> GetAllCategory(int id)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "GetTopHoaDonBanByMaKH",
+                     "@MaKH", id);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<bill>().ToList();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<bill> GetAllCategoryInfo(int id)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "GetChiTietHDBanWithProductNameByMaHDB",
+                     "@MaHDB", id);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<bill>().ToList();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

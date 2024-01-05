@@ -21,7 +21,7 @@ namespace DAL.Repository
             string msgError = "";
             try
             {
-                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "GetCartWithProductImgByCustomerId",
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "GetCartWithProductImgAndNameByCustomerId",
                      "@CustomerId", id);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);

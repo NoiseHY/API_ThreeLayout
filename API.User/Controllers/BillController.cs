@@ -48,5 +48,19 @@ namespace API.User.Controllers
                 return BadRequest("Đã xảy ra lỗi khi thêm !");
             }
         }
+
+        [Route("GetAllCategory/{id}")]
+        [HttpGet]
+        public List<bill> GetCustomerByID(int id)
+        {
+            return _ibillBusiness.GetAllCategory(id);
+        }
+
+        [Route("GetAllCategoryInfo/{id}")]
+        [HttpGet]
+        public List<bill> GetAllCategoryInfo(int id)
+        {
+            return _ibillBusiness.GetAllCategoryInfo(id);
+        }
     }
 }

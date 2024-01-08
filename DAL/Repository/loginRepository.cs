@@ -1,6 +1,6 @@
 ﻿using DAL.Helper;
 using DAL.Interfaces;
-using DTO;
+using DTO.Admin;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO
+namespace DTO.Rating
 {
-    public class RatingWithCustomerInfo
+    public class ratingWithCustomerInfo
     {
         public int MaDanhGia { get; set; }
         public int MaSP { get; set; }

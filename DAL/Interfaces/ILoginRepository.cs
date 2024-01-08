@@ -1,4 +1,4 @@
-﻿using DTO;
+﻿using DTO.Admin;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

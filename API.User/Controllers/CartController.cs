@@ -1,6 +1,6 @@
 ﻿using BLL.Bussiness;
 using BLL.Inerfaces;
-using DTO;
+using DTO.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

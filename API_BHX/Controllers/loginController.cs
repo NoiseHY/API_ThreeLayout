@@ -3,7 +3,7 @@ using BLL.Bussiness;
 using BLL.Inerfaces;
 using DAL.Helper;
 using DAL.Interfaces;
-using DTO;
+using DTO.Admin;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

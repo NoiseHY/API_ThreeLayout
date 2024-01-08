@@ -340,7 +340,20 @@ BEGIN
     INNER JOIN KhachHang KH ON DG.MaTK = KH.MaKH
     WHERE DG.MaSP = @ProductId;
 END;
+--
+CREATE PROCEDURE GetCommentsByMaTK
+    @MaTK INT
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    SELECT DG.MaDanhGia, DG.MaSP, DG.MaTK, DG.DanhGia, DG.BinhLuan, DG.ThoiGian, SP.TenSP AS TenSanPham, SP.Img AS AnhSanPham
+    FROM DanhGia DG
+    INNER JOIN SanPham SP ON DG.MaSP = SP.MaSP
+    WHERE DG.MaTK = @MaTK;
+END;
+
+exec GetCommentsByMaTK 3
 
 --------- Chưa exec
 CREATE PROCEDURE GetReviewsWithUserInfo2

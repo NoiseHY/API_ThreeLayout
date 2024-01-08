@@ -1,6 +1,6 @@
 ﻿using DAL.Helper;
 using DAL.Interfaces;
-using DTO;
+using DTO.Rating;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,23 @@ namespace DAL.Repository
         public ratingRepository (ExcuteProcedure excuteProcedure)
         {
             _excuteProcedure = excuteProcedure;
+        }
+        public List<ratingWithProducts> GetCommentsByMaTK(int id)
+        {
+            string msg = "";
+            try
+            {
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msg, "GetCommentsByMaTK",
+                     "@MaTK", id);
+                if (!string.IsNullOrEmpty(msg))
+                    throw new Exception(msg);
+
+                return dt.ConvertTo<ratingWithProducts>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<rating> GetAll(int pageNumber, int pageSize)
         {
@@ -35,7 +52,7 @@ namespace DAL.Repository
                 throw ex;
             }
         }
-        public List<RatingWithCustomerInfo> GetAllRatingCmt(int id)
+        public List<ratingWithCustomerInfo> GetAllRatingCmt(int id)
         {
             string msg = "";
             try
@@ -45,7 +62,7 @@ namespace DAL.Repository
                 if (!string.IsNullOrEmpty(msg))
                     throw new Exception(msg);
 
-                return dt.ConvertTo<RatingWithCustomerInfo>().ToList();
+                return dt.ConvertTo<ratingWithCustomerInfo>().ToList();
             }
             catch (Exception ex)
             {

@@ -166,16 +166,15 @@ productModule.controller('productController', function ($scope, $http) {
     if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) {
       // debugger;
       $scope.deleteProduct(productId);
-      window.location.reload();
+      
     }
   };
 
   $scope.deleteProduct = function (productId) {
     $http.delete('https://localhost:7117/api/product/Delete?id=' + productId)
-      .then(function (response) {
+      .then(function () {
         alert('Xóa thành công sản phẩm !');
-        console.log(response.data);
-
+        window.location.reload();
       })
       .catch(function (error) {
         alert('Đã xảy ra lỗi khi xóa sản phẩm!');

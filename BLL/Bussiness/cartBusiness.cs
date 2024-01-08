@@ -1,6 +1,6 @@
 ﻿using BLL.Inerfaces;
 using DAL.Interfaces;
-using DTO;
+using DTO.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

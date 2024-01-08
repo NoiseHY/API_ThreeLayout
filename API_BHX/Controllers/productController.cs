@@ -1,6 +1,5 @@
 ﻿using BLL.Bussiness;
 using BLL.Inerfaces;
-using DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +8,7 @@ using SixLabors.ImageSharp.Processing;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using Microsoft.AspNetCore.Authorization;
+using DTO.Admin;
 
 namespace API_BHX.Controllers
 {

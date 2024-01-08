@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="cmt">
+
+<head>
+  <title>Bách Hóa Xanh</title>
+  <link rel="stylesheet" href="/Trang cá nhân/Bình luận/Bình luận.css ">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,200;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" type="image/x-icon" href="/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
+
+  <script src="/Angular JS/angular-1.8.2/angular.js"></script>
+  <script src="/Trang cá nhân/Bình luận/Bình luận.js"></script>
+</head>
+<body >
+  <div class="comment-section" ng-controller="cmentController">
+    <h2>Bình luận của bạn</h2>
+    <div class="comment" ng-repeat="cmt in cmt">
+      <div class="user-info">
+        <img ng-src="data:image/jpeg;base64,{{ cmt.anhSanPham }}" />
+        
+      </div>
+      <div class="comment-text">
+        <span class="username">{{ cmt.tenSanPham }}</span>
+        <p style="color: red; margin-top: 5px;">{{ cmt.binhLuan }}</p>
+        <p>Thời gian : {{cmt.thoiGian | date:'dd/MM/yyyy HH:mm:ss'}}</p>
+      </div>
+      <div class="comment-bt">
+        <button ng-click="confirmDelete(cmt.maDanhGia)">Xóa</button>
+      </div>
+    </div>
+  </div>
+  
+  
+</body>
+</html>

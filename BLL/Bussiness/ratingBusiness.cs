@@ -1,6 +1,6 @@
 ﻿using BLL.Inerfaces;
 using DAL.Interfaces;
-using DTO;
+using DTO.Rating;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +16,17 @@ namespace BLL.Bussiness
         {
             _iratingRepository = iratingRepository;
         }
-        public List<RatingWithCustomerInfo> GetAllRatingCmt(int id)
+        public List<ratingWithCustomerInfo> GetAllRatingCmt(int id)
         {
             return _iratingRepository.GetAllRatingCmt( id);
         }
         public List<rating> GetAll(int pageNumber, int pageSize)
         {
             return _iratingRepository.GetAll(pageNumber, pageSize);
+        }
+        public List<ratingWithProducts> GetCommentsByMaTK(int id)
+        {
+            return _iratingRepository.GetCommentsByMaTK(id);
         }
         public bool Create(rating rating)
         {

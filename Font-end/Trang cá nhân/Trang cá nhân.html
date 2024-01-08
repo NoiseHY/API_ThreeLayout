@@ -2,8 +2,8 @@
 <html ng-app="myApp">
 
 <head>
-  <title>Bách Hóa Xanh</title>
-  <link rel="stylesheet" href="Trang cá nhân.css">
+  <title>Trang cá nhân</title>
+  <link rel="stylesheet" href="/Trang cá nhân/Trang cá nhân.css">
   <link rel="stylesheet" href="/Trang chủ/TrangChu.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,10 @@
   <link rel="icon" type="image/x-icon" href="/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
 
   <script src="/Angular JS/angular-1.8.2/angular.js"></script>
+  <script src="/Angular JS/angular-1.8.2/angular-route.js"></script>
+
   <script src="Trang cá nhân.js"></script>
+  <script src="/Trang cá nhân/Bình luận/Bình luận.js"></script>
 </head>
 
 <body>
@@ -106,6 +109,26 @@
       </form>
 
     </div>
+
+    <div class="user-us">
+      <div class="user-us-container">
+        <div class="user-us-cmt" ng-click="navigateToCmt()" ng-controller="cmtController">
+          
+          <a>Bình luận</a>
+          <img src="Anh/comment.png">
+        </div>
+
+        <div class="user-us-cmt">
+          
+          <a>Hàng hóa đã mua </a>
+          <img src="Anh/notes.png">
+        </div>
+      </div>
+      <div class="user-us-show" ng-view="">
+
+      </div>
+    </div>
+
   </main>
 </body>
 

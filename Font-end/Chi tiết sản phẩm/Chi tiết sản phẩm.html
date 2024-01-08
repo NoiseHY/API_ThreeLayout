@@ -217,8 +217,10 @@
             <span class="username">{{ ratingData.userName }}</span>
           </div>
           <div class="comment-text">
-            <p>{{ ratingData.binhLuan }}</p>
-            <p>Thời gian : {{ratingData.thoiGian}}</p>
+            <p style="color: red;">{{ ratingData.binhLuan }}</p>
+            <p>Thời gian: {{ ratingData.thoiGian | date:'dd/MM/yyyy HH:mm:ss' }}</p>  
+            <p>Đánh giá : {{ratingData.danhGia}} sao</p>
+            
           </div>
           <div class="div-line"></div>
         </div>

@@ -1,4 +1,4 @@
-﻿using DTO;
+﻿using DTO.Rating;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,8 @@ namespace BLL.Inerfaces
     public partial interface IratingBusiness
     {
         List<rating> GetAll(int pageNumber, int pageSize);
-        List<RatingWithCustomerInfo> GetAllRatingCmt(int id);
+        List<ratingWithCustomerInfo> GetAllRatingCmt(int id);
+        List<ratingWithProducts> GetCommentsByMaTK(int id);
         bool Create(rating rating);
         bool Update(rating rating);
         bool Delete(int id);

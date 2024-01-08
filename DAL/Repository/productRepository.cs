@@ -1,6 +1,6 @@
 ﻿using DAL.Helper;
 using DAL.Interfaces;
-using DTO;
+using DTO.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;

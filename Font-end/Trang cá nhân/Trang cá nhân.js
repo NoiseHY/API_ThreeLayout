@@ -1,4 +1,22 @@
-var app = angular.module('myApp', []);
+var app = angular.module('myApp', ['ngRoute','cmt'],);
+
+app.config(function ($routeProvider){
+  $routeProvider
+    .when('/cmt', {
+      templateUrl: '/Trang cá nhân/Bình luận/Bình luận.html',
+      controller: 'cmtController',
+    })
+    .otherwise({
+      redirectTo: '/cmt'
+    });
+})
+
+app.controller('cmtController', function ($scope, $location) {
+  $scope.navigateToCmt = function () {
+    $location.path('/cmt');
+    console.log('ht');
+  };
+});
 
 app.controller('CustomerController', function ($scope, $http) {
   $scope.customer = {};

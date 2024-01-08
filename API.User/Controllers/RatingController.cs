@@ -1,6 +1,6 @@
 ﻿using BLL.Bussiness;
 using BLL.Inerfaces;
-using DTO;
+using DTO.Rating;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,6 +37,21 @@ namespace API.User.Controllers
             try
             {
                 var ratings = _iratingBusiness.GetAllRatingCmt(id);
+                return Ok(ratings);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [Route("GetCommentsByMaTK")]
+        [HttpGet]
+        public IActionResult GetCommentsByMaTK(int id)
+        {
+            try
+            {
+                var ratings = _iratingBusiness.GetCommentsByMaTK(id);
                 return Ok(ratings);
             }
             catch (Exception ex)

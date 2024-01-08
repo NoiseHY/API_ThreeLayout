@@ -48,21 +48,21 @@ myApp.config(function ($routeProvider) {
 
 myApp.controller('QuanLySanPhamController', function ($scope, $location) {
   $scope.navigateToPageSP = function () {
-    console.log('Clicked navigateToPageSP');
+    // console.log('Clicked navigateToPageSP');
     $location.path('/quan-ly-san-pham');
   };
 });
 
 myApp.controller('QuanLyKhachHangController', function ($scope, $location) {
   $scope.navigateToPageKH = function () {
-    console.log('Clicked navigateToPageKH');
+    // console.log('Clicked navigateToPageKH');
     $location.path('/quan-ly-khach-hang');
   };
 });
 
 myApp.controller('QuanLyAdminController', function ($scope, $location) {
   $scope.navigateToAdmin = function () {
-    console.log('Clicked navigateToAdmin');
+    // console.log('Clicked navigateToAdmin');
     $location.path('/quan-ly-admin');
   };
 });

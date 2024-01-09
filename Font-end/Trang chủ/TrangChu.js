@@ -22,20 +22,31 @@ app.controller('GetNewProductsController', function ($scope, $http, $window) {
   $scope.addToCart = function (product) {
     var maTK = $window.localStorage.getItem('userID');
     var cart = {
-      MaKH: maTK,
-      MaSP: product.maSP,
-      Soluong: 1,
-      Dongia: product.dongia
+      maKH: maTK,
+      maSP: product.maSP,
+      dongia: product.dongia
     };
-    
+
     $http.post('https://localhost:7118/api/Cart/Create', cart)
-      .then(function () {
-        alert('Thêm sản phẩm vào giỏ hàng thành công !');
+      .then(function (response) {
+        if (response.status === 200) {
+          if (response.data === 'Sản phẩm đã có trong giỏ hàng!') {
+            alert('Sản phẩm đã có trong giỏ hàng!');
+          } else if (response.data === 'Thêm sản phẩm vào giỏ hàng thành công !') {
+            alert('Thêm sản phẩm vào giỏ hàng thành công !');
+            window.location.reload();
+          }
+        }
       })
       .catch(function (error) {
-        alert('Đã xảy ra lỗi khi thêm vào giỏ hàng!');
-        console.error('Lỗi khi tạo sản phẩm:', error);
+        if (error.status === 400 && error.data === 'Sản phẩm đã có trong giỏ hàng!') {
+          alert('Sản phẩm đã có trong giỏ hàng!');
+        } else {
+          alert('Đã xảy ra lỗi khi thêm vào giỏ hàng!');
+          console.error('Lỗi khi tạo sản phẩm:', error);
+        }
       });
+
   };
 
 
@@ -62,9 +73,12 @@ app.controller('SearchController', function ($scope, $http) {
         console.error('Lỗi khi gọi API:', error);
       });
   };
+
+
 });
 
 app.controller('UserController', function ($scope, $window) {
+
   $scope.showButtons = false;
 
   $scope.toggleButtons = function () {
@@ -74,7 +88,7 @@ app.controller('UserController', function ($scope, $window) {
     if ($scope.isLoggedIn) {
       $scope.showButtons = !$scope.showButtons;
       if ($scope.showButtons) {
-        document.getElementById('buttonDialog').style.display = 'block'; 
+        document.getElementById('buttonDialog').style.display = 'block';
       } else {
         document.getElementById('buttonDialog').style.display = 'none';
       }
@@ -99,8 +113,8 @@ app.controller('UserController', function ($scope, $window) {
 
   $scope.viewCart = function (maSP) {
     var userID = $window.localStorage.getItem('userID');
-    
-    if (userID == null){
+
+    if (userID == null) {
       alert("Hãy đăng nhập !");
       return;
     }
@@ -110,8 +124,26 @@ app.controller('UserController', function ($scope, $window) {
   $scope.viewHome = function (maSP) {
     $window.location.href = '/Trang chủ/TrangChu.html';
   };
+
 });
 
+app.controller('CustomerController', function ($scope, $http, $window) {
+  $scope.productCount = '';
+
+  var getCountCart = function () {
+    var maTK = $window.localStorage.getItem('userID');
+
+    $http.get('https://localhost:7118/api/Cart/Count/' + maTK)
+      .then(function (response) {
+        $scope.productCount = response.data;
+      })
+      .catch(function (error) {
+        console.error('Lỗi', error);
+      });
+  }
+
+  getCountCart();
+});
 
 
 

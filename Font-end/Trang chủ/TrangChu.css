@@ -771,3 +771,26 @@ footer {
   line-height       : 1.5;
   max-height        : 4em;
 }
+
+.cart-item {
+  list-style: none;
+}
+
+.img-cart-content {
+  float: right;
+  margin-top: -15px;
+  padding: 5px 5px; 
+  border-radius: 50%; 
+  background-color: #f44336; 
+  color: white; 
+  font-weight: bold; 
+  font-size: 14px;
+}
+
+.cart-image-container {
+  display: inline-block; 
+}
+.cart-image-container img{
+  width: 23px;
+}
+

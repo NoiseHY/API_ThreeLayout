@@ -430,9 +430,20 @@ BEGIN
     DELETE FROM HoaDonBan
     WHERE MaHDB = @MaHDB;
 END;
+--
+CREATE PROCEDURE CountProductsInCartByCustomerId
+    @CustomerId INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT COUNT(MaGiohang) AS TotalProducts
+    FROM Giohang
+    WHERE MaKH = @CustomerId;
+END;
 
 
-
+exec CountProductsInCartByCustomerId 3
 
 --
 CREATE PROCEDURE AddToCart
@@ -446,6 +457,35 @@ BEGIN
     INSERT INTO Giohang (MaKH, MaSP, Dongia, Thoidiemtao)
     VALUES (@CustomerId, @ProductId, @UnitPrice, GETDATE());
 END;
+--
+CREATE PROCEDURE CheckProductInCart
+    @MaKH INT,
+    @MaSP INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @ProductInCart BIT;
+
+    IF EXISTS (
+        SELECT 1
+        FROM Giohang
+        WHERE MaKH = @MaKH AND MaSP = @MaSP
+    )
+    BEGIN
+        SET @ProductInCart = 1;
+    END
+    ELSE
+    BEGIN
+        SET @ProductInCart = 0;
+    END
+
+    SELECT @ProductInCart AS ProductInCart;
+END;
+
+
+exec CheckProductInCart 3, 65
+
+
 --
 CREATE PROCEDURE UpdateCartItem
     @CartId INT,
@@ -590,3 +630,5 @@ END;
 
 
 exec GetChiTietHDBanWithProductNameByMaHDB 7 
+
+

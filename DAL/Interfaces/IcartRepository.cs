@@ -13,5 +13,7 @@ namespace DAL.Interfaces
         bool Create(cart cart);
         bool Update(cart cart);
         bool Delete(int id);
+        int Count (int id);
+        bool CheckProductInCart (int id, int productId);
     }
 }

@@ -56,10 +56,14 @@
             <img src="Anh/header/bell.png" />
             <!-- <a class="txtTB">Thông báo</a> -->
           </li>
-          <li>
-            <img ng-click="viewCart()" src="Anh/header/shopping-cart.png" id="imgCart" />
+          <li class="cart-item" ng-controller="CustomerController">
+            <span class="img-cart-content">{{ productCount }}</span>
+            <div class="cart-image-container">
+              <img ng-click="viewCart()" src="Anh/header/shopping-cart.png" id="imgCart" />
+            </div>
             <!-- <a class="txtGH">Giỏ hàng</a> -->
           </li>
+          
         </ul>
       </div>
     </nav>
@@ -2132,47 +2136,7 @@
     </div>
 
     <!---->
-    <div class="Meo">
-
-      <div class="Meo-video">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/xyQY8a-ng6g?si=BV8GMEeG_0S1aZOv"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
-      </div>
-      <div class="Meo-txt">
-        <div class="Meo-txt-container">
-          <a class="Meo-txt-a"
-            href="https://www.bachhoaxanh.com/kinh-nghiem-hay/thu-ngay-bun-ca-cuon-la-mieng-tai-ngo-trung-yen-hoan-kiem-ha-noi-1555454">
-            <img src="Anh/Meo/thu-ngay-bun-ca-cuon-la-mieng-tai-ngo-trung-yen-hoan-kiem-ha-noi-202311201535514588.jpg">
-            <p>Thử ngay bún cá cuộn lạ miệng tại ngõ Trung Yên (Hoàn Kiếm, Hà Nội)</p>
-          </a>
-          <a class="Meo-txt-a"
-            href="https://www.bachhoaxanh.com/kinh-nghiem-hay/phoi-ao-khoac-denim-hack-tuoi-nhu-luu-diec-phi-duong-mich-1558044">
-            <img src="Anh/Meo/phoi-ao-khoac-denim-hack-tuoi-nhu-luu-diec-phi-duong-mich-202312211418574999.jpg">
-            <p>Phối áo khoác denim 'hack' tuổi như Lưu Diệc Phi, Dương Mịch</p>
-          </a>
-        </div>
-        <div class="Meo-txt-container">
-          <a class="Meo-txt-a"
-            href="https://www.bachhoaxanh.com/kinh-nghiem-hay/goi-y-cac-cach-bay-tiec-trai-cay-phong-cach-giang-sinh-that-xinh-xan-1558067">
-            <img
-              src="Anh/Meo/goi-y-cac-cach-bay-tiec-trai-cay-phong-cach-giang-sinh-that-xinh-xan-202312211438228402.jpg">
-            <p>Gợi ý các cách bày tiệc trái cây phong cách Giáng sinh thật xinh xắn</p>
-          </a>
-          <a class="Meo-txt-a"
-            href="https://www.bachhoaxanh.com/kinh-nghiem-hay/don-tet-sum-vay-cung-bo-qua-tet-kinh-do-loc-1558042">
-            <img src="Anh/Meo/don-tet-sum-vay-cung-bo-qua-tet-kinh-do-loc-202312211445337896.jpg">
-            <p>Đón Tết Sum Vầy cùng bộ quà Tết Kinh Đô Lộc</p>
-          </a>
-        </div>
-        <div class="More">
-          <p>
-            &#8600; Xem thêm
-          </p>
-        </div>
-      </div>
-    </div>
+    
 
   </main>
 

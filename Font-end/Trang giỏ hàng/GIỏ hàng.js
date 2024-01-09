@@ -113,10 +113,10 @@ app.controller('PaymentController', function ($scope, $window, $http) {
       };
 
       $http.post('https://localhost:7118/api/Bill/Create', mainBill)
-        .then(function (response) {
+        .then(function () {
           alert('Thêm hóa đơn thành công!');
           $window.location.href = '/Trang thanh toán/Trang thanh toán.html';
-          console.log(response.data);
+          
         })
         .catch(function (error) {
           alert('Lỗi khi tạo hóa đơn', error);

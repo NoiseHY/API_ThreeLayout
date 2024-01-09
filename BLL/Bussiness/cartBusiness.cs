@@ -32,5 +32,14 @@ namespace BLL.Bussiness
         {
             return _icartRepository.Delete(id);
         }
+        public int Count(int id)
+        {
+            return _icartRepository.Count(id);
+        }
+
+        public bool CheckProductInCart(int id, int productId)
+        {
+            return _icartRepository.CheckProductInCart(id, productId);
+        }
     }
 }

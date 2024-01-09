@@ -98,5 +98,59 @@ namespace DAL.Repository
             }
         }
 
+        public int Count(int id)
+        {
+            try
+            {
+                var result = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(out string msgError, "CountProductsInCartByCustomerId",
+                    "@CustomerId", id);
+
+                if (result == null && !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(msgError);
+                }
+
+
+                if (int.TryParse(result.ToString(), out int count))
+                {
+                    return count;
+                }
+
+                throw new Exception("Lỗi !");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool CheckProductInCart(int id, int productId)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(
+                    out msgError, "CheckProductInCart",
+                    "@MaKH", id,
+                    "@MaSP", productId);
+
+
+                if (result != null && (bool)result)
+                {
+                    
+                    return true;
+                }
+
+                
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
     }
 }

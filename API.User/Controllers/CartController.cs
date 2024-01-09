@@ -27,17 +27,28 @@ namespace API.User.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] cart cart)
         {
-            bool isSuccess = _icartBusiness.Create(cart);
+            
+            bool isProductInCart = _icartBusiness.CheckProductInCart(cart.MaKH, cart.MaSP);
 
-            if (isSuccess)
+            if (isProductInCart == true)
             {
-                return Ok("Thêm sản phẩm vào giỏ hàng thành công !");
+                return BadRequest("Sản phẩm đã có trong giỏ hàng!");
             }
             else
             {
-                return BadRequest("Đã xảy ra lỗi khi thêm !");
+                bool isSuccess = _icartBusiness.Create(cart);
+
+                if (isSuccess)
+                {
+                    return Ok("Thêm sản phẩm vào giỏ hàng thành công !");
+                }
+                else
+                {
+                    return BadRequest("Đã xảy ra lỗi khi thêm !");
+                }
             }
         }
+
 
         [Route("Update")]
         [HttpPut]
@@ -70,5 +81,23 @@ namespace API.User.Controllers
                 return BadRequest("Đã xảy ra lỗi khi xóa !");
             }
         }
+
+        [Route("Count/{id}")]
+        [HttpGet]
+        public IActionResult Count(int id)
+        {
+            try
+            {
+                int productCount = _icartBusiness.Count(id);
+                //return Ok($"Số lượng sản phẩm trong giỏ hàng của khách hàng có ID {id} là: {productCount}");
+                return Ok(productCount);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Đã xảy ra lỗi: {ex.Message}");
+            }
+        }
+
+        
     }
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="bill">
+
+<head>
+  <title>Bách Hóa Xanh</title>
+  <link rel="stylesheet" href="/Trang cá nhân/Hóa đơn/Hóa đơn.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,200;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" type="image/x-icon" href="/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
+
+  <script src="/Angular JS/angular-1.8.2/angular.js"></script>
+  <script src="/Trang cá nhân/Hóa đơn/Hóa đơn.js"></script>
+</head>
+
+<body>
+  <div class="bill" ng-controller="billController">
+    <h2>Hóa đơn của bạn</h2>
+    <div class="bill-container" ng-repeat="bill in bill">
+      <div class="bill-text">
+        <span style="color: #de283b;" class="billTT">Tổng tiền : {{ bill.tongtien }} đ</span>
+        <p>Thời gian : {{bill.ngayban | date:'dd/MM/yyyy '}}</p>
+      </div>
+      <div class="comment-bt">
+        <button ng-click="showCTHD(bill.maHDB)">Chi tiết</button>
+        <button ng-click="confirmDelete(bill.maHDB)">Xóa</button>
+
+      </div>
+    </div>
+    <h2>Chi tiết hóa đơn</h2>
+    <div ng-repeat="billInfo in billInfo">
+
+      <span style="color: #de283b;" class="billTT">Tên sản phẩm : {{ billInfo.productName }} đ</span>
+      <p>Số lượng : {{billInfo.soluong}}</p>
+      <p>Giá : {{billInfo.gia}} đ</p>
+      <p>Thành tiền: <strong>{{ billInfo.thanhtien }} đ</strong></p>
+
+    </div>
+  </div>
+</body>
+
+</html>

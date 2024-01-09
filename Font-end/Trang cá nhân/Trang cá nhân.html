@@ -18,6 +18,7 @@
 
   <script src="Trang cá nhân.js"></script>
   <script src="/Trang cá nhân/Bình luận/Bình luận.js"></script>
+  <script src="/Trang cá nhân/Hóa đơn/Hóa đơn.js"></script>
 </head>
 
 <body>
@@ -118,7 +119,7 @@
           <img src="Anh/comment.png">
         </div>
 
-        <div class="user-us-cmt">
+        <div class="user-us-cmt" ng-click="navigateToBill()" ng-controller="BillController">
           
           <a>Hàng hóa đã mua </a>
           <img src="Anh/notes.png">

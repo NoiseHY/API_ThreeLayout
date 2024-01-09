@@ -49,18 +49,40 @@ namespace API.User.Controllers
             }
         }
 
-        [Route("GetAllCategory/{id}")]
+        [Route("GetAllBill/{id}")]
         [HttpGet]
-        public List<bill> GetCustomerByID(int id)
+        public List<bill> GetAllCategory(int id)
         {
-            return _ibillBusiness.GetAllCategory(id);
+            return _ibillBusiness.GetAllBill(id);
         }
 
-        [Route("GetAllCategoryInfo/{id}")]
+        [Route("GetAllBillInfo/{id}")]
         [HttpGet]
-        public List<bill> GetAllCategoryInfo(int id)
+        public List<bill> GetAllBillInfo(int id)
         {
-            return _ibillBusiness.GetAllCategoryInfo(id);
+            return _ibillBusiness.GetAllBiillInfo(id);
+        }
+
+        [Route("GetAllBillByCustomerID/{id}")]
+        [HttpGet]
+        public List<bill> GetAllBillByCustomerID(int id)
+        {
+            return _ibillBusiness.GetAllBillByCustomerID(id);
+        }
+
+        [Route("Delete/{id}")]
+        [HttpDelete]
+        public IActionResult  Delete(int id)
+        {
+            bool isSuccess = _ibillBusiness.Delete(id);
+            if (isSuccess)
+            {
+                return Ok("Xóa thành công !");
+            }
+            else
+            {
+                return BadRequest("Đã xảy ra lỗi khi xóa !");
+            }
         }
     }
 }

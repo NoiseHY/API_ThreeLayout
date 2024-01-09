@@ -405,6 +405,36 @@ END;
 
 exec GetCartWithProductImgAndNameByCustomerId 3
 --
+CREATE PROCEDURE GetHoaDonBanByMaKH
+    @MaKH INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT *
+    FROM HoaDonBan
+    WHERE MaKH = @MaKH;
+END;
+
+exec GetHoaDonBanByMaKH 3
+--
+CREATE PROCEDURE DeleteHoaDonBan
+    @MaHDB INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM ChiTietHDBan
+    WHERE MaHDB = @MaHDB;
+
+    DELETE FROM HoaDonBan
+    WHERE MaHDB = @MaHDB;
+END;
+
+
+
+
+--
 CREATE PROCEDURE AddToCart
     @CustomerId INT,
     @ProductId INT,

@@ -1,10 +1,14 @@
-var app = angular.module('myApp', ['ngRoute','cmt'],);
+var app = angular.module('myApp', ['ngRoute','cmt', 'bill'],);
 
 app.config(function ($routeProvider){
   $routeProvider
     .when('/cmt', {
       templateUrl: '/Trang cá nhân/Bình luận/Bình luận.html',
       controller: 'cmtController',
+    })
+    .when('/bill', {
+      templateUrl: '/Trang cá nhân/Hóa đơn/Hóa đơn.html',
+      controller: 'BillController',
     })
     .otherwise({
       redirectTo: '/cmt'
@@ -14,6 +18,13 @@ app.config(function ($routeProvider){
 app.controller('cmtController', function ($scope, $location) {
   $scope.navigateToCmt = function () {
     $location.path('/cmt');
+    console.log('ht');
+  };
+});
+
+app.controller('BillController', function ($scope, $location) {
+  $scope.navigateToBill = function () {
+    $location.path('/bill');
     console.log('ht');
   };
 });

@@ -69,7 +69,7 @@ namespace DAL.Repository
             }
         }
 
-        public List<bill> GetAllCategory(int id)
+        public List<bill> GetAllBill(int id)
         {
             string msgError = "";
             try
@@ -86,7 +86,8 @@ namespace DAL.Repository
                 throw ex;
             }
         }
-        public List<bill> GetAllCategoryInfo(int id)
+
+        public List<bill> GetAllBillInfo(int id)
         {
             string msgError = "";
             try
@@ -97,6 +98,45 @@ namespace DAL.Repository
                     throw new Exception(msgError);
                 return dt.ConvertTo<bill>().ToList();
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<bill> GetAllBillByCustomerID(int id)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "GetHoaDonBanByMaKH",
+                     "@MaKH", id);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<bill>().ToList();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Delete(int id)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _excuteProcedure.ExecuteScalarSProcedureWithTransaction(out msgError, "DeleteHoaDonBan",
+                    "@MaHDB", id);
+
+                if (result != null || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+
+                return true;
             }
             catch (Exception ex)
             {

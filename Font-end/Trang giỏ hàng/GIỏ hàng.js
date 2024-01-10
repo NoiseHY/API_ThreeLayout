@@ -128,5 +128,10 @@ app.controller('PaymentController', function ($scope, $window, $http) {
 });
 
 
-
+app.controller('home', function ($window, $scope) {
+  $scope.viewHome = function () {
+      $window.location.href = '/Trang chủ/TrangChu.html';
+      console.log('ht');
+  };
+})
 

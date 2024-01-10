@@ -16,18 +16,18 @@
   <script src="Đăng ký.js"></script>
 </head>
 
-<body>
+<body ng-controller="myCtrl">
   <header>
     <nav>
       <div class="menuHead">
         <div class="logo">
-          <a>Bách hóa xanh</a>
+          <a ng-click="viewHome()">Bách hóa xanh</a>
         </div>
       </div>
     </nav>
   </header>
   <main>
-    <div class="dangnhap" ng-controller="myCtrl">
+    <div class="dangnhap" >
       <div class="dangnhap-container">
         <div class="dangnhapFrm">
           <h1>Đăng ký</h1>

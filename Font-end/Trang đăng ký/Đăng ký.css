@@ -28,6 +28,7 @@ header {
   color          : #03a63c;
   text-decoration: none;
   margin-right   : auto;
+  cursor: pointer;
 }
 
 main {

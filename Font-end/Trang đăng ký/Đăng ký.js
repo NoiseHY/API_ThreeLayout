@@ -34,4 +34,10 @@ app.controller('myCtrl', function($scope, $http, $window) {
         console.error('Lỗi khi tạo tài khoản ', error);
       });
   };
+
+  $scope.viewHome = function () {
+    $window.location.href = '/Trang chủ/TrangChu.html';
+    console.log('ht');
+  };
+  
 });

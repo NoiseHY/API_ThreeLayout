@@ -121,7 +121,7 @@ app.controller('UserController', function ($scope, $window) {
     $window.location.href = '/Trang giỏ hàng/Giỏ hàng.html';
   };
 
-  $scope.viewHome = function (maSP) {
+  $scope.viewHome = function () {
     $window.location.href = '/Trang chủ/TrangChu.html';
   };
 

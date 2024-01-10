@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+  <title>Đăng ký</title>
+  <link rel="stylesheet" href="Đăng ký.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/x-icon"
+    href="/Lập trình Web Bách Hóa Xanh/HTML/Trang chủ/Anh/Icon/Icon-Bach-Hoa-Xanh.png">
+
+  <script src="/Angular JS/angular-1.8.2/angular.js"></script>  
+  <script src="Đăng ký.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="menuHead">
+        <div class="logo">
+          <a>Bách hóa xanh</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="dangnhap" ng-controller="myCtrl">
+      <div class="dangnhap-container">
+        <div class="dangnhapFrm">
+          <h1>Đăng ký</h1>
+          <form id="registerForm">
+            <div class="form-group">
+              <input type="text" ng-model="accountName"  required >
+              <label for="fullname">Tên tài khoản</label>
+            </div>
+            <div class="form-group">
+              <input type="text" ng-model="accountEmail"  required>
+              <label for="email">Email</label>
+            </div>
+            <div class="form-group">
+              <input type="password" ng-model="accountPassword" required>
+              <label for="password">Mật khẩu</label>
+              <img src="/Trang đăng nhập/Anh/hide.png" class="form-group-icon">
+            </div>
+            <div class="form-group">
+              <input type="password" ng-model="accountConfirmPW"  required>
+              <label for="confirm-password">Nhập lại mật khẩu</label>
+              <img src="/Trang đăng nhập/Anh/hide.png" class="form-group-icon"
+                id="myImage">
+              <span id="confirm-message"></span>
+            </div>
+            <button ng-click="registerForm()" type="submit">ĐĂNG KÝ</button>
+          </form>
+          <div id="successMessage" style="display: none;">Đăng ký thành công!</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</body>
+
+
+</html>

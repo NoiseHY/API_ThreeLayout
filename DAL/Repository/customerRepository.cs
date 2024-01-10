@@ -34,12 +34,14 @@ namespace DAL.Repository
             }
         }
 
-        public List<customer> GetAll()
+        public List<customer> GetAll(int pageNumber, int pageSize)
         {
             string msgError = "";
             try
             {
-                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "LayTatCaKhachHang");
+                var dt = _excuteProcedure.ExecuteSProcedureReturnDataTable(out msgError, "GetCustomersPaged",
+                    "@PageNumber", pageNumber,
+                    "@PageSize", pageSize);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 return dt.ConvertTo<customer>().ToList();

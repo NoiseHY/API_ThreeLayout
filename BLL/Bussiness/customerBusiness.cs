@@ -24,9 +24,9 @@ namespace BLL.Bussiness
         {
             return icustomerRepository.GetCustomerByID(id);
         }
-        public List<customer> GetAll()
+        public List<customer> GetAll(int pageNumber, int pageSize)
         {
-            return icustomerRepository.GetAll();
+            return icustomerRepository.GetAll(pageNumber, pageSize);
         }
         public bool Create(customer customer)
         {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API_BHX.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class customerController : ControllerBase
@@ -28,9 +28,9 @@ namespace API_BHX.Controllers
 
         [Route("GetAll")]
         [HttpGet]
-        public List<customer> GetAll()
+        public List<customer> GetAll(int pageNumber, int pageSize)
         {
-            return _customerBusiness.GetAll();
+            return _customerBusiness.GetAll(pageNumber, pageSize);
         }
 
         

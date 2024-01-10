@@ -1,4 +1,4 @@
-var myApp  = angular.module('myApp', ['ngRoute', 'Home', 'product'], );
+var myApp  = angular.module('myApp', ['ngRoute', 'Home', 'product', 'customer'], );
 
 myApp.factory('AuthInterceptor', function ($q, $window) {
   return {

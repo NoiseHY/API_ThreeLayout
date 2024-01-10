@@ -35,11 +35,25 @@ BEGIN
     WHERE MaKH = @MaKH
 END;
 -- Get all 
-CREATE PROCEDURE LayTatCaKhachHang
+CREATE PROCEDURE GetCustomersPaged
+    @PageNumber INT,
+    @PageSize INT
 AS
 BEGIN
-    SELECT * FROM KhachHang
+    SET NOCOUNT ON;
+
+    SELECT *
+    FROM (
+        SELECT *,
+            ROW_NUMBER() OVER (ORDER BY MaKH) AS RowNum
+        FROM KhachHang
+    ) AS PaginatedCustomers
+    WHERE RowNum BETWEEN ((@PageNumber - 1) * @PageSize + 1) AND (@PageNumber * @PageSize);
 END;
+
+
+
+
 -- Get by ID 
 CREATE PROCEDURE LayKhachHangTheoMa
     @MaKH INT

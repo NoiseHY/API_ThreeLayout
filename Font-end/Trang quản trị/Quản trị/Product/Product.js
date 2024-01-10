@@ -81,7 +81,6 @@ productModule.controller('btproductController', function ($scope, $http) {
     }
 
     var productData = {
-      maSP: $scope.productId,
       tenSP: $scope.productName,
       mota: $scope.productDescription,
       soLuong: $scope.productQuantity,
@@ -90,9 +89,8 @@ productModule.controller('btproductController', function ($scope, $http) {
     };
 
     $http.post('https://localhost:7117/api/product/Create', productData)
-      .then(function (response) {
+      .then(function () {
         alert('Thêm sản phẩm thành công!');
-        // console.log(response.data); 
         window.location.reload();
       })
       .catch(function (error) {
@@ -124,9 +122,9 @@ productModule.controller('btproductController', function ($scope, $http) {
     };
 
     $http.put('https://localhost:7117/api/product/Update', productData)
-      .then(function (response) {
+      .then(function () {
         alert('Sửa sản phẩm thành công!');
-        // console.log(response.data);
+
         window.location.reload();
       })
       .catch(function (error) {
@@ -197,7 +195,7 @@ productModule.controller('productController', function ($scope, $http) {
 
   $scope.pageNumber = 1;
   $scope.pageSize = 10;
-  $scope.noData = false; // Biến flag để kiểm tra dữ liệu trả về
+  $scope.noData = false; 
 
   $scope.buttonNext = function () {
     $scope.pageNumber++;
@@ -205,8 +203,8 @@ productModule.controller('productController', function ($scope, $http) {
     $http.get('https://localhost:7117/api/product/GetAll?pageNumber=' + $scope.pageNumber + '&pageSize=' + $scope.pageSize)
       .then(function (response) {
         if (response.data.length === 0) {
-          $scope.noData = true; // Đặt biến flag khi dữ liệu rỗng
-          $scope.pageNumber--; // Trả về trang trước đó vì không có dữ liệu
+          $scope.noData = true; 
+          $scope.pageNumber--; 
         } else {
           $scope.productList = response.data.map(function (product) {
             return {
@@ -232,7 +230,7 @@ productModule.controller('productController', function ($scope, $http) {
 
       $http.get('https://localhost:7117/api/product/GetAll?pageNumber=' + $scope.pageNumber + '&pageSize=' + $scope.pageSize)
         .then(function (response) {
-          $scope.noData = false; // Đặt lại biến flag khi chuyển trang về trước đó
+          $scope.noData = false; 
           $scope.productList = response.data.map(function (product) {
             return {
               maSP: product.maSP,

@@ -1,10 +1,10 @@
 var app = angular.module('myApp', []);
 
 app.controller('CartController', function ($scope, $http, $window) {
-  var maTK = $window.localStorage.getItem('userID');
+  var maKH = $window.localStorage.getItem('userID');
 
   var getProductByID = function () {
-    $http.get('https://localhost:7118/api/Cart/GetAll/' + maTK)
+    $http.get('https://localhost:7118/api/Cart/GetAll/' + maKH)
       .then(function (response) {
         $scope.cartItems = response.data;
       })
@@ -76,7 +76,7 @@ app.controller('PaymentController', function ($scope, $window, $http) {
       return;
     }
 
-    var maTK = $window.localStorage.getItem('userID');
+    var maKH = $window.localStorage.getItem('userID');
     var date = new Date();
     var Ngayban = date.toISOString().slice(0, 10);
 
@@ -108,7 +108,7 @@ app.controller('PaymentController', function ($scope, $window, $http) {
     function createMainBill() {
       var mainBill = {
         Tongtien: $scope.calculateTotalAmount() + 50000,
-        MaKH: maTK,
+        MaKH: maKH,
         Ngayban: Ngayban
       };
 

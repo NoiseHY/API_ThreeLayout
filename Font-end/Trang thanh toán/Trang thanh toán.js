@@ -35,7 +35,7 @@ app.controller('BillController', function ($http, $window, $scope) {
   $scope.getCustomer();
 
   var getBillByID = function () {
-    $http.get('https://localhost:7118/api/Bill/GetAllCategory/' + maTK)
+    $http.get('https://localhost:7118/api/Bill/GetAllBill/' + maTK)
       .then(function (response) {
         $scope.BillInfoItems = response.data;
         var maHDB = $scope.BillInfoItems[0].maHDB;
@@ -47,7 +47,7 @@ app.controller('BillController', function ($http, $window, $scope) {
   };
 
   $scope.getBillInfoByID = function (maHDB) {
-    $http.get('https://localhost:7118/api/Bill/GetAllCategoryInfo/' + maHDB)
+    $http.get('https://localhost:7118/api/Bill/GetAllBillInfo/' + maHDB)
       .then(function (response) {
         $scope.BillItems = response.data;
         

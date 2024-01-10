@@ -10,7 +10,7 @@ namespace BLL.Inerfaces
     public interface IcustomerBusiness 
     {
         customer GetCustomerByID(int id);
-        List<customer> GetAll();
+        List<customer> GetAll(int pageNumber, int pageSize);
         bool Create(customer customer);
         bool Update(customer customer);
         bool Delete(int id);

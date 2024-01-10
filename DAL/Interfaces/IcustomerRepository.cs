@@ -11,7 +11,7 @@ namespace DAL.Interfaces
     public partial interface IcustomerRepository
     {
         customer GetCustomerByID(int id);
-        List<customer> GetAll();
+        List<customer> GetAll(int pageNumber, int pageSize);
         bool UpdateImageFilePath(int customerId, string imagePath);
         bool Create(customer customer);
         bool Update(customer customer);

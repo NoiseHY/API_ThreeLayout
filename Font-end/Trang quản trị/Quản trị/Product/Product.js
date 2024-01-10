@@ -24,8 +24,31 @@ productModule.config(function ($httpProvider) {
   $httpProvider.interceptors.push('AuthInterceptor');
 });
 
-productModule.controller('btproductController', function ($scope, $http) {
-  $http.get('https://localhost:7117/api/category/GetAll')
+
+productModule.controller('productController', function ($scope, $http) {
+  $scope.productList = [];
+  $scope.product = {};
+
+  $http.get('https://localhost:7117/api/product/GetAll')
+    .then(function (response) {
+      $scope.productList = response.data.map(function (product) {
+        return {
+          maSP: product.maSP,
+          tenSP: product.tenSP,
+          mota: product.mota,
+          soLuong: product.soLuong,
+          dongia: product.dongia,
+          maTL: product.maTL,
+
+          img: 'data:image/jpeg;base64,' + product.img
+        };
+      });
+    })
+    .catch(function (error) {
+      console.error('Lỗi khi lấy danh sách sản phẩm !', error);
+    });
+  
+    $http.get('https://localhost:7117/api/category/GetAll')
     .then(function (response) {
       $scope.categories = response.data;
     })
@@ -134,30 +157,6 @@ productModule.controller('btproductController', function ($scope, $http) {
   };
 
 
-});
-
-productModule.controller('productController', function ($scope, $http) {
-  $scope.productList = [];
-  $scope.product = {};
-
-  $http.get('https://localhost:7117/api/product/GetAll')
-    .then(function (response) {
-      $scope.productList = response.data.map(function (product) {
-        return {
-          maSP: product.maSP,
-          tenSP: product.tenSP,
-          mota: product.mota,
-          soLuong: product.soLuong,
-          dongia: product.dongia,
-          maTL: product.maTL,
-
-          img: 'data:image/jpeg;base64,' + product.img
-        };
-      });
-    })
-    .catch(function (error) {
-      console.error('Lỗi khi lấy danh sách sản phẩm !', error);
-    });
 
   // ----------------- Delete ---------------------------
   $scope.confirmDelete = function (productId) {

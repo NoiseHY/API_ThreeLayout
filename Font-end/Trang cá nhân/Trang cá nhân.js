@@ -121,9 +121,9 @@ app.controller('updateCustomer', function ($scope, $http, $window) {
     // debugger;
 
     $http.put('https://localhost:7118/api/InfoCustomer/Update', updatedInfo)
-      .then(function (response) {
-        console.log('Đã cập nhật thông tin khách hàng:', response.data);
+      .then(function () {
         alert("Cập nhật thành công !");
+        window.location.reload();
       })
       .catch(function (error) {
         console.error('Lỗi khi cập nhật thông tin khách hàng:', error);

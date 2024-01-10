@@ -40,6 +40,7 @@ app.controller('myCtrl', function($scope, $http, $window) {
 
         $window.location.href = '/Trang quản trị/Trang quản trị.html';
       } else {
+        
         var userID = response.data.maKH;
 
         $window.location.href = '/Trang chủ/TrangChu.html';

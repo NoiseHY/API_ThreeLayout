@@ -45,9 +45,7 @@ namespace DAL.Repository
                     "@TenTK", account.TenTK,
                     "@MkTK", account.MkTK,
                     "@Email", account.Email,
-                    "@MaPQ", account.MaPQ,
-                    "@MaKH", account.MaPQ,
-                    "@MaNV", account.MaPQ);
+                    "@MaPQ", account.MaPQ);
 
                 if (result != null || !string.IsNullOrEmpty(msgError))
                 {
@@ -73,9 +71,7 @@ namespace DAL.Repository
                  "@TenTK", account.TenTK,
                  "@MkTK", account.MkTK,
                  "@Email", account.Email,
-                 "@MaPQ", account.MaPQ,
-                 "@MaKH", account.MaPQ,
-                 "@MaNV", account.MaPQ);
+                 "@MaPQ", account.MaPQ);
 
                 if (result != null || !string.IsNullOrEmpty(msgError))
                 {

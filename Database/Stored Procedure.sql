@@ -666,16 +666,34 @@ CREATE PROCEDURE AddAccount
     @TenTK NVARCHAR(50),
     @MkTK NVARCHAR(50),
     @Email NVARCHAR(50),
-    @MaPQ INT,
-    @MaKH INT,
-    @MaNV INT
+    @MaPQ INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO TaiKhoan (TenTK, MkTK, Email, MaPQ, MaKH, MaNV)
-    VALUES (@TenTK, @MkTK, @Email, @MaPQ, @MaKH, @MaNV);
+    DECLARE @NewMaKH INT;
+
+    INSERT INTO TaiKhoan (TenTK, MkTK, Email, MaPQ)
+    VALUES (@TenTK, @MkTK, @Email, @MaPQ);
+
+    -- Kiểm tra nếu MaPQ = 3, tự động tạo bảng KhachHang và thêm mã khách hàng
+    IF (@MaPQ = 3)
+    BEGIN
+        -- Thêm khách hàng mới
+        INSERT INTO KhachHang (TenKH)
+        VALUES (@TenTK);
+
+        -- Lấy mã khách hàng vừa thêm
+        SET @NewMaKH = SCOPE_IDENTITY();
+
+        -- Cập nhật mã khách hàng trong bảng TaiKhoan
+        UPDATE TaiKhoan
+        SET MaKH = @NewMaKH
+        WHERE MaTK = (SELECT MAX(MaTK) FROM TaiKhoan); -- Lấy mã tài khoản vừa thêm
+    END;
 END;
+
+
 
 
 --
@@ -684,15 +702,13 @@ CREATE PROCEDURE UpdateAccount
     @TenTK NVARCHAR(50),
     @MkTK NVARCHAR(50),
     @Email NVARCHAR(50),
-    @MaPQ INT,
-    @MaKH INT,
-    @MaNV INT
+    @MaPQ INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
     UPDATE TaiKhoan
-    SET TenTK = @TenTK, MkTK = @MkTK, Email = @Email, MaPQ = @MaPQ, MaKH = @MaKH, MaNV = @MaNV
+    SET TenTK = @TenTK, MkTK = @MkTK, Email = @Email, MaPQ = @MaPQ
     WHERE MaTK = @MaTK;
 END;
 

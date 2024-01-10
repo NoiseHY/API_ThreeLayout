@@ -42,11 +42,11 @@ namespace API_BHX.Controllers
 
             if (isSuccess)
             {
-                return Ok("Tạo khách hàng thành công !"); 
+                return Ok("Tạo khách hàng  thành công !"); 
             }
             else
             {
-                return BadRequest("Đã xảy ra lỗi khi tạo khách hàng."); 
+                return BadRequest("Đã xảy ra lỗi khi tạo khách hàng ."); 
             }
         }
 
@@ -59,7 +59,7 @@ namespace API_BHX.Controllers
 
             if (isSuccess)
             {
-                return Ok("Sửa khách hàng mã  " + customer.MaKH + " thành công !");
+                return Ok("Sửa khách hàng  mã  " + customer.MaKH + " thành công !");
             }
             else
             {
@@ -75,7 +75,7 @@ namespace API_BHX.Controllers
             bool isSuccess = _customerBusiness.Delete(id);
             if (isSuccess)
             {
-                return Ok("Xóa thành công khách hàng !");
+                return Ok("Xóa thành công khách hàng  !");
             }
             else
             {

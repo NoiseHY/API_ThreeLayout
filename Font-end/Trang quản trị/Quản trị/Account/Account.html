@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="account">
+
+<head>
+  <title>Người dùng</title>
+
+  <link rel="stylesheet" href="/Trang quản trị/Quản trị/Account/Account.css">
+
+  <script src="/Angular JS/angular-1.8.2/angular.js"></script>
+  <script src="/Trang quản trị/Quản trị/Account/Account.js"></script>
+</head>
+
+<body >
+  <div class="customer-container" ng-controller="getAllaccount">
+    <div>
+      <div class="form-group">
+        <input type="text" ng-model="accountId" required>
+        <label>Mã tài khoản</label>
+      </div>
+      <div class="form-group">
+        <input type="text" ng-model="accountName" required>
+        <label>Tên tài khoản</label>
+      </div>
+      <div class="form-group">
+        <input type="text" ng-model="accountPassword" required>
+        <label>Mật khẩu tài khoản</label>
+      </div>
+      <div class="form-group">
+        <input type="text" ng-model="accountEmail" required>
+        <label>Email</label>
+      </div>
+
+      <div class="selectTL">
+        <select ng-model="selectedAuthorize" ng-options="authorizen.tenPQ for authorizen in authorizen">
+          <option value="">Chọn phân quyền</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="button-TSXR">
+      <div class="button-TSXR-post" ng-click="createaccount()">Thêm </div>
+      <div class="button-TSXR-put" ng-click="updateaccount()">Sửa </div>
+    </div>
+
+
+    <div >
+      <table class="table-product">
+        <thead>
+          <tr>
+            <th>Tên tài khoản</th>
+            <th>Mật khẩu tài khoản</th>
+            <th>Email</th>
+            <th>Lựa chọn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="account in account">
+            <td>{{account.tenTK}}</td>
+            <td>{{account.mkTK}}</td>
+            <td>{{account.email}}</td>
+            <td>
+              <button ng-click="selectItem(account)">Chọn</button>
+              <button ng-click="confirmDelete(account.maTK)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="button-listproduct">
+        <button class="button-prev" ng-click="buttonPrev()"> &#60; </button>
+        <button class="button-next" ng-click="buttonNext()"> &#62; </button>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+</body>
+
+
+</html>

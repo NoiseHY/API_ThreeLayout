@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO
+
+namespace DTO.Admin
 {
-    internal class user_authorization
+    public class user_authorization
     {
-        public int MaPq { get; set; }
-        public string TenPq { get; set; } = null!;
+        public int MaPQ { get; set; }
+        public string TenPQ { get; set; } = null!;
         public string? Mota { get; set; }
     }
 }

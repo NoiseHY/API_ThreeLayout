@@ -181,14 +181,13 @@ CREATE PROCEDURE AddProduct
     @Mota NVARCHAR(1000),
     @SoLuong INT,
     @Dongia DECIMAL(18,2),
-    @MaTL INT,
-    @Img NVARCHAR(1000)
+    @MaTL INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO SanPham (TenSP, Mota, SoLuong, Dongia, MaTL, Img)
-    VALUES (@TenSP, @Mota, @SoLuong, @Dongia, @MaTL, @Img);
+    INSERT INTO SanPham (TenSP, Mota, SoLuong, Dongia, MaTL)
+    VALUES (@TenSP, @Mota, @SoLuong, @Dongia, @MaTL);
 END;
 
 
@@ -197,8 +196,7 @@ EXEC AddProduct
     @Mota = N'Mô tả sản phẩm',
     @SoLuong = 10,
     @Dongia = 100.50,
-    @MaTL = 1,
-    @Img = N'Đường dẫn ảnh'
+    @MaTL = 1
 
 
 --
@@ -645,4 +643,78 @@ END;
 
 exec GetChiTietHDBanWithProductNameByMaHDB 7 
 
+--
+CREATE PROCEDURE GetAccountsPaged
+    @PageNumber INT,
+    @PageSize INT
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    SELECT *
+    FROM (
+        SELECT *,
+            ROW_NUMBER() OVER (ORDER BY MaTK) AS RowNum
+        FROM TaiKhoan
+    ) AS PaginatedAccounts
+    WHERE RowNum BETWEEN ((@PageNumber - 1) * @PageSize + 1) AND (@PageNumber * @PageSize);
+END;
+
+
+--
+CREATE PROCEDURE AddAccount
+    @TenTK NVARCHAR(50),
+    @MkTK NVARCHAR(50),
+    @Email NVARCHAR(50),
+    @MaPQ INT,
+    @MaKH INT,
+    @MaNV INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO TaiKhoan (TenTK, MkTK, Email, MaPQ, MaKH, MaNV)
+    VALUES (@TenTK, @MkTK, @Email, @MaPQ, @MaKH, @MaNV);
+END;
+
+
+--
+CREATE PROCEDURE UpdateAccount
+    @MaTK INT,
+    @TenTK NVARCHAR(50),
+    @MkTK NVARCHAR(50),
+    @Email NVARCHAR(50),
+    @MaPQ INT,
+    @MaKH INT,
+    @MaNV INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE TaiKhoan
+    SET TenTK = @TenTK, MkTK = @MkTK, Email = @Email, MaPQ = @MaPQ, MaKH = @MaKH, MaNV = @MaNV
+    WHERE MaTK = @MaTK;
+END;
+
+--
+CREATE PROCEDURE DeleteAccount
+    @MaTK INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM TaiKhoan
+    WHERE MaTK = @MaTK;
+END;
+
+--
+CREATE PROCEDURE GetAllPermissionNames
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT *
+    FROM PhanQuyen;
+END;
+
+exec GetAllPermissionNames

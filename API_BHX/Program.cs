@@ -56,6 +56,11 @@ builder.Services.AddTransient<IproductRepository, productRepository>();
 builder.Services.AddTransient<IproductBusiness, productBusiness>();
 builder.Services.AddTransient<IcategoryRepository, categoryRepository>();
 builder.Services.AddTransient<IcategoryBusiness, categoryBusiness>();
+builder.Services.AddTransient<IaccountBusiness, accountBusiness>();
+builder.Services.AddTransient<IaccountRepository, accountRepository>();
+builder.Services.AddTransient<Iuser_authorizationBusiness, user_authorizationBusiness>();
+builder.Services.AddTransient<Iuser_authorizationRepository, user_authorizationRepository>();
+
 builder.Services.AddAuthorization();
 
 // Add services to the container.

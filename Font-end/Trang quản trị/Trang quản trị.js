@@ -1,4 +1,4 @@
-var myApp  = angular.module('myApp', ['ngRoute', 'Home', 'product', 'customer'], );
+var myApp  = angular.module('myApp', ['ngRoute', 'Home', 'product', 'customer', 'account'], );
 
 myApp.factory('AuthInterceptor', function ($q, $window) {
   return {
@@ -35,6 +35,10 @@ myApp.config(function ($routeProvider) {
       templateUrl: '/Trang quản trị/Quản trị/Product/Product.html',
       controller: 'QuanLySanPhamController',
     })
+    .when('/quan-ly-tai-khoan', {
+      templateUrl: '/Trang quản trị/Quản trị/Account/Account.html',
+      controller: 'QuanLyTaiKhoanController',
+    })
     .when('/admin', {
       templateUrl: 'Quản trị/Home/Home.html',
       controller: 'QuanLyAdminController',
@@ -57,6 +61,13 @@ myApp.controller('QuanLyKhachHangController', function ($scope, $location) {
   $scope.navigateToPageKH = function () {
     // console.log('Clicked navigateToPageKH');
     $location.path('/quan-ly-khach-hang');
+  };
+});
+
+myApp.controller('QuanLyTaiKhoanController', function ($scope, $location) {
+  $scope.navigateToPageTK = function () {
+    
+    $location.path('/quan-ly-tai-khoan');
   };
 });
 

@@ -27,7 +27,6 @@
           <input type="search" ng-model="productName" name="Tìm kiếm" placeholder="Tìm kiếm của bạn ..." />
           <img class="icon-search" src="Anh/header/search-interface-symbol.png" ng-click="searchProduct()" />
 
-
         </div>
         <ul ng-controller="UserController">
           <li>
@@ -63,17 +62,20 @@
             </div>
             <!-- <a class="txtGH">Giỏ hàng</a> -->
           </li>
-          
+
         </ul>
       </div>
     </nav>
   </header>
   <main>
-    <div ng-repeat="product in products" class="productSearch">
-      <img ng-src="data:image/jpeg;base64,{{ product.img }}" />
-      <h3>{{ product.tenSP }}</h3>
-      <p>{{ product.mota }}</p>
-      <div class="div-line"></div>
+    <div class="productSearch-container" ng-if="products.length > 0">
+      <div ng-repeat="product in products" class="productSearch">
+        <img ng-src="data:image/jpeg;base64,{{ product.img }}" />
+        <h3>{{ product.tenSP }}</h3>
+        <p>{{ product.mota }}</p>
+        <a>Đơn giá : <strong class="red-text">{{ product.dongia }} </strong> đ</a>
+        <div class="div-line"></div>
+      </div>
     </div>
     <div class="slideshow-container">
       <div class="slide fade">
@@ -600,8 +602,7 @@
         <ul>
           <li ng-repeat="product in products">
             <div class="product">
-              <img ng-src="data:image/jpeg;base64,{{ product.img }}"
-                ng-click="viewProductDetail(product.maSP)" />
+              <img ng-src="data:image/jpeg;base64,{{ product.img }}" ng-click="viewProductDetail(product.maSP)" />
               <p>{{ product.tenSP }}</p>
               <p>Số lượng: {{ product.soLuong }}</p>
               <p id="dongia">Đơn giá: {{ product.dongia }}</p>
@@ -2136,7 +2137,7 @@
     </div>
 
     <!---->
-    
+
 
   </main>
 

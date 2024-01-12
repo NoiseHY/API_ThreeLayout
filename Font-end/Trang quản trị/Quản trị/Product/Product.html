@@ -73,7 +73,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="product in productList">
-            <td><img ng-src="{{product.img}}" /></td>
+            <td><img ng-src="data:image/jpeg;base64,{{ product.img }}" /></td>
             <td>{{product.tenSP}}</td>
             <td>{{product.mota}}</td>
             <td>{{product.soLuong}}</td>

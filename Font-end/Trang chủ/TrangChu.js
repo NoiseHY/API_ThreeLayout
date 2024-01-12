@@ -74,7 +74,25 @@ app.controller('SearchController', function ($scope, $http) {
       });
   };
 
+  $scope.pageNumber = 1;
+  $scope.searchProductMore = function () {
+    $scope.pageNumber ++;
+    $http.get('https://localhost:7118/api/InfoProduct/SearchProductByName', {
+      params: {
+        Name: $scope.productName,
+        pageNumber: $scope.pageNumber,
+        pageSize: 5
+      }
+    })
+      .then(function (response) {
 
+        $scope.products = response.data;
+      })
+      .catch(function (error) {
+
+        console.error('Lỗi khi gọi API:', error);
+      });
+  };
 });
 
 app.controller('UserController', function ($scope, $window) {
